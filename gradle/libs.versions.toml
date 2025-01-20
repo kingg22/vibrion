@@ -36,6 +36,7 @@ kotlinx-coroutines-test = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-t
 ktor-client-core = { group = "io.ktor", name = "ktor-client-core", version.ref = "ktor" }
 ktor-client-content-negotiation = { group = "io.ktor", name = "ktor-client-content-negotiation", version.ref = "ktor" }
 ktor-client-resource = { group = "io.ktor", name = "ktor-client-resources", version.ref = "ktor" }
+ktor-client-mock = { group = "io.ktor", name = "ktor-client-mock", version.ref = "ktor" }
 ktor-json = { group = "io.ktor", name = "ktor-serialization-kotlinx-json", version.ref = "ktor" }
 ktor-engine-okhttp = { group = "io.ktor", name = "ktor-client-okhttp", version.ref = "ktor"}
 kotlin-reflection = { group = "org.jetbrains.kotlin", name = "kotlin-reflect" }
@@ -44,6 +45,7 @@ kotlin-reflection = { group = "org.jetbrains.kotlin", name = "kotlin-reflect" }
 [bundles]
 kotlinx-ecosystem = ["kotlinx-datetime", "kotlinx-serialization", "kotlinx-coroutines", "kotlinx-IO"]
 ktor-client = ["ktor-client-core", "ktor-client-content-negotiation", "ktor-json", "ktor-client-resource"]
+testing = ["ktor-client-mock", "kotlinx-coroutines-test"]
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }
