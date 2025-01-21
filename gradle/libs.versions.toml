@@ -18,6 +18,7 @@ logback = "1.5.12"
 changelog = "2.2.1"
 mavenPublish = "0.29.0"
 dokka = "2.0.0"
+kover = "0.9.1"
 
 [libraries]
 kotlin-test = { module = "org.jetbrains.kotlin:kotlin-test", version.ref = "kotlin" }
@@ -58,3 +59,4 @@ changelog = { id = "org.jetbrains.changelog", version.ref = "changelog" }
 vanniktechMavenPublish = { id = "com.vanniktech.maven.publish", version.ref = "mavenPublish" }
 kotlinPluginSerialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
 dokka = { id = "org.jetbrains.dokka", version.ref = "dokka" }
+kotlinKover = { id = "org.jetbrains.kotlinx.kover", version.ref = "kover" }
