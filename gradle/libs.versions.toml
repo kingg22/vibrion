@@ -19,6 +19,7 @@ changelog = "2.2.1"
 mavenPublish = "0.29.0"
 dokka = "2.0.0"
 kover = "0.9.1"
+kotlinx-resource = "0.10.0"
 
 [libraries]
 kotlin-test = { module = "org.jetbrains.kotlin:kotlin-test", version.ref = "kotlin" }
@@ -41,12 +42,13 @@ ktor-client-mock = { group = "io.ktor", name = "ktor-client-mock", version.ref =
 ktor-json = { group = "io.ktor", name = "ktor-serialization-kotlinx-json", version.ref = "ktor" }
 ktor-engine-okhttp = { group = "io.ktor", name = "ktor-client-okhttp", version.ref = "ktor"}
 kotlin-reflection = { group = "org.jetbrains.kotlin", name = "kotlin-reflect" }
+kotlinx-resources = { module = "com.goncalossilva:resources", version.ref = "kotlinx-resource" }
 
 # Libraries can be bundled together for easier import
 [bundles]
 kotlinx-ecosystem = ["kotlinx-datetime", "kotlinx-serialization", "kotlinx-coroutines", "kotlinx-IO"]
 ktor-client = ["ktor-client-core", "ktor-client-content-negotiation", "ktor-json", "ktor-client-resource"]
-testing = ["ktor-client-mock", "kotlinx-coroutines-test"]
+testing = ["ktor-client-mock", "kotlinx-coroutines-test", "kotlinx-resources"]
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }
@@ -60,3 +62,4 @@ vanniktechMavenPublish = { id = "com.vanniktech.maven.publish", version.ref = "m
 kotlinPluginSerialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
 dokka = { id = "org.jetbrains.dokka", version.ref = "dokka" }
 kotlinKover = { id = "org.jetbrains.kotlinx.kover", version.ref = "kover" }
+kotlinxResources = { id = "com.goncalossilva.resources", version.ref = "kotlinx-resource" }
