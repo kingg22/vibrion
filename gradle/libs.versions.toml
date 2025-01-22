@@ -20,6 +20,7 @@ mavenPublish = "0.29.0"
 dokka = "2.0.0"
 kover = "0.9.1"
 kotlinx-resource = "0.10.0"
+kermit = "2.0.5"
 
 [libraries]
 kotlin-test = { module = "org.jetbrains.kotlin:kotlin-test", version.ref = "kotlin" }
@@ -43,6 +44,7 @@ ktor-json = { group = "io.ktor", name = "ktor-serialization-kotlinx-json", versi
 ktor-engine-okhttp = { group = "io.ktor", name = "ktor-client-okhttp", version.ref = "ktor"}
 kotlin-reflection = { group = "org.jetbrains.kotlin", name = "kotlin-reflect" }
 kotlinx-resources = { module = "com.goncalossilva:resources", version.ref = "kotlinx-resource" }
+kermit = { group = "co.touchlab", name = "kermit", version.ref = "kermit" }
 
 # Libraries can be bundled together for easier import
 [bundles]
