@@ -1,0 +1,26 @@
+root = true
+
+[*]
+charset = utf-8
+end_of_line = lf
+indent_size = 4
+indent_style = space
+insert_final_newline = true
+max_line_length = 120
+
+[*.{kt,kts}]
+ij_kotlin_code_style_defaults = KOTLIN_OFFICIAL
+ij_kotlin_packages_to_use_import_on_demand = java.util.*, io.ktor.**
+
+ktlint_code_style = intellij_idea
+ktlint_standard_no-consecutive-comments = enabled
+ktlint_standard_if-else-wrapping = enabled
+ktlint_standard_try-catch-finally-spacing = enabled
+ktlint_standard_no-wildcard-imports = disabled
+ktlint_standard_class-signature = disabled
+
+[{*.har,*.jsb2,*.jsb3,*.json,*.jsonc,.babelrc,.eslintrc,.prettierrc,.stylelintrc,.ws-context,jest.config}]
+indent_size = 2
+
+[*.properties]
+ij_properties_keep_blank_lines = true
