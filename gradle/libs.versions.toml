@@ -13,7 +13,7 @@ kotlinx-coroutines = "1.10.1"
 kotlinx-IO = "0.6.0"
 kotlinx-serialization-json = "1.8.0"
 kotlinx-datetime = "0.6.1"
-ktor = "3.0.3"
+ktor = "3.0.1"
 logback = "1.5.12"
 changelog = "2.2.1"
 mavenPublish = "0.29.0"
@@ -34,12 +34,14 @@ logback = { module = "ch.qos.logback:logback-classic", version.ref = "logback" }
 kotlinx-datetime = { module = "org.jetbrains.kotlinx:kotlinx-datetime", version.ref = "kotlinx-datetime" }
 kotlinx-serialization = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "kotlinx-serialization-json" }
 kotlinx-coroutines = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "kotlinx-coroutines" }
+kotlinx-coroutines-android = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-android", version.ref = "kotlinx-coroutines" }
 kotlinx-IO = { group = "org.jetbrains.kotlinx", name = "kotlinx-io-core", version.ref = "kotlinx-IO" }
 kotlinx-coroutines-test = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-test", version.ref = "kotlinx-coroutines" }
 ktor-client-core = { group = "io.ktor", name = "ktor-client-core", version.ref = "ktor" }
 ktor-client-content-negotiation = { group = "io.ktor", name = "ktor-client-content-negotiation", version.ref = "ktor" }
 ktor-client-resource = { group = "io.ktor", name = "ktor-client-resources", version.ref = "ktor" }
 ktor-client-mock = { group = "io.ktor", name = "ktor-client-mock", version.ref = "ktor" }
+ktor-client-logging = { group = "io.ktor", name = "ktor-client-logging", version.ref = "ktor" }
 ktor-json = { group = "io.ktor", name = "ktor-serialization-kotlinx-json", version.ref = "ktor" }
 ktor-engine-okhttp = { group = "io.ktor", name = "ktor-client-okhttp", version.ref = "ktor"}
 kotlin-reflection = { group = "org.jetbrains.kotlin", name = "kotlin-reflect" }
@@ -48,9 +50,10 @@ kermit = { group = "co.touchlab", name = "kermit", version.ref = "kermit" }
 
 # Libraries can be bundled together for easier import
 [bundles]
+android = ["kotlinx-coroutines-android"]
 kotlinx-ecosystem = ["kotlinx-datetime", "kotlinx-serialization", "kotlinx-coroutines", "kotlinx-IO"]
-ktor-client = ["ktor-client-core", "ktor-client-content-negotiation", "ktor-json", "ktor-client-resource"]
-testing = ["ktor-client-mock", "kotlinx-coroutines-test", "kotlinx-resources"]
+ktor-client = ["ktor-client-core", "ktor-client-content-negotiation", "ktor-json", "ktor-client-resource", "ktor-client-logging"]
+testing = ["kotlin-test", "ktor-client-mock", "kotlinx-coroutines-test", "kotlinx-resources"]
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }
