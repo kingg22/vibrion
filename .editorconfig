@@ -17,7 +17,6 @@ ktlint_standard_no-consecutive-comments = enabled
 ktlint_standard_if-else-wrapping = enabled
 ktlint_standard_try-catch-finally-spacing = enabled
 ktlint_standard_no-wildcard-imports = disabled
-ktlint_standard_class-signature = disabled
 
 [{*.har,*.jsb2,*.jsb3,*.json,*.jsonc,.babelrc,.eslintrc,.prettierrc,.stylelintrc,.ws-context,jest.config}]
 indent_size = 2
