@@ -21,6 +21,10 @@ dokka = "2.0.0"
 kover = "0.9.1"
 kotlinx-resource = "0.10.0"
 kermit = "2.0.5"
+ksp = "2.1.0-1.0.29"
+ktorfit = "2.2.0"
+kotest = "5.9.1"
+ktlint = "5.0.1"
 
 [libraries]
 kotlin-test = { module = "org.jetbrains.kotlin:kotlin-test", version.ref = "kotlin" }
@@ -37,25 +41,43 @@ kotlinx-coroutines = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core",
 kotlinx-coroutines-android = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-android", version.ref = "kotlinx-coroutines" }
 kotlinx-IO = { group = "org.jetbrains.kotlinx", name = "kotlinx-io-core", version.ref = "kotlinx-IO" }
 kotlinx-coroutines-test = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-test", version.ref = "kotlinx-coroutines" }
-ktor-client-core = { group = "io.ktor", name = "ktor-client-core", version.ref = "ktor" }
 ktor-client-content-negotiation = { group = "io.ktor", name = "ktor-client-content-negotiation", version.ref = "ktor" }
 ktor-client-resource = { group = "io.ktor", name = "ktor-client-resources", version.ref = "ktor" }
 ktor-client-mock = { group = "io.ktor", name = "ktor-client-mock", version.ref = "ktor" }
 ktor-client-logging = { group = "io.ktor", name = "ktor-client-logging", version.ref = "ktor" }
 ktor-json = { group = "io.ktor", name = "ktor-serialization-kotlinx-json", version.ref = "ktor" }
-ktor-engine-okhttp = { group = "io.ktor", name = "ktor-client-okhttp", version.ref = "ktor"}
+ktor-engine-okhttp = { module = "io.ktor:ktor-client-okhttp", version.ref = "ktor" }
 kotlin-reflection = { group = "org.jetbrains.kotlin", name = "kotlin-reflect" }
 kotlinx-resources = { module = "com.goncalossilva:resources", version.ref = "kotlinx-resource" }
 kermit = { group = "co.touchlab", name = "kermit", version.ref = "kermit" }
+ktorfit-light = { group = "de.jensklingenberg.ktorfit", name = "ktorfit-lib-light", version.ref = "ktorfit" }
+ktorfit-flow = { group = "de.jensklingenberg.ktorfit", name = "ktorfit-converters-flow", version.ref = "ktorfit" }
+kotest-assertions-core = { module = "io.kotest:kotest-assertions-core", version.ref = "kotest" }
+kotest-assertions-json = { module = "io.kotest:kotest-assertions-json", version.ref = "kotest" }
 
 # Libraries can be bundled together for easier import
 [bundles]
 android = ["kotlinx-coroutines-android"]
 kotlinx-ecosystem = ["kotlinx-datetime", "kotlinx-serialization", "kotlinx-coroutines", "kotlinx-IO"]
-ktor-client = ["ktor-client-core", "ktor-client-content-negotiation", "ktor-json", "ktor-client-resource", "ktor-client-logging"]
-testing = ["kotlin-test", "ktor-client-mock", "kotlinx-coroutines-test", "kotlinx-resources"]
+ktorfit = [
+    "ktorfit-light",
+    "ktorfit-flow",
+    "ktor-client-content-negotiation",
+    "ktor-json",
+    "ktor-client-resource",
+    "ktor-client-logging"
+]
+testing = [
+    "kotlin-test",
+    "ktor-client-mock",
+    "kotlinx-coroutines-test",
+    "kotlinx-resources",
+    "kotest-assertions-core",
+    "kotest-assertions-json"
+]
 
 [plugins]
+ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
 androidApplication = { id = "com.android.application", version.ref = "agp" }
 androidLibrary = { id = "com.android.library", version.ref = "agp" }
 composeMultiplatform = { id = "org.jetbrains.compose", version.ref = "compose-multiplatform" }
@@ -68,3 +90,5 @@ kotlinPluginSerialization = { id = "org.jetbrains.kotlin.plugin.serialization", 
 dokka = { id = "org.jetbrains.dokka", version.ref = "dokka" }
 kotlinKover = { id = "org.jetbrains.kotlinx.kover", version.ref = "kover" }
 kotlinxResources = { id = "com.goncalossilva.resources", version.ref = "kotlinx-resource" }
+ktorfit = { id = "de.jensklingenberg.ktorfit", version.ref = "ktorfit" }
+ktlint = { id = "org.jmailen.kotlinter", version.ref = "ktlint" }
