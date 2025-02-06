@@ -2,7 +2,6 @@
 agp = "8.8.0"
 android-compileSdk = "34"
 android-minSdk = "24"
-compose-multiplatform = "1.7.0"
 kotlin = "2.1.0"
 kotlinx-coroutines = "1.10.1"
 kotlinx-IO = "0.6.0"
@@ -43,7 +42,7 @@ kotest-assertions-json = { module = "io.kotest:kotest-assertions-json", version.
 
 # Libraries can be bundled together for easier import
 [bundles]
-kotlinx-ecosystem = ["kotlinx-datetime", "kotlinx-serialization", "kotlinx-coroutines", "kotlinx-IO"]
+kotlinx-ecosystem = ["kotlinx-datetime", "kotlinx-serialization", "kotlinx-coroutines", "kotlinx-IO", "kotlin-reflection"]
 ktorfit = [
     "ktorfit-light",
     "ktorfit-flow",
@@ -63,11 +62,7 @@ testing = [
 
 [plugins]
 ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
-androidApplication = { id = "com.android.application", version.ref = "agp" }
 androidLibrary = { id = "com.android.library", version.ref = "agp" }
-composeMultiplatform = { id = "org.jetbrains.compose", version.ref = "compose-multiplatform" }
-composeCompiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
-kotlinJvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
 kotlinMultiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin" }
 changelog = { id = "org.jetbrains.changelog", version.ref = "changelog" }
 vanniktechMavenPublish = { id = "com.vanniktech.maven.publish", version.ref = "mavenPublish" }
