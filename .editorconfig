@@ -21,6 +21,8 @@ ktlint_standard_if-else-wrapping = enabled
 ktlint_standard_try-catch-finally-spacing = enabled
 # noinspection EditorConfigKeyCorrectness
 ktlint_standard_no-wildcard-imports = disabled
+# noinspection EditorConfigKeyCorrectness
+ktlint_function_naming_ignore_when_annotated_with = Composable
 
 [deezer-sdk/build/generated/**.{kt,kts}]
 # noinspection EditorConfigKeyCorrectness
