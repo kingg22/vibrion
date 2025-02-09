@@ -24,7 +24,7 @@ ktlint_standard_no-wildcard-imports = disabled
 # noinspection EditorConfigKeyCorrectness
 ktlint_function_naming_ignore_when_annotated_with = Composable
 
-[deezer-sdk/build/generated/**.{kt,kts}]
+[**/build/**.{kt,kts}]
 # noinspection EditorConfigKeyCorrectness
 ktlint = disabled
 

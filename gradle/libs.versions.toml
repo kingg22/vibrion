@@ -1,7 +1,8 @@
 [versions]
 agp = "8.8.0"
-android-compileSdk = "34"
+android-compileSdk = "35"
 android-minSdk = "24"
+android-targetSdk = "35"
 kotlin = "2.1.0"
 kotlinx-coroutines = "1.10.1"
 kotlinx-IO = "0.6.0"
@@ -19,7 +20,6 @@ ktorfit = "2.2.0"
 kotest = "5.9.1"
 ktlint = "5.0.1"
 ktlint-compose = "0.4.22"
-android-targetSdk = "34"
 androidx-activityCompose = "1.10.0"
 androidx-appcompat = "1.7.0"
 androidx-constraintlayout = "2.2.0"
@@ -28,6 +28,7 @@ androidx-espresso-core = "3.6.1"
 androidx-lifecycle = "2.8.4"
 androidx-material = "1.12.0"
 androidx-test-junit = "1.2.1"
+androidx-navigationCompose = "2.8.6"
 compose-multiplatform = "1.7.0"
 
 [libraries]
@@ -47,6 +48,7 @@ kotlin-reflection = { group = "org.jetbrains.kotlin", name = "kotlin-reflect" }
 kotlinx-resources = { module = "com.goncalossilva:resources", version.ref = "kotlinx-resource" }
 kermit = { group = "co.touchlab", name = "kermit", version.ref = "kermit" }
 ktorfit-light = { group = "de.jensklingenberg.ktorfit", name = "ktorfit-lib-light", version.ref = "ktorfit" }
+ktorfit = { group = "de.jensklingenberg.ktorfit", name = "ktorfit-lib", version.ref = "ktorfit" }
 ktorfit-flow = { group = "de.jensklingenberg.ktorfit", name = "ktorfit-converters-flow", version.ref = "ktorfit" }
 kotest-assertions-core = { module = "io.kotest:kotest-assertions-core", version.ref = "kotest" }
 kotest-assertions-json = { module = "io.kotest:kotest-assertions-json", version.ref = "kotest" }
@@ -61,6 +63,7 @@ androidx-constraintlayout = { group = "androidx.constraintlayout", name = "const
 androidx-activity-compose = { module = "androidx.activity:activity-compose", version.ref = "androidx-activityCompose" }
 androidx-lifecycle-viewmodel = { group = "org.jetbrains.androidx.lifecycle", name = "lifecycle-viewmodel", version.ref = "androidx-lifecycle" }
 androidx-lifecycle-runtime-compose = { group = "org.jetbrains.androidx.lifecycle", name = "lifecycle-runtime-compose", version.ref = "androidx-lifecycle" }
+androidx-navigation-compose = { module = "androidx.navigation:navigation-compose", version.ref = "androidx-navigationCompose" }
 
 # Libraries can be bundled together for easier import
 [bundles]
@@ -69,11 +72,12 @@ androidx-compose = [
 #    "androidx-test-junit",
 #    "androidx-espresso-core",
 #    "androidx-appcompat",
-    "androidx-material",
 #    "androidx-constraintlayout",
+    #    "androidx-material",
     "androidx-activity-compose",
     "androidx-lifecycle-viewmodel",
-    "androidx-lifecycle-runtime-compose"
+    "androidx-lifecycle-runtime-compose",
+    "androidx-navigation-compose"
 ]
 kotlinx-ecosystem = ["kotlinx-datetime", "kotlinx-serialization", "kotlinx-coroutines", "kotlinx-IO", "kotlin-reflection"]
 ktorfit = [
