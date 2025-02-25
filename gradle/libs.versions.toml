@@ -1,4 +1,5 @@
 [versions]
+aboutLibraries = "11.6.3"
 agp = "8.8.1"
 android-compileSdk = "35"
 android-minSdk = "24"
@@ -12,7 +13,7 @@ androidx-navigationCompose = "2.8.0-alpha13"
 androidx-test-junit = "1.2.1"
 changelog = "2.2.1"
 coil = "3.1.0"
-compose-hotReload = "1.0.0-dev-57"
+compose-hotReload = "1.0.0-dev-63"
 compose-multiplatform = "1.7.3"
 dokka = "2.0.0"
 kermit = "2.0.5"
@@ -80,6 +81,8 @@ koin-viewmodel-navigation = { module = "io.insert-koin:koin-compose-viewmodel-na
 
 ktlint-compose = { module = "io.nlopez.compose.rules:ktlint", version.ref = "ktlint-compose" }
 
+aboutlibraries-compose-m3 = { module = "com.mikepenz:aboutlibraries-compose-m3", version.ref = "aboutLibraries" }
+
 # Libraries can be bundled together for easier import
 [bundles]
 androidx-compose = [
@@ -128,3 +131,4 @@ composeCompiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "k
 composeMultiplatform = { id = "org.jetbrains.compose", version.ref = "compose-multiplatform" }
 # Compose desktop Hot reload
 composeHotReload = { id = "org.jetbrains.compose.hot-reload", version.ref = "compose-hotReload" }
+aboutLibraries = { id = "com.mikepenz.aboutlibraries.plugin", version.ref = "aboutLibraries" }
