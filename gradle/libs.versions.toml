@@ -33,6 +33,7 @@ ktlint = "5.0.1"
 ktlint-compose = "0.4.22"
 maven-publish = "0.30.0"
 skiko = "0.8.25"
+platformtools = "0.2.7"
 
 [libraries]
 # Kotlin - Kotlinx essentials
@@ -82,6 +83,8 @@ koin-viewmodel-navigation = { module = "io.insert-koin:koin-compose-viewmodel-na
 ktlint-compose = { module = "io.nlopez.compose.rules:ktlint", version.ref = "ktlint-compose" }
 
 aboutlibraries-compose-m3 = { module = "com.mikepenz:aboutlibraries-compose-m3", version.ref = "aboutLibraries" }
+
+platformtools-darkmode = { module = "io.github.kdroidfilter:platformtools.darkmodedetector", version.ref = "platformtools" }
 
 # Libraries can be bundled together for easier import
 [bundles]
