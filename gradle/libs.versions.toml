@@ -82,10 +82,11 @@ androidx-glance-material3 = { module = "androidx.glance:glance-material3", versi
 coil = { module = "io.coil-kt.coil3:coil-compose", version.ref = "coil" }
 # Koin
 koin-bom = { module = "io.insert-koin:koin-bom", version.ref = "koin" }
+koin-core = { module = "io.insert-koin:koin-core" }
+koin-test = { module = "io.insert-koin:koin-test" }
+koin-android = { module = "io.insert-koin:koin-android" }
 koin-compose = { module = "io.insert-koin:koin-compose" }
-koin-androidx-compose-navigation = { module = "io.insert-koin:koin-androidx-compose-navigation" }
 koin-viewmodel-navigation = { module = "io.insert-koin:koin-compose-viewmodel-navigation" }
-koin-androidx-startup = { module = "io.insert-koin:koin-androidx-startup" }
 
 ktlint-compose = { module = "io.nlopez.compose.rules:ktlint", version.ref = "ktlint-compose" }
 
@@ -97,7 +98,6 @@ platformtools-permission = { module = "io.github.kdroidfilter:platformtools.perm
 # Okio
 okio-core = { module = "com.squareup.okio:okio", version.ref = "okio" }
 okio-fake = { module = "com.squareup.okio:okio-fakefilesystem", version.ref = "okio" }
-
 
 # Libraries can be bundled together for easier import
 [bundles]
@@ -131,7 +131,6 @@ testing = [
 
 [plugins]
 androidLibrary = { id = "com.android.library", version.ref = "agp" }
-changelog = { id = "org.jetbrains.changelog", version.ref = "changelog" }
 dokka = { id = "org.jetbrains.dokka", version.ref = "dokka" }
 kotlinMultiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin" }
 kotlinPluginSerialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
@@ -140,7 +139,6 @@ kotlinxKover = { id = "org.jetbrains.kotlinx.kover", version.ref = "kover" }
 ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
 ktlint = { id = "org.jmailen.kotlinter", version.ref = "ktlint" }
 ktorfit = { id = "de.jensklingenberg.ktorfit", version.ref = "ktorfit" }
-vanniktechMavenPublish = { id = "com.vanniktech.maven.publish", version.ref = "maven-publish" }
 # Compose
 androidApplication = { id = "com.android.application", version.ref = "agp" }
 composeCompiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
