@@ -11,11 +11,13 @@ androidx-espresso-core = "3.6.1"
 androidx-lifecycle = "2.8.4"
 androidx-navigationCompose = "2.8.0-alpha13"
 androidx-test-junit = "1.2.1"
+androidx-work = "2.10.0"
 changelog = "2.2.1"
 coil = "3.1.0"
 compose-hotReload = "1.0.0-alpha01"
 compose-multiplatform = "1.7.3"
 dokka = "2.0.0"
+glance = "1.1.1"
 kermit = "2.0.5"
 koin = "4.0.2"
 kotest = "5.9.1"
@@ -33,6 +35,7 @@ ktlint = "5.0.1"
 ktlint-compose = "0.4.22"
 maven-publish = "0.31.0"
 skiko = "0.8.25"
+okio = "3.10.2"
 platformtools = "0.2.7"
 
 [libraries]
@@ -43,7 +46,6 @@ kotlinx-coroutines = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core",
 kotlinx-coroutines-swing = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-swing", version.ref = "kotlinx-coroutines" }
 kotlinx-coroutines-test = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-test", version.ref = "kotlinx-coroutines" }
 kotlinx-datetime = { module = "org.jetbrains.kotlinx:kotlinx-datetime", version.ref = "kotlinx-datetime" }
-kotlinx-IO = { group = "org.jetbrains.kotlinx", name = "kotlinx-io-core", version.ref = "kotlinx-IO" }
 kotlinx-serialization = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "kotlinx-serialization-json" }
 # Resources multiplatform
 kotlinx-resources = { module = "com.goncalossilva:resources", version.ref = "kotlinx-resource" }
@@ -72,12 +74,18 @@ androidx-lifecycle-viewmodel = { group = "org.jetbrains.androidx.lifecycle", nam
 androidx-lifecycle-runtime-compose = { group = "org.jetbrains.androidx.lifecycle", name = "lifecycle-runtime-compose", version.ref = "androidx-lifecycle" }
 androidx-navigation-compose = { module = "org.jetbrains.androidx.navigation:navigation-compose", version.ref = "androidx-navigationCompose" }
 androidx-test-junit = { group = "androidx.test.ext", name = "junit", version.ref = "androidx-test-junit" }
+androidx-work = { module = "androidx.work:work-runtime-ktx", version.ref = "androidx-work" }
+# Glance
+androidx-glance-appwidget = { module = "androidx.glance:glance-appwidget", version.ref = "glance" }
+androidx-glance-material3 = { module = "androidx.glance:glance-material3", version.ref = "glance" }
 
 coil = { module = "io.coil-kt.coil3:coil-compose", version.ref = "coil" }
 # Koin
 koin-bom = { module = "io.insert-koin:koin-bom", version.ref = "koin" }
+koin-core = { module = "io.insert-koin:koin-core" }
+koin-test = { module = "io.insert-koin:koin-test" }
+koin-android = { module = "io.insert-koin:koin-android" }
 koin-compose = { module = "io.insert-koin:koin-compose" }
-koin-androidx-compose-navigation = { module = "io.insert-koin:koin-androidx-compose-navigation" }
 koin-viewmodel-navigation = { module = "io.insert-koin:koin-compose-viewmodel-navigation" }
 
 ktlint-compose = { module = "io.nlopez.compose.rules:ktlint", version.ref = "ktlint-compose" }
@@ -86,6 +94,10 @@ aboutlibraries-compose-m3 = { module = "com.mikepenz:aboutlibraries-compose-m3",
 
 platformtools-darkmode = { module = "io.github.kdroidfilter:platformtools.darkmodedetector", version.ref = "platformtools" }
 platformtools-permission = { module = "io.github.kdroidfilter:platformtools.permissionhandler", version.ref = "platformtools" }
+
+# Okio
+okio-core = { module = "com.squareup.okio:okio", version.ref = "okio" }
+okio-fake = { module = "com.squareup.okio:okio-fakefilesystem", version.ref = "okio" }
 
 # Libraries can be bundled together for easier import
 [bundles]
@@ -99,7 +111,7 @@ androidx-compose = [
     "androidx-data-store-preferences"
 ]
 koin = ["koin-compose", "koin-viewmodel-navigation"]
-kotlinx-ecosystem = ["kotlinx-datetime", "kotlinx-serialization", "kotlinx-coroutines", "kotlinx-IO", "kotlin-reflection"]
+kotlinx-ecosystem = ["kotlinx-datetime", "kotlinx-serialization", "kotlinx-coroutines", "kotlin-reflection"]
 ktorfit = [
     "ktorfit-light",
     "ktorfit-flow",
@@ -119,7 +131,6 @@ testing = [
 
 [plugins]
 androidLibrary = { id = "com.android.library", version.ref = "agp" }
-changelog = { id = "org.jetbrains.changelog", version.ref = "changelog" }
 dokka = { id = "org.jetbrains.dokka", version.ref = "dokka" }
 kotlinMultiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin" }
 kotlinPluginSerialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
@@ -128,7 +139,6 @@ kotlinxKover = { id = "org.jetbrains.kotlinx.kover", version.ref = "kover" }
 ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
 ktlint = { id = "org.jmailen.kotlinter", version.ref = "ktlint" }
 ktorfit = { id = "de.jensklingenberg.ktorfit", version.ref = "ktorfit" }
-vanniktechMavenPublish = { id = "com.vanniktech.maven.publish", version.ref = "maven-publish" }
 # Compose
 androidApplication = { id = "com.android.application", version.ref = "agp" }
 composeCompiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
