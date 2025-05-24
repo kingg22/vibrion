@@ -7,15 +7,16 @@
 
 name: Java CI with Gradle
 
-on:
-  push:
-    branches: [ "main" ]
-  pull_request:
+on: [ push, pull_request ]
+
+concurrency:
+    group: ${{ github.workflow }}-${{ github.ref }}
+    cancel-in-progress: true
 
 jobs:
   build:
 
-    runs-on: macos-latest
+    runs-on: ubuntu-latest
     permissions:
       contents: read
 
@@ -35,7 +36,7 @@ jobs:
     - name: Setup Gradle
       uses: gradle/actions/setup-gradle@v4
       with:
-          cache-overwrite-existing: true
+          gradle-version: '8.13'
           validate-wrappers: true
 
     - name: Build with Gradle Wrapper
@@ -53,7 +54,7 @@ jobs:
     #   run: gradle build
 
   dependency-submission:
-
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
     permissions:
       contents: write
