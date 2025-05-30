@@ -2,7 +2,7 @@
 # https://github.com/mikepenz/AboutLibraries/releases
 aboutLibraries = "12.1.2"
 # https://developer.android.com/build/releases/gradle-plugin
-agp = "8.10.0"
+agp = "8.10.1"
 
 # https://developer.android.com/tools/releases/platforms
 android-compileSdk = "36"
