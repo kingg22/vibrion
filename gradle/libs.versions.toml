@@ -1,6 +1,6 @@
 [versions]
 # https://github.com/mikepenz/AboutLibraries/releases
-aboutLibraries = "12.1.2"
+aboutLibraries = "12.2.0"
 # https://developer.android.com/build/releases/gradle-plugin
 agp = "8.10.1"
 
@@ -67,7 +67,7 @@ ktlint-compose = "0.4.22"
 # https://github.com/JetBrains/skiko/releases
 skiko = "0.9.4.2"
 # https://square.github.io/okio/changelog/
-okio = "3.11.0"
+okio = "3.12.0"
 # https://github.com/kdroidFilter/Platform-Tools/releases
 platformtools = "0.2.9"
 
@@ -120,6 +120,9 @@ koin-android = { module = "io.insert-koin:koin-android" }
 koin-compose = { module = "io.insert-koin:koin-compose" }
 koin-viewmodel-navigation = { module = "io.insert-koin:koin-compose-viewmodel-navigation" }
 
+# Konsist
+konsist = { module = "com.lemonappdev:konsist", version = "0.17.3" }
+
 ktlint-compose = { module = "io.nlopez.compose.rules:ktlint", version.ref = "ktlint-compose" }
 
 aboutlibraries-compose-m3 = { module = "com.mikepenz:aboutlibraries-compose-m3", version.ref = "aboutLibraries" }
@@ -164,6 +167,7 @@ testing = [
 [plugins]
 androidLibrary = { id = "com.android.library", version.ref = "agp" }
 dokka = { id = "org.jetbrains.dokka", version.ref = "dokka" }
+kotlinJvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
 kotlinMultiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin" }
 kotlinPluginSerialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
 kotlinxResources = { id = "com.goncalossilva.resources", version.ref = "kotlinx-resource" }
