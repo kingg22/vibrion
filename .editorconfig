@@ -12,9 +12,11 @@ ij_smart_tabs = false
 
 [*.{kt,kts}]
 ij_kotlin_code_style_defaults = KOTLIN_OFFICIAL
-ij_kotlin_name_count_to_use_star_import = 999
-ij_kotlin_name_count_to_use_star_import_for_members = 999
+ij_kotlin_name_count_to_use_star_import = 10
+ij_kotlin_name_count_to_use_star_import_for_members = 10
 
+# noinspection EditorConfigKeyCorrectness
+ktlint_no-wildcard-imports = disabled
 # noinspection EditorConfigKeyCorrectness
 ktlint_code_style = intellij_idea
 # noinspection EditorConfigKeyCorrectness
@@ -27,6 +29,7 @@ ktlint_standard_try-catch-finally-spacing = enabled
 ktlint_function_naming_ignore_when_annotated_with = Composable
 
 [**/build/**.{kt,kts}]
+ij_formatter_enabled = false
 # noinspection EditorConfigKeyCorrectness
 ktlint = disabled
 
