@@ -16,7 +16,7 @@ ij_kotlin_name_count_to_use_star_import = 10
 ij_kotlin_name_count_to_use_star_import_for_members = 10
 
 # noinspection EditorConfigKeyCorrectness
-ktlint_no-wildcard-imports = disabled
+ktlint_standard_no-wildcard-imports = disabled
 # noinspection EditorConfigKeyCorrectness
 ktlint_code_style = intellij_idea
 # noinspection EditorConfigKeyCorrectness

@@ -24,6 +24,8 @@ androidx-navigationCompose = "2.9.0-beta02" # based on 2.9.0
 androidx-test-junit = "1.2.1"
 # https://developer.android.com/jetpack/androidx/releases/work
 androidx-work = "2.10.1"
+# https://github.com/ajalt/clikt/releases
+clikt = "5.0.3"
 # https://github.com/coil-kt/coil/releases
 coil = "3.2.0"
 # https://github.com/JetBrains/compose-hot-reload/releases
@@ -133,6 +135,9 @@ platformtools-permission = { module = "io.github.kdroidfilter:platformtools.perm
 # Okio
 okio-core = { module = "com.squareup.okio:okio", version.ref = "okio" }
 okio-fake = { module = "com.squareup.okio:okio-fakefilesystem", version.ref = "okio" }
+
+# Clikt
+clikt = { module = "com.github.ajalt.clikt:clikt", version.ref = "clikt" }
 
 # Libraries can be bundled together for easier import
 [bundles]
