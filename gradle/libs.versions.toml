@@ -89,7 +89,6 @@ ktor-client-content-negotiation = { group = "io.ktor", name = "ktor-client-conte
 ktor-client-engine-okhttp = { group = "io.ktor", name = "ktor-client-okhttp", version.ref = "ktor" }
 ktor-client-logging = { group = "io.ktor", name = "ktor-client-logging", version.ref = "ktor" }
 ktor-client-mock = { group = "io.ktor", name = "ktor-client-mock", version.ref = "ktor" }
-ktor-client-resource = { group = "io.ktor", name = "ktor-client-resources", version.ref = "ktor" }
 ktor-json = { group = "io.ktor", name = "ktor-serialization-kotlinx-json", version.ref = "ktor" }
 # Ktorfit
 ktorfit-flow = { group = "de.jensklingenberg.ktorfit", name = "ktorfit-converters-flow", version.ref = "ktorfit" }
@@ -154,10 +153,8 @@ koin = ["koin-compose", "koin-viewmodel-navigation"]
 kotlinx-ecosystem = ["kotlinx-datetime", "kotlinx-serialization", "kotlinx-coroutines", "kotlin-reflection"]
 ktorfit = [
     "ktorfit-light",
-    "ktorfit-flow",
     "ktor-client-content-negotiation",
     "ktor-json",
-    "ktor-client-resource",
     "ktor-client-logging"
 ]
 testing = [
