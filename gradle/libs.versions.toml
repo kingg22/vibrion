@@ -165,8 +165,7 @@ androidx-compose = [
 ]
 koin-compose = ["koin-compose", "koin-compose-viewmodel"]
 kotlinx-ecosystem = ["kotlinx-datetime", "kotlinx-serialization", "kotlinx-coroutines"]
-ktorfit = [
-    "ktorfit-light",
+ktor-client = [
     "ktor-client-content-negotiation",
     "ktor-json",
     "ktor-client-logging"
