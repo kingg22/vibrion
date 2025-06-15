@@ -73,7 +73,7 @@ skiko = "0.9.4.2"
 # https://square.github.io/okio/changelog/
 okio = "3.13.0"
 # https://github.com/kdroidFilter/Platform-Tools/releases
-platformtools = "0.3.4"
+platformtools = "0.3.3"
 
 [libraries]
 # Kotlin - Kotlinx essentials
