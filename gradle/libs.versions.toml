@@ -1,6 +1,6 @@
 [versions]
 # https://github.com/mikepenz/AboutLibraries/releases
-aboutLibraries = "12.2.0"
+aboutLibraries = "12.2.3"
 # https://developer.android.com/build/releases/gradle-plugin
 agp = "8.10.1"
 
@@ -29,7 +29,7 @@ clikt = "5.0.3"
 # https://github.com/coil-kt/coil/releases
 coil = "3.2.0"
 # https://github.com/JetBrains/compose-hot-reload/releases
-compose-hotReload = "1.0.0-alpha10"
+compose-hotReload = "1.0.0-alpha11"
 # https://github.com/JetBrains/compose-multiplatform/releases
 compose-multiplatform = "1.8.1"
 # https://github.com/Kotlin/dokka/releases
@@ -37,9 +37,11 @@ dokka = "2.0.0"
 # https://developer.android.com/jetpack/androidx/releases/glance
 glance = "1.1.1"
 # https://github.com/touchlab/Kermit/releases
-kermit = "2.0.5"
+kermit = "2.0.6"
 # https://github.com/InsertKoinIO/koin/releases
 koin = "4.0.4"
+# https://github.com/LemonAppDev/konsist/releases
+konsist = "0.17.3"
 # https://github.com/kotest/kotest/releases
 kotest = "6.0.0.M4"
 # https://github.com/JetBrains/kotlin/releases
@@ -55,7 +57,7 @@ kotlinx-serialization-json = "1.8.1"
 # https://github.com/Kotlin/kotlinx-kover/releases
 kover = "0.9.1"
 # https://github.com/google/ksp/releases
-ksp = "2.1.21-2.0.1"
+ksp = "2.1.21-2.0.2"
 # https://github.com/ktorio/ktor/releases
 ktor = "3.1.2" # Depends on ktorfit
 # https://github.com/Foso/Ktorfit/releases
@@ -69,9 +71,9 @@ ktlint-compose = "0.4.22"
 # https://github.com/JetBrains/skiko/releases
 skiko = "0.9.4.2"
 # https://square.github.io/okio/changelog/
-okio = "3.12.0"
+okio = "3.13.0"
 # https://github.com/kdroidFilter/Platform-Tools/releases
-platformtools = "0.2.9"
+platformtools = "0.3.4"
 
 [libraries]
 # Kotlin - Kotlinx essentials
@@ -85,8 +87,10 @@ kotlinx-serialization = { module = "org.jetbrains.kotlinx:kotlinx-serialization-
 # Resources multiplatform
 kotlinx-resources = { module = "com.goncalossilva:resources", version.ref = "kotlinx-resource" }
 # Ktor
+ktor-client-core = { group = "io.ktor", name = "ktor-client-core", version.ref = "ktor" }
 ktor-client-content-negotiation = { group = "io.ktor", name = "ktor-client-content-negotiation", version.ref = "ktor" }
 ktor-client-engine-okhttp = { group = "io.ktor", name = "ktor-client-okhttp", version.ref = "ktor" }
+ktor-client-engine-cio = { group = "io.ktor", name = "ktor-client-cio", version.ref = "ktor" }
 ktor-client-logging = { group = "io.ktor", name = "ktor-client-logging", version.ref = "ktor" }
 ktor-client-mock = { group = "io.ktor", name = "ktor-client-mock", version.ref = "ktor" }
 ktor-json = { group = "io.ktor", name = "ktor-serialization-kotlinx-json", version.ref = "ktor" }
@@ -119,10 +123,11 @@ koin-core = { module = "io.insert-koin:koin-core" }
 koin-test = { module = "io.insert-koin:koin-test" }
 koin-android = { module = "io.insert-koin:koin-android" }
 koin-compose = { module = "io.insert-koin:koin-compose" }
-koin-viewmodel-navigation = { module = "io.insert-koin:koin-compose-viewmodel-navigation" }
+koin-compose-viewmodel = { module = "io.insert-koin:koin-compose-viewmodel" }
+koin-compose-viewmodel-navigation = { module = "io.insert-koin:koin-compose-viewmodel-navigation" }
 
 # Konsist
-konsist = { module = "com.lemonappdev:konsist", version = "0.17.3" }
+konsist = { module = "com.lemonappdev:konsist", version.ref = "konsist" }
 
 ktlint-compose = { module = "io.nlopez.compose.rules:ktlint", version.ref = "ktlint-compose" }
 
@@ -144,13 +149,13 @@ androidx-compose = [
 #    "androidx-test-junit",
 #    "androidx-espresso-core",
 #    "androidx-constraintlayout",
-    "androidx-lifecycle-viewmodel-compose",
+    #    "androidx-lifecycle-viewmodel-compose",
     "androidx-lifecycle-runtime-compose",
     "androidx-navigation-compose",
     "androidx-data-store-preferences"
 ]
-koin = ["koin-compose", "koin-viewmodel-navigation"]
-kotlinx-ecosystem = ["kotlinx-datetime", "kotlinx-serialization", "kotlinx-coroutines", "kotlin-reflection"]
+koin-compose = ["koin-compose", "koin-compose-viewmodel"]
+kotlinx-ecosystem = ["kotlinx-datetime", "kotlinx-serialization", "kotlinx-coroutines"]
 ktorfit = [
     "ktorfit-light",
     "ktor-client-content-negotiation",
@@ -159,12 +164,10 @@ ktorfit = [
 ]
 testing = [
     "kotlin-test",
-    "ktor-client-mock",
     "kotlinx-coroutines-test",
-    "kotlinx-resources",
     "kotest-assertions-core",
-    "kotest-assertions-json"
 ]
+testing-ktor = ["ktor-client-mock", "kotlinx-resources", "kotest-assertions-json"]
 
 [plugins]
 androidLibrary = { id = "com.android.library", version.ref = "agp" }
