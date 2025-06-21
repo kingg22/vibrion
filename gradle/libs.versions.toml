@@ -73,13 +73,14 @@ skiko = "0.9.4.2"
 # https://square.github.io/okio/changelog/
 okio = "3.13.0"
 # https://github.com/kdroidFilter/Platform-Tools/releases
-platformtools = "0.3.3"
+platformtools = "0.4.0"
+# https://slf4j.org/download.html
 slf4jNop = "2.0.17"
 
 [libraries]
 # Kotlin - Kotlinx essentials
 kotlin-test = { group = "org.jetbrains.kotlin", name = "kotlin-test", version.ref = "kotlin" }
-kotlin-reflection = { group = "org.jetbrains.kotlin", name = "kotlin-reflect" }
+kotlin-reflection = { group = "org.jetbrains.kotlin", name = "kotlin-reflect", version.ref = "kotlin" }
 kotlinx-coroutines = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-core", version.ref = "kotlinx-coroutines" }
 kotlinx-coroutines-swing = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-swing", version.ref = "kotlinx-coroutines" }
 kotlinx-coroutines-test = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-test", version.ref = "kotlinx-coroutines" }
@@ -143,8 +144,8 @@ ktlint-compose = { group = "io.nlopez.compose.rules", name = "ktlint", version.r
 
 aboutlibraries-compose-m3 = { group = "com.mikepenz", name = "aboutlibraries-compose-m3", version.ref = "aboutLibraries" }
 
+# Only for desktop purpose
 platformtools-darkmode = { group = "io.github.kdroidfilter", name = "platformtools.darkmodedetector", version.ref = "platformtools" }
-platformtools-permission = { group = "io.github.kdroidfilter", name = "platformtools.permissionhandler", version.ref = "platformtools" }
 
 # Okio
 okio-core = { group = "com.squareup.okio", name = "okio", version.ref = "okio" }
