@@ -16,14 +16,14 @@ androidx-data-store = "1.1.7"
 # https://developer.android.com/jetpack/androidx/releases/test
 androidx-espresso-core = "3.6.1"
 # https://developer.android.com/jetpack/androidx/releases/lifecycle
-androidx-lifecycle = "2.9.0"
+androidx-lifecycle = "2.9.1"
 # https://developer.android.com/jetpack/androidx/releases/navigation
 # Controlled by compose multiplatform
-androidx-navigationCompose = "2.9.0-beta02" # based on 2.9.0
+androidx-navigationCompose = "2.9.0-beta03" # based on 2.9.0
 # https://developer.android.com/jetpack/androidx/releases/test
 androidx-test-junit = "1.2.1"
 # https://developer.android.com/jetpack/androidx/releases/work
-androidx-work = "2.10.1"
+androidx-work = "2.10.2"
 # https://github.com/ajalt/clikt/releases
 clikt = "5.0.3"
 # https://github.com/coil-kt/coil/releases
@@ -31,7 +31,7 @@ coil = "3.2.0"
 # https://github.com/JetBrains/compose-hot-reload/releases
 compose-hotReload = "1.0.0-alpha11"
 # https://github.com/JetBrains/compose-multiplatform/releases
-compose-multiplatform = "1.8.1"
+compose-multiplatform = "1.8.2"
 # https://github.com/Kotlin/dokka/releases
 dokka = "2.0.0"
 # https://developer.android.com/jetpack/androidx/releases/glance
