@@ -74,6 +74,7 @@ skiko = "0.9.4.2"
 okio = "3.13.0"
 # https://github.com/kdroidFilter/Platform-Tools/releases
 platformtools = "0.3.3"
+slf4jNop = "2.0.17"
 
 [libraries]
 # Kotlin - Kotlinx essentials
@@ -151,6 +152,7 @@ okio-fake = { group = "com.squareup.okio", name = "okio-fakefilesystem", version
 
 # Clikt
 clikt = { group = "com.github.ajalt.clikt", name = "clikt", version.ref = "clikt" }
+slf4j-nop = { group = "org.slf4j", name = "slf4j-nop", version.ref = "slf4jNop" }
 
 # Libraries can be bundled together for easier import
 [bundles]
