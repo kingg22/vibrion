@@ -6,7 +6,7 @@ agp = "8.10.1"
 
 # https://developer.android.com/tools/releases/platforms
 android-compileSdk = "36"
-android-minSdk = "24"
+android-minSdk = "30"
 android-targetSdk = "36"
 
 # https://developer.android.com/jetpack/androidx/releases/activity
@@ -119,7 +119,7 @@ androidx-lifecycle-viewmodel-compose = { group = "org.jetbrains.androidx.lifecyc
 androidx-lifecycle-runtime-compose = { group = "org.jetbrains.androidx.lifecycle", name = "lifecycle-runtime-compose", version.ref = "androidx-lifecycle" }
 androidx-navigation-compose = { group = "org.jetbrains.androidx.navigation", name = "navigation-compose", version.ref = "androidx-navigationCompose" }
 androidx-test-junit = { group = "androidx.test.ext", name = "junit", version.ref = "androidx-test-junit" }
-androidx-work-kt = { group = "androidx.work", name = "work-runtime-ktx", version.ref = "androidx-work" }
+androidx-lifecycle-service = { group = "androidx.lifecycle", name = "lifecycle-service", version.ref = "androidx-lifecycle" }
 
 # Glance
 androidx-glance-appwidget = { group = "androidx.glance", name = "glance-appwidget", version.ref = "glance" }
