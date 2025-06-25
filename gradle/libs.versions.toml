@@ -74,6 +74,8 @@ skiko = "0.9.4.2"
 okio = "3.13.0"
 # https://slf4j.org/download.html
 slf4jNop = "2.0.17"
+# https://developer.android.com/jetpack/androidx/releases/navigation3
+navigation3 = "1.0.0-alpha04"
 
 [libraries]
 # Kotlin - Kotlinx essentials
@@ -147,6 +149,8 @@ okio-core = { group = "com.squareup.okio", name = "okio", version.ref = "okio" }
 # Clikt
 clikt = { group = "com.github.ajalt.clikt", name = "clikt", version.ref = "clikt" }
 slf4j-nop = { group = "org.slf4j", name = "slf4j-nop", version.ref = "slf4jNop" }
+androidx-navigation3-runtime = { group = "androidx.navigation3", name = "navigation3-runtime", version.ref = "navigation3" }
+androidx-navigation3-ui = { group = "androidx.navigation3", name = "navigation3-ui", version.ref = "navigation3" }
 
 # Libraries can be bundled together for easier import
 [bundles]

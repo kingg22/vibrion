@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">Vibrion</string>
+    <string name="back">Atrás</string>
+    <string name="download">Descarga</string>
+    <string name="search">Buscar</string>
+    <string name="search_placeholder">Buscar…</string>
 </resources>
