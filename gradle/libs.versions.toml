@@ -1,8 +1,8 @@
 [versions]
 # https://github.com/mikepenz/AboutLibraries/releases
-aboutLibraries = "12.2.3"
+# aboutLibraries = "12.2.3"
 # https://developer.android.com/build/releases/gradle-plugin
-agp = "8.10.1"
+agp = "8.11.0"
 
 # https://developer.android.com/tools/releases/platforms
 android-compileSdk = "36"
@@ -14,22 +14,22 @@ androidx-activityCompose = "1.10.1"
 # https://developer.android.com/jetpack/androidx/releases/datastore
 androidx-data-store = "1.1.7"
 # https://developer.android.com/jetpack/androidx/releases/test
-androidx-espresso-core = "3.6.1"
+# androidx-espresso-core = "3.6.1"
 # https://developer.android.com/jetpack/androidx/releases/lifecycle
 androidx-lifecycle = "2.9.1"
 # https://developer.android.com/jetpack/androidx/releases/navigation
 # Controlled by compose multiplatform
 androidx-navigationCompose = "2.9.0-beta03" # based on 2.9.0
 # https://developer.android.com/jetpack/androidx/releases/test
-androidx-test-junit = "1.2.1"
+# androidx-test-junit = "1.2.1"
 # https://developer.android.com/jetpack/androidx/releases/work
-androidx-work = "2.10.2"
+# androidx-work = "2.10.2"
 # https://github.com/ajalt/clikt/releases
 clikt = "5.0.3"
 # https://github.com/coil-kt/coil/releases
 coil = "3.2.0"
 # https://github.com/JetBrains/compose-hot-reload/releases
-compose-hotReload = "1.0.0-alpha11"
+# compose-hotReload = "1.0.0-alpha11"
 # https://github.com/JetBrains/compose-multiplatform/releases
 compose-multiplatform = "1.8.2"
 # https://github.com/Kotlin/dokka/releases
@@ -72,8 +72,6 @@ ktlint-compose = "0.4.22"
 skiko = "0.9.4.2"
 # https://square.github.io/okio/changelog/
 okio = "3.13.0"
-# https://github.com/kdroidFilter/Platform-Tools/releases
-platformtools = "0.4.0"
 # https://slf4j.org/download.html
 slf4jNop = "2.0.17"
 
@@ -100,7 +98,6 @@ ktor-client-mock = { group = "io.ktor", name = "ktor-client-mock", version.ref =
 ktor-json = { group = "io.ktor", name = "ktor-serialization-kotlinx-json", version.ref = "ktor" }
 
 # Ktorfit
-ktorfit-flow = { group = "de.jensklingenberg.ktorfit", name = "ktorfit-converters-flow", version.ref = "ktorfit" }
 ktorfit-light = { group = "de.jensklingenberg.ktorfit", name = "ktorfit-lib-light", version.ref = "ktorfit" }
 
 # Logger
@@ -114,11 +111,11 @@ kotest-assertions-json = { group = "io.kotest", name = "kotest-assertions-json",
 # Compose
 androidx-activity-compose = { group = "androidx.activity", name = "activity-compose", version.ref = "androidx-activityCompose" }
 androidx-data-store-preferences = { group = "androidx.datastore", name = "datastore-preferences", version.ref = "androidx-data-store" }
-androidx-espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "androidx-espresso-core" }
+# androidx-espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "androidx-espresso-core" }
 androidx-lifecycle-viewmodel = { group = "org.jetbrains.androidx.lifecycle", name = "lifecycle-viewmodel-compose", version.ref = "androidx-lifecycle" }
 androidx-lifecycle-runtime-compose = { group = "org.jetbrains.androidx.lifecycle", name = "lifecycle-runtime-compose", version.ref = "androidx-lifecycle" }
 androidx-navigation-compose = { group = "org.jetbrains.androidx.navigation", name = "navigation-compose", version.ref = "androidx-navigationCompose" }
-androidx-test-junit = { group = "androidx.test.ext", name = "junit", version.ref = "androidx-test-junit" }
+# androidx-test-junit = { group = "androidx.test.ext", name = "junit", version.ref = "androidx-test-junit" }
 androidx-lifecycle-service = { group = "androidx.lifecycle", name = "lifecycle-service", version.ref = "androidx-lifecycle" }
 
 # Glance
@@ -130,26 +127,22 @@ coil = { group = "io.coil-kt.coil3", name = "coil-compose", version.ref = "coil"
 # Koin
 koin-bom = { group = "io.insert-koin", name = "koin-bom", version.ref = "koin" }
 koin-core = { group = "io.insert-koin", name = "koin-core" }
-koin-test = { group = "io.insert-koin", name = "koin-test" }
-koin-android = { group = "io.insert-koin", name = "koin-android" }
+# koin-test = { group = "io.insert-koin", name = "koin-test" }
+# koin-android = { group = "io.insert-koin", name = "koin-android" }
 koin-androidx-startup = { group = "io.insert-koin", name = "koin-androidx-startup" }
 koin-compose = { group = "io.insert-koin", name = "koin-compose" }
 koin-compose-viewmodel = { group = "io.insert-koin", name = "koin-compose-viewmodel" }
-koin-compose-viewmodel-navigation = { group = "io.insert-koin", name = "koin-compose-viewmodel-navigation" }
 
 # Konsist
 konsist = { group = "com.lemonappdev", name = "konsist", version.ref = "konsist" }
 
 ktlint-compose = { group = "io.nlopez.compose.rules", name = "ktlint", version.ref = "ktlint-compose" }
 
-aboutlibraries-compose-m3 = { group = "com.mikepenz", name = "aboutlibraries-compose-m3", version.ref = "aboutLibraries" }
-
-# Only for desktop purpose
-platformtools-darkmode = { group = "io.github.kdroidfilter", name = "platformtools.darkmodedetector", version.ref = "platformtools" }
+# aboutlibraries-compose-m3 = { group = "com.mikepenz", name = "aboutlibraries-compose-m3", version.ref = "aboutLibraries" }
 
 # Okio
 okio-core = { group = "com.squareup.okio", name = "okio", version.ref = "okio" }
-okio-fake = { group = "com.squareup.okio", name = "okio-fakefilesystem", version.ref = "okio" }
+# okio-fake = { group = "com.squareup.okio", name = "okio-fakefilesystem", version.ref = "okio" }
 
 # Clikt
 clikt = { group = "com.github.ajalt.clikt", name = "clikt", version.ref = "clikt" }
@@ -157,16 +150,6 @@ slf4j-nop = { group = "org.slf4j", name = "slf4j-nop", version.ref = "slf4jNop" 
 
 # Libraries can be bundled together for easier import
 [bundles]
-androidx-compose = [
-#    "androidx-test-junit",
-#    "androidx-espresso-core",
-#    "androidx-constraintlayout",
-    #    "androidx-lifecycle-viewmodel-compose",
-    "androidx-lifecycle-runtime-compose",
-    "androidx-navigation-compose",
-    "androidx-data-store-preferences"
-]
-koin-compose = ["koin-compose", "koin-compose-viewmodel"]
 kotlinx-ecosystem = ["kotlinx-datetime", "kotlinx-serialization", "kotlinx-coroutines"]
 ktor-client = [
     "ktor-client-content-negotiation",
@@ -181,14 +164,15 @@ testing = [
 testing-ktor = ["ktor-client-mock", "kotlinx-resources", "kotest-assertions-json"]
 
 [plugins]
-aboutLibraries = { id = "com.mikepenz.aboutlibraries.plugin", version.ref = "aboutLibraries" }
+# aboutLibraries = { id = "com.mikepenz.aboutlibraries.plugin", version.ref = "aboutLibraries" }
 androidApplication = { id = "com.android.application", version.ref = "agp" }
 androidLibrary = { id = "com.android.library", version.ref = "agp" }
+androidMultiplatformLibrary = { id = "com.android.kotlin.multiplatform.library", version.ref = "agp" }
 composeCompiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
 # Compose
 composeMultiplatform = { id = "org.jetbrains.compose", version.ref = "compose-multiplatform" }
 # Compose desktop Hot reload
-composeHotReload = { id = "org.jetbrains.compose.hot-reload", version.ref = "compose-hotReload" }
+# composeHotReload = { id = "org.jetbrains.compose.hot-reload", version.ref = "compose-hotReload" }
 dokka = { id = "org.jetbrains.dokka", version.ref = "dokka" }
 kotlinJvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
 kotlinMultiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin" }
