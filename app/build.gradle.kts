@@ -64,12 +64,18 @@ dependencies {
     implementation(libs.compose.foundation)
     implementation(libs.compose.material3)
     implementation(libs.compose.ui)
+    implementation(libs.compose.animation)
     implementation(libs.compose.material.icons.extended)
     implementation(libs.androidx.lifecycle.viewmodel)
     implementation(libs.androidx.lifecycle.runtime.compose)
     implementation(libs.androidx.navigation3.runtime)
     implementation(libs.androidx.navigation3.ui)
     implementation(libs.androidx.activity.compose)
+
+    implementation(platform(libs.koin.bom))
+    implementation(libs.koin.androidx.startup)
+    implementation(libs.koin.compose)
+    implementation(libs.koin.compose.viewmodel)
 
     debugImplementation(platform(libs.compose.bom))
     debugImplementation(libs.compose.ui.tooling)
