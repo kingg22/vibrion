@@ -2,6 +2,11 @@
     <string name="app_name">Vibrion</string>
     <string name="back">Atrás</string>
     <string name="download">Descarga</string>
+    <string name="error">Ha ocurrido un error</string>
+    <string name="explicit">Explícito</string>
+    <string name="invalid_query">La consulta no es válida</string>
+    <string name="loading">Cargando…</string>
+    <string name="no_results">No se encontraron resultados</string>
     <string name="search">Buscar</string>
     <string name="search_placeholder">Buscar…</string>
 </resources>

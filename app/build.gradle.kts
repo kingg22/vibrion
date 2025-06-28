@@ -72,10 +72,17 @@ dependencies {
     implementation(libs.androidx.navigation3.ui)
     implementation(libs.androidx.activity.compose)
 
+    implementation(projects.deezerSdkKt)
+
     implementation(platform(libs.koin.bom))
     implementation(libs.koin.androidx.startup)
     implementation(libs.koin.compose)
     implementation(libs.koin.compose.viewmodel)
+
+    implementation(libs.coil.compose)
+    implementation(libs.coil.ktor3)
+
+    implementation(libs.ktor.client.engine.cio)
 
     debugImplementation(platform(libs.compose.bom))
     debugImplementation(libs.compose.ui.tooling)
