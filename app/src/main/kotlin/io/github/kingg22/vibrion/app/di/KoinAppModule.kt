@@ -1,10 +1,10 @@
 package io.github.kingg22.vibrion.app.di
 
-import io.github.kingg22.vibrion.app.ui.screens.search.SearchViewModel
-import org.koin.core.module.dsl.viewModel
+import io.github.kingg22.vibrion.core.di.vibrionCoreModule
 import org.koin.dsl.module
 
 val appModule = module {
-    includes(dataModule)
-    viewModel { SearchViewModel(get()) }
+    includes(dataModule, uiModule)
+    // External modules
+    includes(vibrionCoreModule)
 }

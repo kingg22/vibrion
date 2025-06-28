@@ -29,7 +29,7 @@ android {
         minSdk = libs.versions.android.minSdk.get().toInt()
         targetSdk = libs.versions.android.targetSdk.get().toInt()
         versionCode = 1
-        versionName = "1.0.0"
+        versionName = version.toString()
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
     packaging {
@@ -73,6 +73,8 @@ dependencies {
     implementation(libs.androidx.activity.compose)
 
     implementation(projects.deezerSdkKt)
+    implementation(projects.vibrionCore)
+    implementation(projects.integrations.deezerCore)
 
     implementation(platform(libs.koin.bom))
     implementation(libs.koin.androidx.startup)

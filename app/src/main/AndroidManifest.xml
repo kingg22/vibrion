@@ -1,8 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+<manifest xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android">
 
     <!-- Network -->
     <uses-permission android:name="android.permission.INTERNET" />
+    <!-- Foreground service -->
+    <uses-permission
+        android:name="android.permission.FOREGROUND_SERVICE"
+        tools:ignore="ForegroundServicesPolicy" />
+    <uses-permission
+        android:maxSdkVersion="33"
+        android:name="android.permission.FOREGROUND_SERVICE_DATA_SYNC" />
+    <uses-permission
+        android:minSdkVersion="35"
+        android:name="android.permission.FOREGROUND_SERVICE_MEDIA_PROCESSING" />
+    <uses-permission
+        android:minSdkVersion="34"
+        android:maxSdkVersion="34"
+        android:name="android.permission.FOREGROUND_SERVICE_MEDIA_PLAYBACK" />
+    <!-- Notifications -->
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
 
     <application
         android:allowBackup="true"
@@ -22,6 +39,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <service
+            android:name="io.github.kingg22.vibrion.core.application.DownloadForegroundService"
+            android:exported="false"
+            android:foregroundServiceType="dataSync|mediaPlayback|mediaProcessing" />
     </application>
 
 </manifest>
