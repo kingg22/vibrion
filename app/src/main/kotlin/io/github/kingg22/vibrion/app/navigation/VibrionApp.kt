@@ -26,6 +26,8 @@ fun VibrionApp(modifier: Modifier = Modifier) {
             entry<NavigationKeys.SearchResult> {
                 SearchResultScreen(query = it.query, onBackClick = {
                     backStack.removeLastOrNull()
+                }, onSettingsClick = {
+                    backStack.add(NavigationKeys.Settings)
                 })
             }
 

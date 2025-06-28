@@ -1,24 +1,14 @@
 package io.github.kingg22.vibrion.app.ui.screens.settings
 
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.safeContentPadding
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.PreviewScreenSizes
-import io.github.kingg22.vibrion.app.ui.theme.VibrionAppTheme
+import org.koin.compose.viewmodel.koinViewModel
 
 @Composable
-fun SettingsScreen(modifier: Modifier = Modifier) {
-    Column(modifier = modifier.safeContentPadding()) {
-        Text("TODO settings")
-    }
-}
+fun SettingsScreen(modifier: Modifier = Modifier, viewModel: SettingsViewModel = koinViewModel()) {
+    val token by viewModel.token.collectAsState()
 
-@PreviewScreenSizes
-@Composable
-private fun SettingsPreview() {
-    VibrionAppTheme {
-        SettingsScreen()
-    }
+    SettingsContent(token, viewModel::updateToken, modifier)
 }
