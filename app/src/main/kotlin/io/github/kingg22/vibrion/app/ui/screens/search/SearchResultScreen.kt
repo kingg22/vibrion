@@ -12,6 +12,7 @@ import org.koin.compose.viewmodel.koinViewModel
 fun SearchResultScreen(
     query: String,
     onBackClick: () -> Unit,
+    onSettingsClick: () -> Unit,
     modifier: Modifier = Modifier,
     viewModel: SearchViewModel = koinViewModel(),
 ) {
@@ -19,8 +20,15 @@ fun SearchResultScreen(
 
     LaunchedEffect(query) {
         // TODO use string resources
+        val query = query.trim()
         if (query.isBlank()) viewModel.modifyState(SearchViewModel.SearchResultUiState.Error("Query cannot be empty"))
         if (query.isNotBlank()) viewModel.search(query)
     }
-    SearchResult(query, results, onBackClick, viewModel::search, viewModel::download, modifier)
+    SearchResult(query, results, onBackClick, onSearch = viewModel::search, onDownloadClick = {
+        if (viewModel.canDownload()) {
+            viewModel.download(it)
+        } else {
+            onSettingsClick()
+        }
+    }, modifier)
 }

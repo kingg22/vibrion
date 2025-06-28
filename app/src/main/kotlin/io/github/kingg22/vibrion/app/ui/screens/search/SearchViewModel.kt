@@ -14,12 +14,13 @@ data class SearchViewModel(private val repository: SearchRepository) : ViewModel
     private val _searchResults = MutableStateFlow<SearchResultUiState>(SearchResultUiState.Idle)
     val searchResults = _searchResults.asStateFlow()
 
+    fun canDownload(): Boolean = false
+
     fun search(query: String) {
         _searchResults.update { SearchResultUiState.Loading }
         viewModelScope.launch {
             val results = repository.searchSingles(query)
             _searchResults.update { _ ->
-                if (results.isEmpty()) return@update SearchResultUiState.Error("No results found")
                 SearchResultUiState.Success(
                     results.map {
                         val description = if (!it.artists.isNullOrEmpty()) {

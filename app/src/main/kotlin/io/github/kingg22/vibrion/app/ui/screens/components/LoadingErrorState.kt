@@ -1,5 +1,6 @@
 package io.github.kingg22.vibrion.app.ui.screens.components
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -35,11 +36,13 @@ fun LoadingScreen(modifier: Modifier = Modifier) {
 @Composable
 fun ErrorScreen(modifier: Modifier = Modifier, message: String = stringResource(R.string.error)) {
     Column(
-        modifier = modifier.fillMaxSize(),
+        modifier = modifier
+            .fillMaxSize()
+            .background(MaterialTheme.colorScheme.onError),
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
-        Text(message, color = MaterialTheme.colorScheme.onError)
+        Text(message, color = MaterialTheme.colorScheme.error)
     }
 }
 
@@ -54,7 +57,7 @@ private fun SearchLoadingPreview() {
 }
 
 @Composable
-@Preview
+@Preview(showBackground = true)
 private fun SearchErrorPreview() {
     VibrionAppTheme {
         ErrorScreen()
