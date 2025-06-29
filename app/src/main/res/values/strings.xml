@@ -16,12 +16,14 @@
     <string name="audio_permission">• Archivos de música: Para leer tu música local y guardar nuevas.</string>
     <string name="unknown_permission">• Permiso requerido: %1$s</string>
     <string name="permission_denied">Permiso denegado: %1$s</string>
+    <string name="settings">Configuración</string>
     <string name="open_settings">Abrir configuración</string>
     <string name="notifications">Notificaciones</string>
     <string name="audio">Música</string>
     <string name="hide">Ocultar</string>
     <string name="show">Mostrar</string>
     <string name="token">Token</string>
-    <string name="deezer_name">ARL Token de Deezer</string>
+    <string name="deezer_arl">ARL Token de Deezer</string>
+    <string name="arl_tutorial">¿Cómo obtener el ARL de Deezer?</string>
     <string name="accounts">Cuentas</string>
 </resources>

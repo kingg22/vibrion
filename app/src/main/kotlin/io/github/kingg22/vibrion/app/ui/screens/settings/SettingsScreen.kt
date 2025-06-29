@@ -7,8 +7,12 @@ import androidx.compose.ui.Modifier
 import org.koin.compose.viewmodel.koinViewModel
 
 @Composable
-fun SettingsScreen(modifier: Modifier = Modifier, viewModel: SettingsViewModel = koinViewModel()) {
+fun SettingsScreen(
+    onBackClick: () -> Unit,
+    modifier: Modifier = Modifier,
+    viewModel: SettingsViewModel = koinViewModel(),
+) {
     val token by viewModel.token.collectAsState()
 
-    SettingsContent(token, viewModel::updateToken, modifier)
+    SettingsContent(token ?: "", viewModel::updateToken, onBackClick, modifier)
 }

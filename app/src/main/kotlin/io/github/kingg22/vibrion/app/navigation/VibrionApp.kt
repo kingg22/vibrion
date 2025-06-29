@@ -20,6 +20,8 @@ fun VibrionApp(modifier: Modifier = Modifier) {
             entry<NavigationKeys.Search> {
                 SearchScreen(onSearch = {
                     backStack.add(NavigationKeys.SearchResult(it))
+                }, onSettingsClick = {
+                    backStack.add(NavigationKeys.Settings)
                 })
             }
 
@@ -32,7 +34,9 @@ fun VibrionApp(modifier: Modifier = Modifier) {
             }
 
             entry<NavigationKeys.Settings> {
-                SettingsScreen()
+                SettingsScreen(onBackClick = {
+                    backStack.removeLastOrNull()
+                })
             }
         },
     )

@@ -1,5 +1,6 @@
 package io.github.kingg22.vibrion.app.data
 
+import io.github.kingg22.vibrion.app.data.datasource.DeezerApiDataSource
 import io.github.kingg22.vibrion.app.domain.model.Single
 import io.github.kingg22.vibrion.app.domain.repository.SearchRepository
 

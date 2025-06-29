@@ -5,6 +5,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Search
+import androidx.compose.material.icons.outlined.Settings
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.SearchBar
@@ -24,7 +25,7 @@ import io.github.kingg22.vibrion.app.R
 import io.github.kingg22.vibrion.app.ui.theme.VibrionAppTheme
 
 @Composable
-fun SearchScreen(onSearch: (String) -> Unit, modifier: Modifier = Modifier) {
+fun SearchScreen(onSearch: (String) -> Unit, onSettingsClick: () -> Unit, modifier: Modifier = Modifier) {
     var text by rememberSaveable { mutableStateOf("") }
     var expanded by rememberSaveable { mutableStateOf(false) }
 
@@ -44,6 +45,11 @@ fun SearchScreen(onSearch: (String) -> Unit, modifier: Modifier = Modifier) {
                         expanded = expanded,
                         onExpandedChange = { expanded = it },
                         placeholder = { Text(stringResource(R.string.search_placeholder)) },
+                        leadingIcon = {
+                            IconButton(onSettingsClick) {
+                                Icon(Icons.Outlined.Settings, stringResource(R.string.open_settings))
+                            }
+                        },
                         trailingIcon = {
                             IconButton({
                                 if (text.isNotBlank()) {
@@ -69,6 +75,6 @@ fun SearchScreen(onSearch: (String) -> Unit, modifier: Modifier = Modifier) {
 @Composable
 private fun SearchPreview() {
     VibrionAppTheme {
-        SearchScreen(onSearch = {})
+        SearchScreen(onSearch = {}, onSettingsClick = {})
     }
 }

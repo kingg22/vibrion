@@ -71,6 +71,7 @@ dependencies {
     implementation(libs.androidx.navigation3.runtime)
     implementation(libs.androidx.navigation3.ui)
     implementation(libs.androidx.activity.compose)
+    implementation(libs.androidx.data.store.preferences)
 
     implementation(projects.deezerSdkKt)
     implementation(projects.vibrionCore)
