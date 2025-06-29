@@ -87,6 +87,11 @@ dependencies {
 
     implementation(libs.ktor.client.engine.cio)
 
+    androidTestImplementation(platform(libs.compose.bom))
+    androidTestImplementation(libs.androidx.test.junit)
+    androidTestImplementation(libs.androidx.test.runner)
+    androidTestImplementation(libs.androidx.test.rules)
+
     debugImplementation(platform(libs.compose.bom))
     debugImplementation(libs.compose.ui.tooling)
     ktlintRuleset(libs.ktlint.compose)
