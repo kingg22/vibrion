@@ -25,7 +25,6 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.LinkAnnotation
@@ -37,6 +36,7 @@ import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.text.withLink
+import androidx.compose.ui.tooling.preview.PreviewLightDark
 import androidx.compose.ui.tooling.preview.PreviewScreenSizes
 import androidx.compose.ui.unit.dp
 import io.github.kingg22.vibrion.app.R
@@ -86,9 +86,7 @@ fun SettingsContent(
                         withLink(
                             LinkAnnotation.Url(
                                 "https://www.dumpmedia.com/deezplus/deezer-arl.html",
-                                TextLinkStyles(
-                                    SpanStyle(color = Color.Cyan, textDecoration = TextDecoration.Underline),
-                                ),
+                                TextLinkStyles(SpanStyle(textDecoration = TextDecoration.Underline)),
                             ),
                         ) {
                             append(stringResource(R.string.arl_tutorial))
@@ -139,6 +137,7 @@ fun SettingsContent(
 }
 
 @PreviewScreenSizes
+@PreviewLightDark
 @Composable
 private fun SettingsPreview() {
     VibrionAppTheme {
