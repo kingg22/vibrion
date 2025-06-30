@@ -76,6 +76,7 @@ dependencies {
     implementation(projects.deezerSdkKt)
     implementation(projects.vibrionCore)
     implementation(projects.integrations.deezerCore)
+    implementation(projects.integrations.id3Core)
 
     implementation(platform(libs.koin.bom))
     implementation(libs.koin.androidx.startup)

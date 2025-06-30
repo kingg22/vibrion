@@ -5,6 +5,7 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import org.koin.compose.viewmodel.koinViewModel
 
 // Se encarga del VM y estado
@@ -17,6 +18,7 @@ fun SearchResultScreen(
     viewModel: SearchViewModel = koinViewModel(),
 ) {
     val results by viewModel.searchResults.collectAsState()
+    val context = LocalContext.current
 
     LaunchedEffect(query) {
         // TODO use string resources
@@ -26,7 +28,7 @@ fun SearchResultScreen(
     }
     SearchResult(query, results, onBackClick, onSearch = viewModel::search, onDownloadClick = {
         if (viewModel.canDownload()) {
-            viewModel.download(it)
+            viewModel.download(it, context)
         } else {
             onSettingsClick()
         }

@@ -15,7 +15,9 @@ import org.koin.dsl.module
 
 val dataModule = module {
     // Raw data-sources
-    single { DeezerApiClient(HttpClientBuilder(httpEngine = CIO.create())) }
+    single { CIO.create() }
+    factory { HttpClientBuilder(httpEngine = get()) }
+    single { DeezerApiClient(get()) }
     single { androidContext().dataStore }
     // data-sources
     single { DeezerApiDataSource(get()) }

@@ -8,7 +8,7 @@ import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
 
 data class SettingsViewModel(private val settingsRepository: SettingsRepository) : ViewModel() {
-    val token = settingsRepository.loadToken().stateIn(viewModelScope, SharingStarted.Lazily, null)
+    val token = settingsRepository.loadToken().stateIn(viewModelScope, SharingStarted.Eagerly, null)
 
     fun updateToken(newToken: String) {
         viewModelScope.launch {
