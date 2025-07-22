@@ -70,7 +70,7 @@ ktorfit = "2.5.2"
 # https://github.com/pinterest/ktlint/releases
 ktlint-pinterest = "1.6.0"
 # https://github.com/jlleitschuh/ktlint-gradle/releases
-ktlint-plugin = "12.3.0"
+ktlint-plugin = "13.0.0"
 # https://github.com/mrmans0n/compose-rules/releases
 ktlint-compose = "0.4.22"
 # https://github.com/JetBrains/skiko/releases
@@ -82,6 +82,7 @@ slf4jNop = "2.0.17"
 # https://developer.android.com/jetpack/androidx/releases/navigation3
 navigation3 = "1.0.0-alpha04"
 mockk = "1.14.3"
+vibrion-id3 = "0.1.0"
 
 [libraries]
 # Kotlin - Kotlinx essentials
@@ -181,12 +182,18 @@ okio-core = { group = "com.squareup.okio", name = "okio", version.ref = "okio" }
 
 # Clikt
 clikt = { group = "com.github.ajalt.clikt", name = "clikt", version.ref = "clikt" }
+
 slf4j-nop = { group = "org.slf4j", name = "slf4j-nop", version.ref = "slf4jNop" }
+# nav3
 androidx-navigation3-runtime = { group = "androidx.navigation3", name = "navigation3-runtime", version.ref = "navigation3" }
 androidx-navigation3-ui = { group = "androidx.navigation3", name = "navigation3-ui", version.ref = "navigation3" }
+# mockk
 mockk = { group = "io.mockk", name = "mockk", version.ref = "mockk" }
 mockk-android = { group = "io.mockk", name = "mockk-android", version.ref = "mockk" }
 mockk-agent = { group = "io.mockk", name = "mockk-agent", version.ref = "mockk" }
+
+# id3
+vibrion-id3 = { group = "io.github.kingg22", name = "vibrion-id3", version.ref = "vibrion-id3" }
 
 # Libraries can be bundled together for easier import
 [bundles]
