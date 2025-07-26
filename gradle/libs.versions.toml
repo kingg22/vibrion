@@ -53,11 +53,11 @@ kotlin = "2.2.0"
 # https://github.com/Kotlin/kotlinx.coroutines/releases
 kotlinx-coroutines = "1.10.2"
 # https://github.com/Kotlin/kotlinx-datetime/releases
-kotlinx-datetime = "0.6.2"
+kotlinx-datetime = "0.7.1"
 # https://github.com/goncalossilva/kotlinx-resources/releases
 kotlinx-resource = "0.10.1"
 # https://github.com/Kotlin/kotlinx.serialization/releases
-kotlinx-serialization-json = "1.8.1"
+kotlinx-serialization-json = "1.9.0"
 # https://github.com/Kotlin/kotlinx-kover/releases
 kover = "0.9.1"
 # https://github.com/google/ksp/releases
