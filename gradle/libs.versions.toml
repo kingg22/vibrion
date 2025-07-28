@@ -2,7 +2,7 @@
 # https://github.com/mikepenz/AboutLibraries/releases
 # aboutLibraries = "12.2.3"
 # https://developer.android.com/build/releases/gradle-plugin
-agp = "8.11.0"
+agp = "8.11.1"
 
 # https://developer.android.com/tools/releases/platforms
 android-compileSdk = "36"
@@ -67,11 +67,11 @@ ktor = "3.2.1" # Depends on ktorfit
 # https://github.com/Foso/Ktorfit/releases
 ktorfit = "2.6.2"
 # https://github.com/pinterest/ktlint/releases
-ktlint-pinterest = "1.6.0"
+ktlint-pinterest = "1.7.1"
 # https://github.com/jlleitschuh/ktlint-gradle/releases
 ktlint-plugin = "13.0.0"
 # https://github.com/mrmans0n/compose-rules/releases
-ktlint-compose = "0.4.24"
+ktlint-compose = "0.4.26"
 # https://github.com/JetBrains/skiko/releases
 skiko = "0.9.4.2"
 # https://square.github.io/okio/changelog/
