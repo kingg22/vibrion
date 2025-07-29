@@ -4,9 +4,9 @@ import android.content.Context
 import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import io.github.kingg22.deezer.client.utils.HttpClientBuilder
 import io.github.kingg22.deezerSdk.gw.DeezerGwClient
 import io.github.kingg22.deezerSdk.gw.requests.MediaRequest.Companion.toMediaRequest
-import io.github.kingg22.deezerSdk.utils.HttpClientBuilder
 import io.github.kingg22.deezerSdk.utils.UnofficialDeezerApi
 import io.github.kingg22.vibrion.app.domain.model.Single
 import io.github.kingg22.vibrion.app.domain.repository.SearchRepository

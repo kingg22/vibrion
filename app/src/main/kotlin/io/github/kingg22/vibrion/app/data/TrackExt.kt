@@ -1,9 +1,9 @@
 package io.github.kingg22.vibrion.app.data
 
-import io.github.kingg22.deezerSdk.api.objects.ImageSizes
-import io.github.kingg22.deezerSdk.api.objects.Track
-import io.github.kingg22.deezerSdk.api.objects.retrieveImageUrl
-import io.github.kingg22.deezerSdk.api.objects.withImageSize
+import io.github.kingg22.deezer.client.api.objects.ImageSizes
+import io.github.kingg22.deezer.client.api.objects.Track
+import io.github.kingg22.deezer.client.api.objects.retrieveImageUrl
+import io.github.kingg22.deezer.client.api.objects.withImageSize
 import io.github.kingg22.vibrion.app.domain.model.Single
 import kotlin.time.DurationUnit
 import kotlin.time.toDuration
@@ -17,5 +17,5 @@ fun Track.toDomain() = Single(
     releaseDate = this.releaseDate?.toString(),
     duration = this.duration.toDuration(DurationUnit.SECONDS),
     artists = listOf(this.artist.toDomain()),
-    explicit = this.explicitLyrics,
+    explicit = this.isExplicitLyrics,
 )

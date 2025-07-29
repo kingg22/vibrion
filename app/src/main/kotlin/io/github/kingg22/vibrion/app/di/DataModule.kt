@@ -1,7 +1,7 @@
 package io.github.kingg22.vibrion.app.di
 
-import io.github.kingg22.deezerSdk.api.DeezerApiClient
-import io.github.kingg22.deezerSdk.utils.HttpClientBuilder
+import io.github.kingg22.deezer.client.api.DeezerApiClient
+import io.github.kingg22.deezer.client.utils.HttpClientBuilder
 import io.github.kingg22.vibrion.app.data.SearchRepositoryImpl
 import io.github.kingg22.vibrion.app.data.SettingsRepositoryImpl
 import io.github.kingg22.vibrion.app.data.datasource.DeezerApiDataSource
