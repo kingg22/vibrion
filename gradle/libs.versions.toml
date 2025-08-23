@@ -36,6 +36,8 @@ coil = "3.3.0"
 compose-multiplatform = "1.8.2"
 # https://developer.android.com/develop/ui/compose/bom/bom-mapping
 compose-bom = "2025.07.00"
+# https://github.com/kingg22/deezer-client-kt/releases
+deezer-client-kt = "2.1.0"
 # https://github.com/Kotlin/dokka/releases
 dokka = "2.0.0"
 # https://developer.android.com/jetpack/androidx/releases/glance
@@ -63,9 +65,9 @@ kover = "0.9.1"
 # https://github.com/google/ksp/releases
 ksp = "2.2.0-2.0.2"
 # https://github.com/ktorio/ktor/releases
-ktor = "3.2.1" # Depends on ktorfit
-# https://github.com/Foso/Ktorfit/releases
-ktorfit = "2.6.4"
+ktor = "3.2.3"
+# https://github.com/kingg22/ktorgen/releases
+ktorgen = "0.3.1"
 # https://github.com/pinterest/ktlint/releases
 ktlint-pinterest = "1.7.1"
 # https://github.com/jlleitschuh/ktlint-gradle/releases
@@ -84,8 +86,6 @@ navigation3 = "1.0.0-alpha05"
 mockk = "1.14.5"
 # https://github.com/kingg22/vibrion-id3/releases
 vibrion-id3 = "0.6.0"
-# https://github.com/kingg22/deezer-client-kt/releases
-deezer-client-kt = "1.0.0"
 
 [libraries]
 # Kotlin - Kotlinx essentials
@@ -102,15 +102,16 @@ kotlinx-resources = { group = "com.goncalossilva", name = "resources", version.r
 
 # Ktor
 ktor-client-core = { group = "io.ktor", name = "ktor-client-core", version.ref = "ktor" }
-ktor-client-content-negotiation = { group = "io.ktor", name = "ktor-client-content-negotiation", version.ref = "ktor" }
+#ktor-client-content-negotiation = { group = "io.ktor", name = "ktor-client-content-negotiation", version.ref = "ktor" }
 # ktor-client-engine-okhttp = { group = "io.ktor", name = "ktor-client-okhttp", version.ref = "ktor" }
 ktor-client-engine-cio = { group = "io.ktor", name = "ktor-client-cio", version.ref = "ktor" }
-ktor-client-logging = { group = "io.ktor", name = "ktor-client-logging", version.ref = "ktor" }
+#ktor-client-logging = { group = "io.ktor", name = "ktor-client-logging", version.ref = "ktor" }
 ktor-client-mock = { group = "io.ktor", name = "ktor-client-mock", version.ref = "ktor" }
-ktor-json = { group = "io.ktor", name = "ktor-serialization-kotlinx-json", version.ref = "ktor" }
+#ktor-json = { group = "io.ktor", name = "ktor-serialization-kotlinx-json", version.ref = "ktor" }
 
-# Ktorfit
-ktorfit-light = { group = "de.jensklingenberg.ktorfit", name = "ktorfit-lib-light", version.ref = "ktorfit" }
+# ktorgen
+ktorgen-annotations = { group = "io.github.kingg22", name = "ktorgen-annotations", version.ref = "ktorgen" }
+ktorgen-compiler = { group = "io.github.kingg22", name = "ktorgen-compiler", version.ref = "ktorgen" }
 
 # Logger
 kermit = { group = "co.touchlab", name = "kermit", version.ref = "kermit" }
@@ -203,12 +204,6 @@ deezer-client-kt = { group = "io.github.kingg22", name = "deezer-client-kt", ver
 
 # Libraries can be bundled together for easier import
 [bundles]
-kotlinx-ecosystem = ["kotlinx-datetime", "kotlinx-serialization", "kotlinx-coroutines"]
-ktor-client = [
-    "ktor-client-content-negotiation",
-    "ktor-json",
-    "ktor-client-logging"
-]
 testing = [
     "kotlin-test",
     "kotlinx-coroutines-test",
@@ -235,4 +230,3 @@ kotlinxKover = { id = "org.jetbrains.kotlinx.kover", version.ref = "kover" }
 kotlinxResources = { id = "com.goncalossilva.resources", version.ref = "kotlinx-resource" }
 ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
 ktlint = { id = "org.jlleitschuh.gradle.ktlint", version.ref = "ktlint-plugin" }
-ktorfit = { id = "de.jensklingenberg.ktorfit", version.ref = "ktorfit" }
