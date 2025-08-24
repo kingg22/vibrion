@@ -2,7 +2,7 @@
 # https://github.com/mikepenz/AboutLibraries/releases
 # aboutLibraries = "12.2.3"
 # https://developer.android.com/build/releases/gradle-plugin
-agp = "8.11.1"
+agp = "8.12.1"
 
 # https://developer.android.com/tools/releases/platforms
 android-compileSdk = "36"
@@ -20,10 +20,10 @@ androidx-lifecycle = "2.9.2"
 # https://developer.android.com/jetpack/androidx/releases/navigation
 # androidx-navigation-compose = "2.9.2"
 # https://developer.android.com/jetpack/androidx/releases/test
-androidx-test-core = "1.6.1"
-androidx-test-junit = "1.2.1"
-androidx-test-runner = "1.6.2"
-androidx-test-rules = "1.6.1"
+androidx-test-core = "1.7.0"
+androidx-test-junit = "1.3.0"
+androidx-test-runner = "1.7.0"
+androidx-test-rules = "1.7.0"
 # https://developer.android.com/jetpack/androidx/releases/work
 # androidx-work = "2.10.2"
 # https://github.com/ajalt/clikt/releases
@@ -35,35 +35,29 @@ coil = "3.3.0"
 # https://github.com/JetBrains/compose-multiplatform/releases
 compose-multiplatform = "1.8.2"
 # https://developer.android.com/develop/ui/compose/bom/bom-mapping
-compose-bom = "2025.07.00"
+compose-bom = "2025.08.00"
 # https://github.com/kingg22/deezer-client-kt/releases
 deezer-client-kt = "2.1.0"
-# https://github.com/Kotlin/dokka/releases
-dokka = "2.0.0"
 # https://developer.android.com/jetpack/androidx/releases/glance
 # glance = "1.1.1"
 # https://github.com/touchlab/Kermit/releases
-kermit = "2.0.6"
+kermit = "2.0.8"
 # https://github.com/InsertKoinIO/koin/releases
 koin = "4.1.0"
 # https://github.com/LemonAppDev/konsist/releases
 konsist = "0.17.3"
 # https://github.com/kotest/kotest/releases
-kotest = "6.0.0.M8"
+kotest = "6.0.0"
 # https://github.com/JetBrains/kotlin/releases
-kotlin = "2.2.0"
+kotlin = "2.2.10"
 # https://github.com/Kotlin/kotlinx.coroutines/releases
 kotlinx-coroutines = "1.10.2"
-# https://github.com/Kotlin/kotlinx-datetime/releases
-kotlinx-datetime = "0.7.1"
 # https://github.com/goncalossilva/kotlinx-resources/releases
 kotlinx-resource = "0.10.1"
-# https://github.com/Kotlin/kotlinx.serialization/releases
-kotlinx-serialization-json = "1.9.0"
 # https://github.com/Kotlin/kotlinx-kover/releases
 kover = "0.9.1"
 # https://github.com/google/ksp/releases
-ksp = "2.2.0-2.0.2"
+ksp = "2.2.10-2.0.2"
 # https://github.com/ktorio/ktor/releases
 ktor = "3.2.3"
 # https://github.com/kingg22/ktorgen/releases
@@ -73,15 +67,13 @@ ktlint-pinterest = "1.7.1"
 # https://github.com/jlleitschuh/ktlint-gradle/releases
 ktlint-plugin = "13.0.0"
 # https://github.com/mrmans0n/compose-rules/releases
-ktlint-compose = "0.4.26"
+ktlint-compose = "0.4.27"
 # https://github.com/JetBrains/skiko/releases
-skiko = "0.9.4.2"
+#skiko = "0.9.23"
 # https://square.github.io/okio/changelog/
 okio = "3.16.0"
-# https://slf4j.org/download.html
-slf4jNop = "2.0.17"
 # https://developer.android.com/jetpack/androidx/releases/navigation3
-navigation3 = "1.0.0-alpha05"
+navigation3 = "1.0.0-alpha07"
 # https://github.com/mockk/mockk/releases
 mockk = "1.14.5"
 # https://github.com/drewhamilton/Poko/releases
@@ -93,11 +85,11 @@ vibrion-id3 = "0.6.0"
 # Kotlin - Kotlinx essentials
 kotlin-test = { group = "org.jetbrains.kotlin", name = "kotlin-test", version.ref = "kotlin" }
 # kotlin-reflection = { group = "org.jetbrains.kotlin", name = "kotlin-reflect", version.ref = "kotlin" }
-kotlinx-coroutines = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-core", version.ref = "kotlinx-coroutines" }
+#kotlinx-coroutines = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-core", version.ref = "kotlinx-coroutines" }
 # kotlinx-coroutines-swing = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-swing", version.ref = "kotlinx-coroutines" }
 kotlinx-coroutines-test = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-test", version.ref = "kotlinx-coroutines" }
-kotlinx-datetime = { group = "org.jetbrains.kotlinx", name = "kotlinx-datetime", version.ref = "kotlinx-datetime" }
-kotlinx-serialization = { group = "org.jetbrains.kotlinx", name = "kotlinx-serialization-json", version.ref = "kotlinx-serialization-json" }
+#kotlinx-datetime = { group = "org.jetbrains.kotlinx", name = "kotlinx-datetime", version.ref = "kotlinx-datetime" }
+#kotlinx-serialization = { group = "org.jetbrains.kotlinx", name = "kotlinx-serialization-json", version.ref = "kotlinx-serialization-json" }
 
 # Resources multiplatform
 kotlinx-resources = { group = "com.goncalossilva", name = "resources", version.ref = "kotlinx-resource" }
@@ -189,10 +181,10 @@ okio-core = { group = "com.squareup.okio", name = "okio", version.ref = "okio" }
 # Clikt
 clikt = { group = "com.github.ajalt.clikt", name = "clikt", version.ref = "clikt" }
 
-slf4j-nop = { group = "org.slf4j", name = "slf4j-nop", version.ref = "slf4jNop" }
 # nav3
 androidx-navigation3-runtime = { group = "androidx.navigation3", name = "navigation3-runtime", version.ref = "navigation3" }
 androidx-navigation3-ui = { group = "androidx.navigation3", name = "navigation3-ui", version.ref = "navigation3" }
+
 # mockk
 # mockk = { group = "io.mockk", name = "mockk", version.ref = "mockk" }
 mockk-android = { group = "io.mockk", name = "mockk-android", version.ref = "mockk" }
@@ -223,7 +215,7 @@ composeCompiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "k
 composeMultiplatform = { id = "org.jetbrains.compose", version.ref = "compose-multiplatform" }
 # Compose desktop Hot reload
 # composeHotReload = { id = "org.jetbrains.compose.hot-reload", version.ref = "compose-hotReload" }
-dokka = { id = "org.jetbrains.dokka", version.ref = "dokka" }
+# dokka = { id = "org.jetbrains.dokka", version.ref = "dokka" }
 kotlinAndroid = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 kotlinJvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
 kotlinMultiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin" }
