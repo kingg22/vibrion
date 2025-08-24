@@ -84,6 +84,8 @@ slf4jNop = "2.0.17"
 navigation3 = "1.0.0-alpha05"
 # https://github.com/mockk/mockk/releases
 mockk = "1.14.5"
+# https://github.com/drewhamilton/Poko/releases
+poko = "0.19.3"
 # https://github.com/kingg22/vibrion-id3/releases
 vibrion-id3 = "0.6.0"
 
@@ -230,3 +232,4 @@ kotlinxKover = { id = "org.jetbrains.kotlinx.kover", version.ref = "kover" }
 kotlinxResources = { id = "com.goncalossilva.resources", version.ref = "kotlinx-resource" }
 ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
 ktlint = { id = "org.jlleitschuh.gradle.ktlint", version.ref = "ktlint-plugin" }
+poko = { id = "dev.drewhamilton.poko", version.ref = "poko" }
