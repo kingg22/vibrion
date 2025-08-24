@@ -84,7 +84,7 @@ data class SearchViewModel(
         viewModelScope.launch {
             token.filterNotNull().collectLatest { arl ->
                 if (!::gwClient.isInitialized) gwClient = DeezerGwClient.initialize(arl, httpClientBuilder.copy())
-                val track = gwClient.tracks.getTrackData(item.id.toLong())()
+                val track = gwClient.tracks.getTrackData(item.id.toLong())
                 val mediaResult = gwClient.getMedias(track.trackToken.toMediaRequest())
                 val urls = mediaResult.getAllUrls()
                 check(urls.isNotEmpty())
