@@ -24,6 +24,7 @@ import androidx.compose.ui.unit.dp
 import io.github.kingg22.vibrion.app.R
 
 @Composable
+@Suppress("ASSIGNED_VALUE_IS_NEVER_READ")
 fun ResultTopBar(query: String, onBackClick: () -> Unit, onSearch: (String) -> Unit, modifier: Modifier = Modifier) {
     var text by rememberSaveable { mutableStateOf(query) }
     var expanded by rememberSaveable { mutableStateOf(false) }

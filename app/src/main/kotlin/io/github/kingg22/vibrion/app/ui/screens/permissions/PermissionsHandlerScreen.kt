@@ -30,6 +30,7 @@ import io.github.kingg22.vibrion.app.R
 import kotlinx.coroutines.launch
 
 @Composable
+@Suppress("ASSIGNED_VALUE_IS_NEVER_READ")
 fun PermissionsHandlerScreen(snackBarHostState: SnackbarHostState, modifier: Modifier = Modifier) {
     val context = LocalContext.current
     val activity = context as? Activity ?: return
