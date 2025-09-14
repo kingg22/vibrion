@@ -41,6 +41,7 @@ fun SearchScreen(onSearch: (String) -> Unit, onSettingsClick: () -> Unit, modifi
                             expanded = false
                             text = it
                             onSearch(it)
+                            text = ""
                         },
                         expanded = expanded,
                         onExpandedChange = { expanded = it },
@@ -52,9 +53,7 @@ fun SearchScreen(onSearch: (String) -> Unit, onSettingsClick: () -> Unit, modifi
                         },
                         trailingIcon = {
                             IconButton({
-                                if (text.isNotBlank()) {
-                                    onSearch(text)
-                                }
+                                if (text.isNotBlank()) onSearch(text)
                             }) {
                                 Icon(Icons.Default.Search, stringResource(R.string.search))
                             }

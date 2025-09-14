@@ -44,6 +44,7 @@ fun ResultTopBar(query: String, onBackClick: () -> Unit, onSearch: (String) -> U
                     expanded = false
                     text = it
                     onSearch(it)
+                    text = ""
                 },
                 expanded = expanded,
                 onExpandedChange = { expanded = it },
@@ -55,9 +56,7 @@ fun ResultTopBar(query: String, onBackClick: () -> Unit, onSearch: (String) -> U
                 },
                 trailingIcon = {
                     IconButton({
-                        if (text.isNotBlank()) {
-                            onSearch(text)
-                        }
+                        if (text.isNotBlank()) onSearch(text)
                     }) {
                         Icon(Icons.Default.Search, stringResource(R.string.search))
                     }
