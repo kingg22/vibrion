@@ -14,9 +14,12 @@ import io.github.kingg22.vibrion.app.domain.repository.SettingsRepository
 import io.github.kingg22.vibrion.core.application.DownloadForegroundService
 import io.github.kingg22.vibrion.core.application.DownloadOrchestrator
 import io.github.kingg22.vibrion.core.di.AndroidMusicStorage
+import io.github.kingg22.vibrion.core.domain.model.Download
 import io.github.kingg22.vibrion.core.domain.model.DownloadProvider
 import io.github.kingg22.vibrion.ext.DeezerId3
 import io.github.kingg22.vibrion.ext.toMusicMetadata
+import kotlinx.coroutines.currentCoroutineContext
+import kotlinx.coroutines.ensureActive
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.collectLatest
@@ -26,7 +29,7 @@ import kotlinx.coroutines.launch
 import kotlin.time.Duration
 
 @OptIn(UnofficialDeezerApi::class)
-data class SearchViewModel(
+class SearchViewModel(
     private val repository: SearchRepository,
     private val settingsRepository: SettingsRepository,
     private val orchestrator: DownloadOrchestrator,
@@ -35,8 +38,10 @@ data class SearchViewModel(
     private val token = settingsRepository.loadToken()
     private var canDownload: Boolean = false
     private val _searchResults = MutableStateFlow<SearchResultUiState>(SearchResultUiState.Idle)
-    val searchResults = _searchResults.asStateFlow()
+    private val _downloadResult = MutableStateFlow<DownloadResultUiState>(DownloadResultUiState.Idle)
     private lateinit var gwClient: DeezerGwClient
+    val searchResults = _searchResults.asStateFlow()
+    val downloadResult = _downloadResult.asStateFlow()
 
     init {
         viewModelScope.launch {
@@ -51,26 +56,31 @@ data class SearchViewModel(
     fun search(query: String) {
         _searchResults.update { SearchResultUiState.Loading }
         viewModelScope.launch {
-            val results = repository.searchSingles(query)
-            _searchResults.update { _ ->
-                SearchResultUiState.Success(
-                    results.map {
-                        val description = if (!it.artists.isNullOrEmpty()) {
-                            it.artists.joinToString(", ") { artist -> artist.name }
-                        } else {
-                            it.description ?: it.title
-                        }
-
-                        it.copy(
-                            thumbnailUrl = it.thumbnailUrl ?: Single.DEFAULT_THUMBNAIL_URL,
-                            title = it.title,
-                            description = description,
-                            releaseDate = it.releaseDate ?: "-",
-                            duration = it.duration ?: Duration.ZERO,
-                        )
-                    },
-                )
+            val results = try {
+                repository.searchSingles(query)
+            } catch (_: Exception) {
+                _searchResults.update { SearchResultUiState.Error("Error searching for tracks") }
+                currentCoroutineContext().ensureActive()
+                return@launch
             }
+            val successResultUiState = SearchResultUiState.Success(
+                results.map {
+                    val description = if (!it.artists.isNullOrEmpty()) {
+                        it.artists.joinToString { artist -> artist.name }
+                    } else {
+                        it.description ?: it.title
+                    }
+
+                    it.copy(
+                        thumbnailUrl = it.thumbnailUrl ?: Single.DEFAULT_THUMBNAIL_URL,
+                        title = it.title,
+                        description = description,
+                        releaseDate = it.releaseDate ?: "-",
+                        duration = it.duration ?: Duration.ZERO,
+                    )
+                },
+            )
+            _searchResults.update { successResultUiState }
         }
     }
 
@@ -80,14 +90,18 @@ data class SearchViewModel(
 
     fun download(item: Single, context: Context) {
         if (!canDownload) return
-        checkNotNull(item.id)
+        _downloadResult.update { DownloadResultUiState.Loading }
+        checkNotNull(item.id) { "Implementation error: item.id cannot be null" }
         viewModelScope.launch {
             token.filterNotNull().collectLatest { arl ->
                 if (!::gwClient.isInitialized) gwClient = DeezerGwClient.initialize(arl, httpClientBuilder.copy())
                 val track = gwClient.tracks.getTrackData(item.id.toLong())
                 val mediaResult = gwClient.getMedias(track.trackToken.toMediaRequest())
                 val urls = mediaResult.getAllUrls()
-                check(urls.isNotEmpty())
+                if (urls.isEmpty()) {
+                    _downloadResult.update { DownloadResultUiState.Error("Error downloading track, not found url") }
+                    return@collectLatest
+                }
                 DownloadForegroundService.start(context)
                 val download = orchestrator.createDownload(
                     urls.first(),
@@ -96,16 +110,32 @@ data class SearchViewModel(
                     DownloadProvider.DeezerId3 + DownloadProvider.AndroidMusicStorage,
                     DownloadProvider.deezerProcessMetadata(item.id.toLong()),
                     track.toTrack().toMusicMetadata(),
-                )
-                Log.i("SearchViewModel", "Download enqueue: ${download.getOrNull()}")
+                ).getOrThrow()
+                Log.i("SearchViewModel", "Download enqueue: $download")
+                _downloadResult.update { DownloadResultUiState.Success(download) }
             }
         }
     }
 
+    fun cancelDownload(download: Download) {
+        viewModelScope.launch {
+            if (orchestrator.cancelDownload(download.id) == true) {
+                _downloadResult.update { DownloadResultUiState.Idle }
+            }
+        }
+    }
+
+    sealed interface DownloadResultUiState {
+        object Idle : DownloadResultUiState
+        object Loading : DownloadResultUiState
+        class Success(val download: Download) : DownloadResultUiState
+        class Error(val message: String) : DownloadResultUiState
+    }
+
     sealed interface SearchResultUiState {
-        data object Idle : SearchResultUiState
-        data object Loading : SearchResultUiState
-        data class Success(val results: List<Single>) : SearchResultUiState
-        data class Error(val message: String) : SearchResultUiState
+        object Idle : SearchResultUiState
+        object Loading : SearchResultUiState
+        class Success(val results: List<Single>) : SearchResultUiState
+        class Error(val message: String) : SearchResultUiState
     }
 }

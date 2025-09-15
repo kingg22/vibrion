@@ -18,6 +18,7 @@ fun SearchResultScreen(
     viewModel: SearchViewModel = koinViewModel(),
 ) {
     val results by viewModel.searchResults.collectAsState()
+    val downloadState by viewModel.downloadResult.collectAsState()
     val context = LocalContext.current
 
     LaunchedEffect(query) {
@@ -26,11 +27,23 @@ fun SearchResultScreen(
         if (query.isBlank()) viewModel.modifyState(SearchViewModel.SearchResultUiState.Error("Query cannot be empty"))
         if (query.isNotBlank()) viewModel.search(query)
     }
-    SearchResult(query, results, onBackClick, onSearch = viewModel::search, onDownloadClick = {
-        if (viewModel.canDownload()) {
-            viewModel.download(it, context)
-        } else {
-            onSettingsClick()
-        }
-    }, modifier)
+
+    SearchResult(
+        query = query,
+        state = results,
+        downloadState = downloadState,
+        onBackClick = onBackClick,
+        onSearch = viewModel::search,
+        onDownloadClick = {
+            if (viewModel.canDownload()) {
+                viewModel.download(it, context)
+            } else {
+                onSettingsClick()
+            }
+        },
+        onDownloadCancel = {
+            viewModel.cancelDownload(it)
+        },
+        modifier = modifier,
+    )
 }
