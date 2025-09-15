@@ -1,6 +1,6 @@
 package io.github.kingg22.vibrion.app.domain.model
 
-data class AppSettings(
+class AppSettings(
     val token: String? = null,
     val downloadPath: String = DEFAULT_DOWNLOAD_PATH,
     val maxConcurrentDownloads: Int = DEFAULT_MAX_CONCURRENT_DOWNLOAD,

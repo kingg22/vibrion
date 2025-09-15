@@ -14,7 +14,7 @@ import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.mapLatest
 
-data class PreferencesDataSource(private val dataStore: DataStore<Preferences>) {
+class PreferencesDataSource(private val dataStore: DataStore<Preferences>) {
     companion object {
         // Settings Keys
         private val TOKEN_KEY = byteArrayPreferencesKey("token")

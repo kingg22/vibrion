@@ -5,13 +5,13 @@ import kotlinx.serialization.Serializable
 
 sealed interface NavigationKeys {
     @Serializable
-    data object Search : NavigationKeys, NavKey
+    object Search : NavigationKeys, NavKey
 
     @Serializable
-    data class SearchResult(val query: String) :
+    class SearchResult(val query: String) :
         NavigationKeys,
         NavKey
 
     @Serializable
-    data object Settings : NavigationKeys, NavKey
+    object Settings : NavigationKeys, NavKey
 }

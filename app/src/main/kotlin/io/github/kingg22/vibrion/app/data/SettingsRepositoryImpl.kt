@@ -3,7 +3,7 @@ package io.github.kingg22.vibrion.app.data
 import io.github.kingg22.vibrion.app.data.datasource.PreferencesDataSource
 import io.github.kingg22.vibrion.app.domain.repository.SettingsRepository
 
-data class SettingsRepositoryImpl(private val preferences: PreferencesDataSource) : SettingsRepository {
+class SettingsRepositoryImpl(private val preferences: PreferencesDataSource) : SettingsRepository {
     override fun loadSettings() = preferences.loadSettings()
     override fun loadToken() = preferences.loadToken()
     override suspend fun getSettings() = preferences.getSettings()
