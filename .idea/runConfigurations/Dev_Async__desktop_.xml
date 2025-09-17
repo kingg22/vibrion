@@ -10,7 +10,7 @@
       </option>
       <option name="taskNames">
         <list>
-          <option value="desktopRunHotAsync" />
+          <option value=":vibrion:hotRunDesktopAsync" />
           <option value="--auto" />
         </list>
       </option>
