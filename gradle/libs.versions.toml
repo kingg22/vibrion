@@ -34,11 +34,11 @@ clikt = "5.0.3"
 # https://github.com/coil-kt/coil/releases
 coil = "3.3.0"
 # https://github.com/JetBrains/compose-hot-reload/releases
-# compose-hotReload = "1.0.0-alpha11"
+compose-hotReload = "1.0.0-beta08"
 # https://github.com/JetBrains/compose-multiplatform/releases
 compose-multiplatform = "1.9.0"
 # https://developer.android.com/develop/ui/compose/bom/bom-mapping
-compose-bom = "2025.09.00"
+compose-bom = "2025.09.01"
 # https://github.com/kingg22/deezer-client-kt/releases
 deezer-client-kt = "2.1.1"
 # https://developer.android.com/jetpack/androidx/releases/glance
@@ -74,7 +74,7 @@ ktlint-compose = "0.4.27"
 # https://square.github.io/okio/changelog/
 okio = "3.16.0"
 # https://developer.android.com/jetpack/androidx/releases/navigation3
-navigation3 = "1.0.0-alpha09"
+navigation3 = "1.0.0-alpha10"
 # https://github.com/mockk/mockk/releases
 mockk = "1.14.5"
 # https://github.com/drewhamilton/Poko/releases
@@ -192,6 +192,10 @@ clikt = { group = "com.github.ajalt.clikt", name = "clikt", version.ref = "clikt
 androidx-navigation3-runtime = { group = "androidx.navigation3", name = "navigation3-runtime", version.ref = "navigation3" }
 androidx-navigation3-ui = { group = "androidx.navigation3", name = "navigation3-ui", version.ref = "navigation3" }
 
+# await next release with compose-multiplatform 1.10.0 and guide with serialization issue
+jetbrains-navigation3-runtime = { group = "org.jetbrains.androidx.navigation3", name = "navigation3-runtime", version = "1.0.0-SNAPSHOT+default" }
+jetbrains-navigation3-ui = { group = "org.jetbrains.androidx.navigation3", name = "navigation3-ui", version = "1.0.0-SNAPSHOT+default" }
+
 # paging3
 androidx-paging3-runtime = { group = "androidx.paging", name = "paging-runtime", version.ref = "androidx-paging" }
 androidx-paging3-common = { group = "androidx.paging", name = "paging-common", version.ref = "androidx-paging" }
@@ -226,7 +230,7 @@ composeCompiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "k
 # Compose
 composeMultiplatform = { id = "org.jetbrains.compose", version.ref = "compose-multiplatform" }
 # Compose desktop Hot reload
-# composeHotReload = { id = "org.jetbrains.compose.hot-reload", version.ref = "compose-hotReload" }
+composeHotReload = { id = "org.jetbrains.compose.hot-reload", version.ref = "compose-hotReload" }
 # dokka = { id = "org.jetbrains.dokka", version.ref = "dokka" }
 kotlinAndroid = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 kotlinJvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
