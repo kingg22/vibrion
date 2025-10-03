@@ -1,6 +1,6 @@
 [versions]
 # https://github.com/mikepenz/AboutLibraries/releases
-# aboutLibraries = "12.2.3"
+aboutLibraries = "12.2.4"
 # https://developer.android.com/build/releases/gradle-plugin
 agp = "8.13.0"
 
@@ -222,7 +222,7 @@ testing = [
 testing-ktor = ["ktor-client-mock", "kotlinx-resources", "kotest-assertions-json"]
 
 [plugins]
-# aboutLibraries = { id = "com.mikepenz.aboutlibraries.plugin", version.ref = "aboutLibraries" }
+aboutLibraries = { id = "com.mikepenz.aboutlibraries.plugin", version.ref = "aboutLibraries" }
 androidApplication = { id = "com.android.application", version.ref = "agp" }
 androidLibrary = { id = "com.android.library", version.ref = "agp" }
 androidMultiplatformLibrary = { id = "com.android.kotlin.multiplatform.library", version.ref = "agp" }
