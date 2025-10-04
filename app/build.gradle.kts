@@ -47,7 +47,8 @@ android {
     }
     buildFeatures {
         compose = true
-        buildConfig = true
+        shaders = false
+        resValues = false
     }
 }
 
