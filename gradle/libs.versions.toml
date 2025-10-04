@@ -71,12 +71,12 @@ ktlint-pinterest = "1.7.1"
 ktlint-plugin = "13.1.0"
 # https://github.com/mrmans0n/compose-rules/releases
 ktlint-compose = "0.4.27"
-# https://square.github.io/okio/changelog/
-okio = "3.16.0"
-# https://developer.android.com/jetpack/androidx/releases/navigation3
-navigation3 = "1.0.0-alpha10"
 # https://github.com/mockk/mockk/releases
 mockk = "1.14.5"
+# https://developer.android.com/jetpack/androidx/releases/navigation3
+navigation3 = "1.0.0-alpha10"
+# https://square.github.io/okio/changelog/
+okio = "3.16.0"
 # https://github.com/drewhamilton/Poko/releases
 poko = "0.20.0"
 # https://github.com/kingg22/vibrion-id3/releases
@@ -126,8 +126,6 @@ androidx-data-store-preferences = { group = "androidx.datastore", name = "datast
 androidx-lifecycle-viewmodel = { group = "org.jetbrains.androidx.lifecycle", name = "lifecycle-viewmodel-compose", version.ref = "androidx-lifecycle" }
 androidx-lifecycle-runtime-compose = { group = "org.jetbrains.androidx.lifecycle", name = "lifecycle-runtime-compose", version.ref = "androidx-lifecycle" }
 androidx-lifecycle-service = { group = "androidx.lifecycle", name = "lifecycle-service", version.ref = "androidx-lifecycle" }
-
-# androidx-navigation-compose = { group = "androidx.navigation", name = "navigation-compose", version.ref = "androidx-navigation-compose" }
 
 androidx-test-core = { group = "androidx.test", name = "core", version.ref = "androidx-test-core" }
 androidx-test-junit = { group = "androidx.test.ext", name = "junit", version.ref = "androidx-test-junit" }
@@ -179,7 +177,7 @@ konsist = { group = "com.lemonappdev", name = "konsist", version.ref = "konsist"
 
 ktlint-compose = { group = "io.nlopez.compose.rules", name = "ktlint", version.ref = "ktlint-compose" }
 
-# aboutlibraries-compose-m3 = { group = "com.mikepenz", name = "aboutlibraries-compose-m3", version.ref = "aboutLibraries" }
+aboutlibraries-compose-m3 = { group = "com.mikepenz", name = "aboutlibraries-compose-m3", version.ref = "aboutLibraries" }
 
 # Okio
 okio-core = { group = "com.squareup.okio", name = "okio", version.ref = "okio" }
@@ -192,7 +190,7 @@ clikt = { group = "com.github.ajalt.clikt", name = "clikt", version.ref = "clikt
 androidx-navigation3-runtime = { group = "androidx.navigation3", name = "navigation3-runtime", version.ref = "navigation3" }
 androidx-navigation3-ui = { group = "androidx.navigation3", name = "navigation3-ui", version.ref = "navigation3" }
 
-# await next release with compose-multiplatform 1.10.0 and guide with serialization issue
+# await next release with compose-multiplatform 1.10.0 to remove androidx
 jetbrains-navigation3-runtime = { group = "org.jetbrains.androidx.navigation3", name = "navigation3-runtime", version = "1.0.0-SNAPSHOT+default" }
 jetbrains-navigation3-ui = { group = "org.jetbrains.androidx.navigation3", name = "navigation3-ui", version = "1.0.0-SNAPSHOT+default" }
 
@@ -231,7 +229,6 @@ composeCompiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "k
 composeMultiplatform = { id = "org.jetbrains.compose", version.ref = "compose-multiplatform" }
 # Compose desktop Hot reload
 composeHotReload = { id = "org.jetbrains.compose.hot-reload", version.ref = "compose-hotReload" }
-# dokka = { id = "org.jetbrains.dokka", version.ref = "dokka" }
 kotlinAndroid = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 kotlinJvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
 kotlinMultiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin" }
