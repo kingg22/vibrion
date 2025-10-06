@@ -1,3 +1,4 @@
+import org.jetbrains.kotlin.gradle.dsl.JvmDefaultMode
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 
 plugins {
@@ -17,6 +18,7 @@ kotlin {
         allWarningsAsErrors.set(true)
         optIn.add("androidx.compose.material3.ExperimentalMaterial3Api")
         jvmTarget.set(JvmTarget.JVM_11)
+        jvmDefault.set(JvmDefaultMode.NO_COMPATIBILITY)
     }
 }
 
