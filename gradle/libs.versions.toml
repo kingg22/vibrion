@@ -15,6 +15,7 @@ androidx-activityCompose = "1.11.0"
 androidx-data-store = "1.1.7"
 # See CMP https://github.com/JetBrains/compose-multiplatform/releases based on
 # https://developer.android.com/jetpack/androidx/releases/lifecycle
+jetbrains-androidx-lifecycle = "2.9.5"
 androidx-lifecycle = "2.9.4"
 # https://developer.android.com/jetpack/androidx/releases/paging
 androidx-paging = "3.4.0-alpha04"
@@ -107,8 +108,9 @@ androidx-activity-compose = { group = "androidx.activity", name = "activity-comp
 androidx-data-store-preferences = { group = "androidx.datastore", name = "datastore-preferences", version.ref = "androidx-data-store" }
 
 # use jetbrains androidx lifecycle when use KMP
-androidx-lifecycle-viewmodel = { group = "org.jetbrains.androidx.lifecycle", name = "lifecycle-viewmodel-compose", version.ref = "androidx-lifecycle" }
-androidx-lifecycle-runtime-compose = { group = "org.jetbrains.androidx.lifecycle", name = "lifecycle-runtime-compose", version.ref = "androidx-lifecycle" }
+androidx-lifecycle-viewmodel = { group = "org.jetbrains.androidx.lifecycle", name = "lifecycle-viewmodel-compose", version.ref = "jetbrains-androidx-lifecycle" }
+androidx-lifecycle-runtime-compose = { group = "org.jetbrains.androidx.lifecycle", name = "lifecycle-runtime-compose", version.ref = "jetbrains-androidx-lifecycle" }
+# android specific
 androidx-lifecycle-service = { group = "androidx.lifecycle", name = "lifecycle-service", version.ref = "androidx-lifecycle" }
 
 androidx-test-core = { group = "androidx.test", name = "core", version.ref = "androidx-test-core" }
