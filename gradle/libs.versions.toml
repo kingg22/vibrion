@@ -172,8 +172,7 @@ clikt = { group = "com.github.ajalt.clikt", name = "clikt", version.ref = "clikt
 androidx-navigation3-runtime = { group = "androidx.navigation3", name = "navigation3-runtime", version.ref = "navigation3" }
 androidx-navigation3-ui = { group = "androidx.navigation3", name = "navigation3-ui", version.ref = "navigation3" }
 
-# await next release with compose-multiplatform 1.10.0 to remove androidx
-jetbrains-navigation3-runtime = { group = "org.jetbrains.androidx.navigation3", name = "navigation3-runtime", version = "1.0.0-SNAPSHOT+default" }
+# await next release with compose-multiplatform 1.10.0 to remove androidx, this snapshot is very unstable
 jetbrains-navigation3-ui = { group = "org.jetbrains.androidx.navigation3", name = "navigation3-ui", version = "1.0.0-SNAPSHOT+default" }
 
 # paging3
