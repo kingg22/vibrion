@@ -30,7 +30,7 @@ coil = "3.3.0"
 # https://github.com/JetBrains/compose-hot-reload/releases
 compose-hotReload = "1.0.0-rc02"
 # https://github.com/JetBrains/compose-multiplatform/releases
-compose-multiplatform = "1.9.0"
+compose-multiplatform = "1.9.1"
 # https://developer.android.com/develop/ui/compose/bom/bom-mapping
 compose-bom = "2025.10.00"
 # https://github.com/kingg22/deezer-client-kt/releases
