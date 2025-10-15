@@ -44,7 +44,7 @@ koin = "4.1.1"
 # https://github.com/LemonAppDev/konsist/releases
 konsist = "0.17.3"
 # https://github.com/kotest/kotest/releases
-kotest = "6.0.3"
+kotest = "6.0.4"
 # https://github.com/JetBrains/kotlin/releases
 kotlin = "2.2.20"
 # https://github.com/Kotlin/kotlinx.coroutines/releases
