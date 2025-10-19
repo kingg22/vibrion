@@ -104,6 +104,7 @@ kotest-assertions-core = { group = "io.kotest", name = "kotest-assertions-core",
 kotest-assertions-json = { group = "io.kotest", name = "kotest-assertions-json", version.ref = "kotest" }
 
 # Compose
+androidx-activity = { group = "androidx.activity", name = "activity-ktx", version.ref = "androidx-activityCompose" }
 androidx-activity-compose = { group = "androidx.activity", name = "activity-compose", version.ref = "androidx-activityCompose" }
 androidx-data-store-preferences = { group = "androidx.datastore", name = "datastore-preferences", version.ref = "androidx-data-store" }
 
