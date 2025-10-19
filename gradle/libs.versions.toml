@@ -53,7 +53,7 @@ kotlinx-coroutines = "1.10.2"
 # https://github.com/goncalossilva/kotlinx-resources/releases
 kotlinx-resource = "0.10.1"
 # https://github.com/Kotlin/kotlinx-kover/releases
-kover = "0.9.2"
+kover = "0.9.3"
 # https://github.com/google/ksp/releases
 ksp = "2.2.20-2.0.4"
 # https://github.com/ktorio/ktor/releases
@@ -73,7 +73,7 @@ navigation3 = "1.0.0-alpha11"
 # https://square.github.io/okio/changelog/
 okio = "3.16.2"
 # https://github.com/drewhamilton/Poko/releases
-poko = "0.20.0"
+poko = "0.20.1"
 # https://github.com/kingg22/vibrion-id3/releases
 vibrion-id3 = "0.7.0"
 
