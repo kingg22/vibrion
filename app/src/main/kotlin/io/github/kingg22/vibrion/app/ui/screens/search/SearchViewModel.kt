@@ -30,8 +30,8 @@ import kotlin.time.Duration
 
 @OptIn(UnofficialDeezerApi::class)
 class SearchViewModel(
+    settingsRepository: SettingsRepository,
     private val repository: SearchRepository,
-    private val settingsRepository: SettingsRepository,
     private val orchestrator: DownloadOrchestrator,
     private val httpClientBuilder: HttpClientBuilder,
 ) : ViewModel() {
@@ -46,7 +46,7 @@ class SearchViewModel(
     init {
         viewModelScope.launch {
             token.collect {
-                canDownload = it != null && DeezerGwClient.verifyArl(it, httpClientBuilder.copy())
+                canDownload = it != null && DeezerGwClient.verifyArl(it, httpClientBuilder.copy()) == null
             }
         }
     }
@@ -59,8 +59,8 @@ class SearchViewModel(
             val results = try {
                 repository.searchSingles(query)
             } catch (_: Exception) {
-                _searchResults.update { SearchResultUiState.Error("Error searching for tracks") }
                 currentCoroutineContext().ensureActive()
+                _searchResults.update { SearchResultUiState.Error("Error searching for tracks") }
                 return@launch
             }
             val successResultUiState = SearchResultUiState.Success(
@@ -119,23 +119,23 @@ class SearchViewModel(
 
     fun cancelDownload(download: Download) {
         viewModelScope.launch {
-            if (orchestrator.cancelDownload(download.id) == true) {
+            if (orchestrator.cancelDownload(download.id)) {
                 _downloadResult.update { DownloadResultUiState.Idle }
             }
         }
     }
 
     sealed interface DownloadResultUiState {
-        object Idle : DownloadResultUiState
-        object Loading : DownloadResultUiState
-        class Success(val download: Download) : DownloadResultUiState
-        class Error(val message: String) : DownloadResultUiState
+        data object Idle : DownloadResultUiState
+        data object Loading : DownloadResultUiState
+        data class Success(val download: Download) : DownloadResultUiState
+        data class Error(val message: String) : DownloadResultUiState
     }
 
     sealed interface SearchResultUiState {
-        object Idle : SearchResultUiState
-        object Loading : SearchResultUiState
-        class Success(val results: List<Single>) : SearchResultUiState
-        class Error(val message: String) : SearchResultUiState
+        data object Idle : SearchResultUiState
+        data object Loading : SearchResultUiState
+        data class Success(val results: List<Single>) : SearchResultUiState
+        data class Error(val message: String) : SearchResultUiState
     }
 }
