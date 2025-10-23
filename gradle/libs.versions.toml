@@ -10,7 +10,7 @@ android-minSdk = "30"
 android-targetSdk = "36"
 
 # https://developer.android.com/jetpack/androidx/releases/activity
-androidx-activityCompose = "1.11.0"
+androidx-activity-compose = "1.11.0"
 # https://developer.android.com/jetpack/androidx/releases/datastore
 androidx-data-store = "1.1.7"
 # See CMP https://github.com/JetBrains/compose-multiplatform/releases based on
@@ -69,7 +69,10 @@ ktlint-compose = "0.4.27"
 # https://github.com/mockk/mockk/releases
 mockk = "1.14.6"
 # https://developer.android.com/jetpack/androidx/releases/navigation3
-navigation3 = "1.0.0-alpha11"
+navigation3 = "1.0.0-beta01"
+# https://github.com/JetBrains/compose-multiplatform/releases
+# https://mvnrepository.com/artifact/org.jetbrains.androidx.navigation3/navigation3-ui
+jetbrains-nav3 = "1.0.0-alpha03"
 # https://square.github.io/okio/changelog/
 okio = "3.16.2"
 # https://github.com/drewhamilton/Poko/releases
@@ -104,14 +107,18 @@ kotest-assertions-core = { group = "io.kotest", name = "kotest-assertions-core",
 kotest-assertions-json = { group = "io.kotest", name = "kotest-assertions-json", version.ref = "kotest" }
 
 # Compose
-androidx-activity = { group = "androidx.activity", name = "activity-ktx", version.ref = "androidx-activityCompose" }
-androidx-activity-compose = { group = "androidx.activity", name = "activity-compose", version.ref = "androidx-activityCompose" }
+androidx-activity = { group = "androidx.activity", name = "activity-ktx", version.ref = "androidx-activity-compose" }
+androidx-activity-compose = { group = "androidx.activity", name = "activity-compose", version.ref = "androidx-activity-compose" }
 androidx-data-store-preferences = { group = "androidx.datastore", name = "datastore-preferences", version.ref = "androidx-data-store" }
 
 # use jetbrains androidx lifecycle when use KMP
-androidx-lifecycle-viewmodel = { group = "org.jetbrains.androidx.lifecycle", name = "lifecycle-viewmodel-compose", version.ref = "jetbrains-androidx-lifecycle" }
 androidx-lifecycle-runtime-compose = { group = "org.jetbrains.androidx.lifecycle", name = "lifecycle-runtime-compose", version.ref = "jetbrains-androidx-lifecycle" }
+# TODO use VM for nav3 when is released CMP 1.10.0 or androidx going stable
+# jetbrains-androidx-lifecycle-viewmodel-nav3 = { group = "org.jetbrains.androidx.lifecycle", name = "lifecycle-viewmodel-navigation3", version = "2.10.0-alpha03" }
 # android specific
+# https://developer.android.com/jetpack/androidx/releases/lifecycle
+# TODO remove harcoded version when CMP fork is sync with androidx
+androidx-lifecycle-viewmodel-nav3 = { group = "androidx.lifecycle", name = "lifecycle-viewmodel-navigation3", version = "2.10.0-beta01" }
 androidx-lifecycle-service = { group = "androidx.lifecycle", name = "lifecycle-service", version.ref = "androidx-lifecycle" }
 
 androidx-test-core = { group = "androidx.test", name = "core", version.ref = "androidx-test-core" }
@@ -170,11 +177,11 @@ okio-core = { group = "com.squareup.okio", name = "okio", version.ref = "okio" }
 clikt = { group = "com.github.ajalt.clikt", name = "clikt", version.ref = "clikt" }
 
 # nav3
-androidx-navigation3-runtime = { group = "androidx.navigation3", name = "navigation3-runtime", version.ref = "navigation3" }
 androidx-navigation3-ui = { group = "androidx.navigation3", name = "navigation3-ui", version.ref = "navigation3" }
 
-# await next release with compose-multiplatform 1.10.0 to remove androidx, this snapshot is very unstable
-jetbrains-navigation3-ui = { group = "org.jetbrains.androidx.navigation3", name = "navigation3-ui", version = "1.0.0-SNAPSHOT+default" }
+# TODO await next release with compose-multiplatform 1.10.0 to remove androidx
+# or simple don't use jetbrains fork in android specific module
+jetbrains-navigation3-ui = { group = "org.jetbrains.androidx.navigation3", name = "navigation3-ui", version.ref = "jetbrains-nav3" }
 
 # paging3
 androidx-paging3-runtime = { group = "androidx.paging", name = "paging-runtime", version.ref = "androidx-paging" }
