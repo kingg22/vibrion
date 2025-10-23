@@ -68,11 +68,14 @@ dependencies {
     implementation(libs.compose.ui)
     implementation(libs.compose.animation)
     implementation(libs.compose.material.icons.extended)
-    implementation(libs.androidx.lifecycle.viewmodel)
+
     implementation(libs.androidx.lifecycle.runtime.compose)
-    implementation(libs.androidx.navigation3.runtime)
+    implementation(libs.androidx.lifecycle.viewmodel.nav3)
+
     implementation(libs.androidx.navigation3.ui)
+
     implementation(libs.androidx.activity.compose)
+
     implementation(libs.androidx.data.store.preferences)
 
     implementation(projects.deezerSdkKt)
