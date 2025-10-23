@@ -3,15 +3,14 @@ package io.github.kingg22.vibrion.app.navigation
 import androidx.navigation3.runtime.NavKey
 import kotlinx.serialization.Serializable
 
-sealed interface NavigationKeys {
+@Serializable
+sealed class NavigationKeys : NavKey {
     @Serializable
-    object Search : NavigationKeys, NavKey
+    data object Search : NavigationKeys()
 
     @Serializable
-    class SearchResult(val query: String) :
-        NavigationKeys,
-        NavKey
+    data class SearchResult(val query: String) : NavigationKeys()
 
     @Serializable
-    object Settings : NavigationKeys, NavKey
+    data object Settings : NavigationKeys()
 }
