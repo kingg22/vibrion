@@ -47,7 +47,7 @@ konsist = "0.17.3"
 # https://github.com/kotest/kotest/releases
 kotest = "6.0.4"
 # https://github.com/JetBrains/kotlin/releases
-kotlin = "2.2.20"
+kotlin = "2.2.21"
 # https://github.com/Kotlin/kotlinx.coroutines/releases
 kotlinx-coroutines = "1.10.2"
 # https://github.com/goncalossilva/kotlinx-resources/releases
