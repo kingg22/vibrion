@@ -17,7 +17,7 @@ kotlin {
         extraWarnings.set(true)
         allWarningsAsErrors.set(true)
         optIn.add("androidx.compose.material3.ExperimentalMaterial3Api")
-        jvmTarget.set(JvmTarget.JVM_11)
+        jvmTarget.set(JvmTarget.JVM_17)
         jvmDefault.set(JvmDefaultMode.NO_COMPATIBILITY)
     }
 }
@@ -44,8 +44,8 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_11
-        targetCompatibility = JavaVersion.VERSION_11
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
     }
     buildFeatures {
         compose = true
