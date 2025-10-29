@@ -1,6 +1,6 @@
 [versions]
 # https://github.com/mikepenz/AboutLibraries/releases
-aboutLibraries = "13.1.0"
+about-libraries = "13.1.0"
 # https://developer.android.com/build/releases/gradle-plugin
 agp = "8.13.0"
 
@@ -31,7 +31,7 @@ coil = "3.3.0"
 # https://github.com/JetBrains/compose-hot-reload/releases
 compose-hotReload = "1.0.0-rc02"
 # https://github.com/JetBrains/compose-multiplatform/releases
-compose-multiplatform = "1.9.1"
+compose-multiplatform = "1.9.2"
 # https://developer.android.com/develop/ui/compose/bom/bom-mapping
 compose-bom = "2025.10.01"
 # https://github.com/kingg22/deezer-client-kt/releases
@@ -168,7 +168,7 @@ konsist = { group = "com.lemonappdev", name = "konsist", version.ref = "konsist"
 
 ktlint-compose = { group = "io.nlopez.compose.rules", name = "ktlint", version.ref = "ktlint-compose" }
 
-aboutlibraries-compose-m3 = { group = "com.mikepenz", name = "aboutlibraries-compose-m3", version.ref = "aboutLibraries" }
+aboutlibraries-compose-m3 = { group = "com.mikepenz", name = "aboutlibraries-compose-m3", version.ref = "about-libraries" }
 
 # Okio
 okio-core = { group = "com.squareup.okio", name = "okio", version.ref = "okio" }
@@ -209,7 +209,7 @@ testing = [
 testing-ktor = ["ktor-client-mock", "kotlinx-resources", "kotest-assertions-json"]
 
 [plugins]
-aboutLibraries = { id = "com.mikepenz.aboutlibraries.plugin", version.ref = "aboutLibraries" }
+aboutLibraries = { id = "com.mikepenz.aboutlibraries.plugin", version.ref = "about-libraries" }
 androidApplication = { id = "com.android.application", version.ref = "agp" }
 androidLibrary = { id = "com.android.library", version.ref = "agp" }
 androidMultiplatformLibrary = { id = "com.android.kotlin.multiplatform.library", version.ref = "agp" }
