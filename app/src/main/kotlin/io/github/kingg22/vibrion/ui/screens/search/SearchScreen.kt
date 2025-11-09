@@ -57,7 +57,7 @@ fun SearchScreen(
 
     SearchAnimatedContent(
         state = state,
-        canDownload = canDownload == DownloadViewModel.CanDownloadState.Success,
+        canDownload = canDownload.isSuccess,
         artists = artists,
         onDownloadClick = downloadViewModel::download,
         onListDetailClick = { onListDetailClick(query, it) },
@@ -103,7 +103,7 @@ private fun SearchAnimatedContent(
                 }
 
                 is SearchViewModel.SearchUiState.Error -> {
-                    ErrorScreen()
+                    ErrorScreen(message = targetState.message)
                 }
 
                 is SearchViewModel.SearchUiState.Loaded -> {
