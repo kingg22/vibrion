@@ -1,0 +1,196 @@
+package io.github.kingg22.vibrion.ui.screens.detail
+
+import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.filled.ArrowBack
+import androidx.compose.material.icons.filled.Download
+import androidx.compose.material3.*
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
+import androidx.compose.ui.input.nestedscroll.nestedScroll
+import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
+import coil3.compose.AsyncImage
+import io.github.kingg22.vibrion.R
+import io.github.kingg22.vibrion.domain.model.DownloadableAlbum
+import io.github.kingg22.vibrion.domain.model.DownloadableItem
+import io.github.kingg22.vibrion.domain.model.DownloadablePlaylist
+import io.github.kingg22.vibrion.domain.model.DownloadableSingle
+import kotlin.time.Duration.Companion.seconds
+
+@Composable
+fun MusicDetailContent(
+    detail: DownloadableItem,
+    onBackClick: () -> Unit,
+    canDownload: () -> Boolean,
+    onDownloadClick: (item: DownloadableItem) -> Unit,
+    onTrackClick: (item: DownloadableItem) -> Unit,
+    modifier: Modifier = Modifier,
+) {
+    val scrollBehavior = TopAppBarDefaults.exitUntilCollapsedScrollBehavior()
+    val type = remember(detail) {
+        when (detail) {
+            is DownloadableAlbum -> R.string.albums
+            is DownloadablePlaylist -> R.string.playlists
+            is DownloadableSingle -> R.string.songs
+        }
+    }
+
+    Scaffold(
+        modifier = modifier.fillMaxSize(),
+        topBar = {
+            TopAppBar(
+                title = { Text(stringResource(type), color = MaterialTheme.colorScheme.onSurface) },
+                navigationIcon = {
+                    IconButton(onClick = onBackClick) {
+                        Icon(Icons.AutoMirrored.Filled.ArrowBack, stringResource(R.string.back))
+                    }
+                },
+                scrollBehavior = scrollBehavior,
+            )
+        },
+    ) { innerPadding ->
+        LazyColumn(
+            modifier = Modifier
+                .padding(innerPadding)
+                .fillMaxSize()
+                .nestedScroll(scrollBehavior.nestedScrollConnection),
+        ) {
+            // Cabecera con imagen y datos del álbum
+            item {
+                Column(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(16.dp),
+                    horizontalAlignment = Alignment.CenterHorizontally,
+                ) {
+                    AsyncImage(
+                        model = detail.thumbnailUrl,
+                        contentDescription = stringResource(R.string.cover_of, detail.title),
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .aspectRatio(1f)
+                            .clip(RoundedCornerShape(16.dp)),
+                        contentScale = ContentScale.Crop,
+                    )
+
+                    Spacer(Modifier.height(16.dp))
+
+                    Text(
+                        text = detail.title,
+                        style = MaterialTheme.typography.headlineSmall,
+                        fontWeight = FontWeight.Bold,
+                    )
+
+                    Text(
+                        text = detail.artists.joinToString { it.name },
+                        style = MaterialTheme.typography.bodyMedium,
+                        color = MaterialTheme.colorScheme.onSurfaceVariant,
+                    )
+
+                    Text(
+                        text =
+                        detail.releaseDate ?: detail.duration?.toString() ?: detail.description ?: detail.album
+                            ?: "",
+                        style = MaterialTheme.typography.bodySmall,
+                        color = MaterialTheme.colorScheme.onSurfaceVariant,
+                    )
+
+                    Spacer(Modifier.height(16.dp))
+
+                    Row(
+                        horizontalArrangement = Arrangement.Center,
+                        modifier = Modifier.fillMaxWidth(),
+                    ) {
+                        Button(onClick = { onDownloadClick(detail) }, enabled = canDownload()) {
+                            Icon(Icons.Default.Download, contentDescription = null)
+                            Spacer(Modifier.width(8.dp))
+                            Text(stringResource(R.string.download))
+                        }
+                    }
+                }
+            }
+
+            if (detail is DownloadableAlbum || detail is DownloadablePlaylist) {
+                // Lista de canciones
+                items(detail.tracks, key = { it.id }) { track ->
+                    TrackListItem(
+                        track = track,
+                        onClick = { onTrackClick(track) },
+                        onDownload = { onDownloadClick(track) },
+                        canDownload = canDownload,
+                    )
+                    HorizontalDivider()
+                }
+            }
+        }
+    }
+}
+
+@Composable
+fun TrackListItem(
+    track: DownloadableItem,
+    onClick: () -> Unit,
+    onDownload: () -> Unit,
+    canDownload: () -> Boolean,
+    modifier: Modifier = Modifier,
+) {
+    ListItem(
+        headlineContent = {
+            Text(track.title)
+        },
+        supportingContent = {
+            Text("${track.artists.joinToString { it.name }} · ${track.duration ?: ""}")
+        },
+        leadingContent = {
+            AsyncImage(
+                track.thumbnailUrl,
+                contentDescription = stringResource(R.string.cover_of, track.title),
+                modifier = Modifier
+                    .size(48.dp)
+                    .clip(RoundedCornerShape(8.dp)),
+            )
+        },
+        trailingContent = {
+            IconButton(onClick = onDownload, enabled = canDownload()) {
+                Icon(Icons.Default.Download, stringResource(R.string.download))
+            }
+        },
+        modifier = modifier
+            .clickable(onClick = onClick)
+            .padding(horizontal = 8.dp, vertical = 4.dp),
+    )
+}
+
+@Preview
+@Composable
+private fun MusicDetailContentPreview() {
+    val albumItem = DownloadableAlbum(
+        id = "1",
+        title = "Sample Album",
+        description = "This is a sample album description.",
+        thumbnailUrl = "https://via.placeholder.com/412x340",
+        releaseDate = "2023-01-01",
+        duration = 1800.seconds,
+        artists = emptyList(),
+        tracks = emptyList(),
+        upc = null,
+    )
+    MusicDetailContent(
+        albumItem,
+        onBackClick = {},
+        onDownloadClick = {},
+        onTrackClick = {},
+        canDownload = { true },
+    )
+}

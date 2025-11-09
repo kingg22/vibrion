@@ -1,0 +1,284 @@
+package io.github.kingg22.vibrion.ui.screens.search
+
+import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Download
+import androidx.compose.material.icons.filled.MoreVert
+import androidx.compose.material3.Card
+import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.ElevatedCard
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
+import androidx.compose.material3.ListItem
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Text
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
+import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.style.TextOverflow
+import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
+import coil3.compose.AsyncImage
+import io.github.kingg22.vibrion.R
+import io.github.kingg22.vibrion.domain.model.DownloadableItem
+import io.github.kingg22.vibrion.domain.model.DownloadableSingle
+
+@Composable
+fun FeaturedItem(
+    item: DownloadableItem,
+    canDownload: Boolean,
+    onDownloadClick: () -> Unit,
+    onCardClick: () -> Unit,
+    onSeeMoreClick: () -> Unit,
+    modifier: Modifier = Modifier,
+) {
+    ElevatedCard(
+        modifier = modifier.fillMaxWidth()
+            .padding(start = 16.dp, end = 16.dp)
+            .clip(CardDefaults.elevatedShape)
+            .clickable(onClick = onCardClick),
+    ) {
+        Row(
+            Modifier
+                .fillMaxWidth()
+                .padding(14.dp),
+            horizontalArrangement = Arrangement.SpaceAround,
+            verticalAlignment = Alignment.CenterVertically,
+        ) {
+            Row(
+                Modifier.weight(1f),
+                verticalAlignment = Alignment.CenterVertically,
+            ) {
+                AsyncImage(
+                    item.thumbnailUrl,
+                    stringResource(R.string.cover_of, item.title),
+                    Modifier.size(60.dp),
+                )
+
+                Spacer(Modifier.width(16.dp))
+
+                Column {
+                    Text(
+                        item.title,
+                        style = MaterialTheme.typography.titleMedium,
+                        maxLines = 1,
+                        overflow = TextOverflow.Ellipsis,
+                    )
+                    Text(
+                        text = item.artists.joinToString { it.name },
+                        style = MaterialTheme.typography.bodyMedium,
+                        color = MaterialTheme.colorScheme.onSurfaceVariant,
+                        maxLines = 2,
+                        overflow = TextOverflow.Ellipsis,
+                    )
+                    Spacer(Modifier.height(4.dp))
+                    Text(
+                        text = item.releaseDate ?: item.duration?.toString() ?: item.description ?: "",
+                        style = MaterialTheme.typography.labelSmall,
+                        color = MaterialTheme.colorScheme.onSurfaceVariant,
+                        maxLines = 2,
+                        overflow = TextOverflow.Ellipsis,
+                    )
+                }
+            }
+
+            IconButton(onSeeMoreClick) {
+                Icon(Icons.Default.MoreVert, stringResource(R.string.see_more, item.title))
+            }
+
+            IconButton(onDownloadClick, enabled = canDownload) {
+                Icon(Icons.Default.Download, stringResource(R.string.download))
+            }
+        }
+    }
+}
+
+@Composable
+fun ListItem(
+    title: String,
+    supportingText: String,
+    image: Any,
+    canDownload: Boolean,
+    onPlayClick: () -> Unit,
+    onDownloadClick: () -> Unit,
+    onSeeMoreClick: () -> Unit,
+    modifier: Modifier = Modifier,
+) {
+    ListItem(
+        headlineContent = {
+            Text(
+                title,
+                maxLines = 1,
+                overflow = TextOverflow.Ellipsis,
+            )
+        },
+        supportingContent = {
+            Text(
+                supportingText,
+                color = MaterialTheme.colorScheme.onSurfaceVariant,
+                maxLines = 3,
+                overflow = TextOverflow.Ellipsis,
+            )
+        },
+        leadingContent = {
+            AsyncImage(image, stringResource(R.string.cover_of, title), Modifier.size(60.dp))
+        },
+        trailingContent = {
+            Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.End) {
+                IconButton(onSeeMoreClick) {
+                    Icon(Icons.Default.MoreVert, stringResource(R.string.see_more, title))
+                }
+
+                IconButton(onClick = onDownloadClick, enabled = canDownload) {
+                    Icon(Icons.Default.Download, stringResource(R.string.download))
+                }
+            }
+        },
+        modifier = modifier.fillMaxWidth()
+            .padding(start = 16.dp, end = 16.dp)
+            .clip(CardDefaults.shape)
+            .clickable(onClick = onPlayClick),
+    )
+}
+
+@Composable
+fun ListItemCard(
+    title: String,
+    image: Any?,
+    subtitles: List<String>,
+    canDownload: Boolean,
+    onPlayClick: () -> Unit,
+    onDownloadClick: () -> Unit,
+    onSeeMoreClick: () -> Unit,
+    modifier: Modifier = Modifier,
+) {
+    Card(
+        modifier
+            .fillMaxWidth()
+            .padding(horizontal = 16.dp)
+            .clickable(onClick = onPlayClick),
+        elevation = CardDefaults.cardElevation(defaultElevation = 0.dp),
+    ) {
+        Row(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(16.dp),
+            horizontalArrangement = Arrangement.SpaceAround,
+            verticalAlignment = Alignment.CenterVertically,
+        ) {
+            AsyncImage(
+                image,
+                stringResource(R.string.cover_of, title),
+                Modifier.size(80.dp),
+            )
+
+            // Content
+            Column(
+                Modifier.weight(1f),
+                verticalArrangement = Arrangement.spacedBy(4.dp),
+            ) {
+                Text(
+                    text = title,
+                    style = MaterialTheme.typography.titleMedium,
+                    maxLines = 1,
+                    overflow = TextOverflow.Ellipsis,
+                )
+                subtitles.forEach { subtitle ->
+                    Text(
+                        text = subtitle,
+                        style = MaterialTheme.typography.bodyMedium,
+                        color = MaterialTheme.colorScheme.onSurfaceVariant,
+                        maxLines = 1,
+                        overflow = TextOverflow.Ellipsis,
+                    )
+                }
+            }
+
+            IconButton(onSeeMoreClick) {
+                Icon(Icons.Default.MoreVert, stringResource(R.string.see_more, title))
+            }
+
+            IconButton(onClick = onDownloadClick, enabled = canDownload) {
+                Icon(Icons.Default.Download, stringResource(R.string.download))
+            }
+        }
+    }
+}
+
+@Preview
+@Composable
+private fun FeaturedItemPreview() {
+    FeaturedItem(
+        item = DownloadableSingle.previewDefault,
+        canDownload = true,
+        onDownloadClick = {},
+        onCardClick = {},
+        onSeeMoreClick = {},
+    )
+}
+
+@Preview
+@Composable
+private fun ListItemPreview() {
+    ListItem(
+        title = "List item",
+        supportingText = "Supporting line text lorem ipsum dolor sit amet, consectetur.",
+        image = DownloadableSingle.DEFAULT_THUMBNAIL_URL,
+        canDownload = true,
+        onPlayClick = {},
+        onDownloadClick = {},
+        onSeeMoreClick = {},
+    )
+}
+
+@Preview
+@Composable
+private fun ListItemCardPreview() {
+    ListItemCard(
+        title = "List item card",
+        image = DownloadableSingle.DEFAULT_THUMBNAIL_URL,
+        subtitles = listOf(
+            "Supporting line text lorem ipsum dolor sit amet, consectetur.",
+            "Another supporting line",
+        ),
+        canDownload = true,
+        onPlayClick = {},
+        onDownloadClick = {},
+        onSeeMoreClick = {},
+    )
+}
+
+@Preview
+@Composable
+private fun ListItemMultiCardsPreview() {
+    LazyColumn(
+        verticalArrangement = Arrangement.spacedBy(8.dp),
+    ) {
+        items(10) {
+            ListItemCard(
+                title = "List item card",
+                image = DownloadableSingle.DEFAULT_THUMBNAIL_URL,
+                subtitles = listOf(
+                    "Supporting line text lorem ipsum dolor sit amet, consectetur.",
+                    "Another supporting line",
+                ),
+                canDownload = true,
+                onPlayClick = {},
+                onDownloadClick = {},
+                onSeeMoreClick = {},
+            )
+        }
+    }
+}
