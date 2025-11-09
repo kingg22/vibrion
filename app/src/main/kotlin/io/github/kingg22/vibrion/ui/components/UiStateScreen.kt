@@ -33,13 +33,13 @@ fun LoadingScreen(modifier: Modifier = Modifier) {
 }
 
 @Composable
-fun ErrorScreen(modifier: Modifier = Modifier) {
+fun ErrorScreen(modifier: Modifier = Modifier, message: String = stringResource(R.string.error)) {
     Column(
         modifier = modifier.fillMaxSize(),
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
-        Text(stringResource(R.string.error), color = MaterialTheme.colorScheme.onError)
+        Text(message)
     }
 }
 
@@ -57,6 +57,8 @@ private fun SearchLoadingPreview() {
 @Preview
 private fun SearchErrorPreview() {
     VibrionAppTheme {
-        ErrorScreen()
+        Surface {
+            ErrorScreen()
+        }
     }
 }
