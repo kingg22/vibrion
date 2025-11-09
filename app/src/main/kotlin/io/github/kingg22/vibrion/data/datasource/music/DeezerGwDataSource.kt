@@ -30,6 +30,7 @@ import kotlinx.coroutines.launch
 class DeezerGwDataSource(
     private val httpClientBuilder: HttpClientBuilder,
     private val orchestrator: DownloadOrchestrator,
+    private val platformHelper: PlatformHelper,
 ) {
     companion object {
         private val logger = Logger.withTag("DeezerGwDataSource")
@@ -100,7 +101,7 @@ class DeezerGwDataSource(
 
             coroutineScope {
                 launch {
-                    PlatformHelper.foregroundServiceRequired()
+                    platformHelper.foregroundServiceRequired()
                     val download = buildDownload(
                         url = urls.first(),
                         fallbacks = urls.drop(1).toSet(),
@@ -109,7 +110,7 @@ class DeezerGwDataSource(
                         trackId = single.id.toLong(),
                         metadata = track.toTrack().toMusicMetadata(),
                     )
-                    orchestrator.createDownload(PlatformHelper.enhanceDownload(download))
+                    orchestrator.createDownload(platformHelper.enhanceDownload(download))
                     logger.i { "Single '${single.title}' successfully enqueued" }
                 }
             }
@@ -138,7 +139,7 @@ class DeezerGwDataSource(
         }
 
         coroutineScope {
-            PlatformHelper.foregroundServiceRequired()
+            platformHelper.foregroundServiceRequired()
             val folder = "vibrion/$title"
 
             trackTokens.indices.forEach { index ->
@@ -160,7 +161,7 @@ class DeezerGwDataSource(
 
                 launch(SupervisorJob()) {
                     try {
-                        orchestrator.createDownload(PlatformHelper.enhanceDownload(download))
+                        orchestrator.createDownload(platformHelper.enhanceDownload(download))
                         logger.i { "Track '${track.sngTitle}' with id '${track.sngId}' successfully enqueued" }
                     } catch (e: Exception) {
                         logger.e(e) { "Error enqueueing track ${track.sngId}" }
