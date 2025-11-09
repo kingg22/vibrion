@@ -102,7 +102,6 @@ dependencies {
     implementation(libs.androidx.data.store.preferences)
 
     // paging3
-    implementation(libs.androidx.paging3.common)
     implementation(libs.androidx.paging3.compose)
 
     // ktor client

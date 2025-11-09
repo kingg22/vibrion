@@ -18,7 +18,7 @@ androidx-data-store = "1.1.7"
 jetbrains-androidx-lifecycle = "2.9.6"
 androidx-lifecycle = "2.9.4"
 # https://developer.android.com/jetpack/androidx/releases/paging
-androidx-paging = "3.4.0-alpha04"
+androidx-paging = "3.3.6"
 # https://developer.android.com/jetpack/androidx/releases/test
 androidx-test-core = "1.7.0"
 androidx-test-junit = "1.3.0"
@@ -83,7 +83,7 @@ vibrion-id3 = "0.7.0"
 [libraries]
 # Kotlin - Kotlinx essentials
 kotlin-test = { group = "org.jetbrains.kotlin", name = "kotlin-test", version.ref = "kotlin" }
-kotlinx-coroutines-swing = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-swing", version.ref = "kotlinx-coroutines" }
+#kotlinx-coroutines-swing = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-swing", version.ref = "kotlinx-coroutines" }
 kotlinx-coroutines-test = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-test", version.ref = "kotlinx-coroutines" }
 
 # Resources multiplatform
@@ -112,7 +112,8 @@ androidx-activity-compose = { group = "androidx.activity", name = "activity-comp
 androidx-data-store-preferences = { group = "androidx.datastore", name = "datastore-preferences", version.ref = "androidx-data-store" }
 
 # use jetbrains androidx lifecycle when use KMP
-androidx-lifecycle-runtime-compose = { group = "org.jetbrains.androidx.lifecycle", name = "lifecycle-runtime-compose", version.ref = "jetbrains-androidx-lifecycle" }
+#jetbrains-lifecycle-runtime-compose = { group = "org.jetbrains.androidx.lifecycle", name = "lifecycle-runtime-compose", version.ref = "jetbrains-androidx-lifecycle" }
+androidx-lifecycle-runtime-compose = { group = "androidx.lifecycle", name = "lifecycle-runtime-compose", version.ref = "androidx-lifecycle" }
 # TODO use VM for nav3 when is released CMP 1.10.0 or androidx going stable
 # jetbrains-androidx-lifecycle-viewmodel-nav3 = { group = "org.jetbrains.androidx.lifecycle", name = "lifecycle-viewmodel-navigation3", version = "2.10.0-alpha03" }
 # android specific
@@ -181,15 +182,12 @@ androidx-navigation3-ui = { group = "androidx.navigation3", name = "navigation3-
 
 # TODO await next release with compose-multiplatform 1.10.0 to remove androidx
 # or simple don't use jetbrains fork in android specific module
-jetbrains-navigation3-ui = { group = "org.jetbrains.androidx.navigation3", name = "navigation3-ui", version.ref = "jetbrains-nav3" }
+# jetbrains-navigation3-ui = { group = "org.jetbrains.androidx.navigation3", name = "navigation3-ui", version.ref = "jetbrains-nav3" }
 
 # paging3
-androidx-paging3-runtime = { group = "androidx.paging", name = "paging-runtime", version.ref = "androidx-paging" }
-androidx-paging3-common = { group = "androidx.paging", name = "paging-common", version.ref = "androidx-paging" }
 androidx-paging3-compose = { group = "androidx.paging", name = "paging-compose", version.ref = "androidx-paging" }
 
 # mockk
-# mockk = { group = "io.mockk", name = "mockk", version.ref = "mockk" }
 mockk-android = { group = "io.mockk", name = "mockk-android", version.ref = "mockk" }
 mockk-agent = { group = "io.mockk", name = "mockk-agent", version.ref = "mockk" }
 
