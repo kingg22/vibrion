@@ -6,8 +6,7 @@ import io.github.kingg22.deezer.client.api.routes.SearchRoutes.Companion.buildAd
 import kotlinx.coroutines.currentCoroutineContext
 import kotlinx.coroutines.ensureActive
 
-@JvmInline
-value class DeezerApiDataSource(private val api: DeezerApiClient) {
+class DeezerApiDataSource(private val api: DeezerApiClient) {
     suspend fun findSingle(id: Long) = try {
         api.tracks.getById(id)
     } catch (e: Exception) {

@@ -8,9 +8,8 @@ import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.map
 import kotlin.time.ExperimentalTime
 
-@JvmInline
 @OptIn(ExperimentalTime::class)
-value class SearchHistoryRepositoryImpl(private val preferencesDataSource: PreferencesDataSource) :
+class SearchHistoryRepositoryImpl(private val preferencesDataSource: PreferencesDataSource) :
     SearchHistoryRepository {
 
     override fun getHistory() = preferencesDataSource.getSearchHistory().map { queries ->

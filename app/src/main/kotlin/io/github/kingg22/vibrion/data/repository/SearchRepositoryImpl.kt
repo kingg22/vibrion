@@ -11,8 +11,7 @@ import io.github.kingg22.vibrion.domain.model.VibrionPage
 import io.github.kingg22.vibrion.domain.repository.PagedSource
 import io.github.kingg22.vibrion.domain.repository.SearchRepository
 
-@JvmInline
-value class SearchRepositoryImpl(private val api: DeezerApiDataSource) : SearchRepository {
+class SearchRepositoryImpl(private val api: DeezerApiDataSource) : SearchRepository {
     override suspend fun findSingle(id: String): DownloadableSingle? = api.findSingle(id.toLong())?.toDomain()
 
     override suspend fun findPlaylist(id: String): DownloadablePlaylist? = api.findPlaylist(id.toLong())?.toDomain()
@@ -83,7 +82,7 @@ value class SearchRepositoryImpl(private val api: DeezerApiDataSource) : SearchR
         VibrionPage(data = data, prevKey = prevKey, nextKey = nextKey)
     }
 
-    override fun buildPagedSearchArtists(query: String): PagedSource<Int, ArtistInfo> = PagedSource { key, size ->
+    override fun buildPagedSearchArtists(query: String) = PagedSource<Int, ArtistInfo> { key, size ->
         logger.d { "Loading search artists for query $query with key $key and size $size" }
         val offset = key ?: 0
         val response = api.searchArtist(query, size, offset)

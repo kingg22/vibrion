@@ -19,8 +19,7 @@ import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.mapLatest
 
-@JvmInline
-value class PreferencesDataSource(private val dataStore: DataStore<Preferences>) {
+class PreferencesDataSource(private val dataStore: DataStore<Preferences>) {
     companion object {
         private val logger = Logger.withTag("PreferencesDataSource")
 

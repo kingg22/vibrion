@@ -10,8 +10,7 @@ import io.github.kingg22.vibrion.domain.model.VibrionPage
 import io.github.kingg22.vibrion.domain.repository.PagedSource
 import io.github.kingg22.vibrion.domain.repository.TrendsRepository
 
-@JvmInline
-value class TrendsRepositoryImpl(private val api: DeezerApiDataSource) : TrendsRepository {
+class TrendsRepositoryImpl(private val api: DeezerApiDataSource) : TrendsRepository {
     companion object {
         private val logger = Logger.withTag("TrendsRepository")
     }
