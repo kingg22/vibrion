@@ -84,5 +84,15 @@ class DownloadViewModel(
         }
     }
 
-    enum class CanDownloadState { Idle, Loading, Success, Unavailable, Error }
+    enum class CanDownloadState {
+        Idle,
+        Loading,
+        Success,
+        Unavailable,
+        Error,
+        ;
+
+        val isSuccess
+            get() = this == Success
+    }
 }
