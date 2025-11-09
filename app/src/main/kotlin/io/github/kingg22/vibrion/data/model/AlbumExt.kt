@@ -6,11 +6,6 @@ import io.github.kingg22.deezer.client.api.objects.retrieveImageUrl
 import io.github.kingg22.deezer.client.api.objects.withImageSize
 import io.github.kingg22.vibrion.domain.model.ArtistInfo
 import io.github.kingg22.vibrion.domain.model.DownloadableAlbum
-import kotlinx.datetime.LocalDate
-import kotlinx.datetime.LocalDateTime
-import kotlinx.datetime.toJavaLocalDate
-import kotlinx.datetime.toJavaLocalDateTime
-import java.time.format.DateTimeFormatter
 import kotlin.time.Duration.Companion.seconds
 
 fun Album.toDomain() = DownloadableAlbum(
@@ -26,15 +21,7 @@ fun Album.toDomain() = DownloadableAlbum(
             name = contributor.name,
             pictureUrl = contributor.pictureBig,
         )
-    }?.takeIf { l -> l.isNotEmpty() }?.let {
-        artist?.let { artist ->
-            it + ArtistInfo(
-                id = artist.id.toString(),
-                name = artist.name,
-                pictureUrl = artist.pictureBig,
-            )
-        } ?: it
-    } ?: run {
+    }?.takeIf { l -> l.isNotEmpty() } ?: run {
         artist?.let { artist ->
             listOf(
                 ArtistInfo(
@@ -48,13 +35,3 @@ fun Album.toDomain() = DownloadableAlbum(
     tracks = this.tracks?.data?.map { it.toDomain() } ?: emptyList(),
     upc = this.upc,
 )
-
-fun LocalDateTime.toReadableString(): String {
-    val formatter: DateTimeFormatter = DateTimeFormatter.ofPattern("dd MMM yyyy, HH:mm")
-    return this.toJavaLocalDateTime().format(formatter)
-}
-
-fun LocalDate.toReadableString(): String {
-    val formatter: DateTimeFormatter = DateTimeFormatter.ofPattern("dd MMM yyyy")
-    return this.toJavaLocalDate().format(formatter)
-}

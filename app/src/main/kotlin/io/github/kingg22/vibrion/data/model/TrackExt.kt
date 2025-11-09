@@ -11,11 +11,11 @@ import kotlin.time.toDuration
 fun Track.toDomain() = DownloadableSingle(
     id = this.id.toString(),
     title = this.title,
-    description = this.titleShort,
+    description = null,
     thumbnailUrl = md5Image?.let { this.retrieveImageUrl().withImageSize(ImageSizes.BIG) },
     mediaUrl = this.preview,
     releaseDate = this.releaseDate?.toReadableString(),
     duration = this.duration.toDuration(DurationUnit.SECONDS),
-    artists = this.contributors?.map { it.toDomain() }?.plus(this.artist.toDomain()) ?: listOf(this.artist.toDomain()),
+    artists = this.contributors?.map { it.toDomain() } ?: listOf(this.artist.toDomain()),
     album = this.album?.title,
 )
