@@ -137,12 +137,12 @@ composeCompiler {
 
 aboutLibraries {
     library {
-        duplicationRule = DuplicateRule.GROUP
-        duplicationMode = DuplicateMode.MERGE
+        duplicationRule.set(DuplicateRule.GROUP)
+        duplicationMode.set(DuplicateMode.MERGE)
     }
     export {
-        outputFile = file("src/src/resources/files/aboutlibraries.json")
-        prettyPrint = true
+        outputFile.set(file("src/main/res/raw/aboutlibraries.json"))
+        prettyPrint.set(true)
     }
 }
 
