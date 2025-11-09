@@ -98,13 +98,28 @@ fun MusicDetailContent(
                         color = MaterialTheme.colorScheme.onSurfaceVariant,
                     )
 
-                    Text(
-                        text =
-                        detail.releaseDate ?: detail.duration?.toString() ?: detail.description ?: detail.album
-                            ?: "",
-                        style = MaterialTheme.typography.bodySmall,
-                        color = MaterialTheme.colorScheme.onSurfaceVariant,
-                    )
+                    val descriptionText = detail.description
+                        ?: detail.album?.let { "Album: $it" }
+                        ?: ""
+
+                    val releaseText = detail.releaseDate
+                        ?.replaceFirstChar { it.uppercase() }
+                        ?.let { "Released: $it" }
+                        ?: ""
+
+                    val durationText = detail.duration
+                        ?.let { "Duration: $it" }
+                        ?: ""
+
+                    listOf(descriptionText, releaseText, durationText)
+                        .filter { it.isNotBlank() }
+                        .forEach { text ->
+                            Text(
+                                text = text,
+                                style = MaterialTheme.typography.bodySmall,
+                                color = MaterialTheme.colorScheme.onSurfaceVariant,
+                            )
+                        }
 
                     Spacer(Modifier.height(16.dp))
 
@@ -113,7 +128,7 @@ fun MusicDetailContent(
                         modifier = Modifier.fillMaxWidth(),
                     ) {
                         Button(onClick = { onDownloadClick(detail) }, enabled = canDownload()) {
-                            Icon(Icons.Default.Download, contentDescription = null)
+                            Icon(Icons.Default.Download, contentDescription = stringResource(R.string.download))
                             Spacer(Modifier.width(8.dp))
                             Text(stringResource(R.string.download))
                         }
