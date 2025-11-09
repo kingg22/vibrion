@@ -1,5 +1,3 @@
-@file:Suppress("kotlin:S6517")
-
 package io.github.kingg22.vibrion.domain.repository
 
 import io.github.kingg22.vibrion.domain.model.VibrionPage
