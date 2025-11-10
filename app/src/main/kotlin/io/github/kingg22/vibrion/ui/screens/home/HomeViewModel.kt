@@ -11,6 +11,8 @@ import io.github.kingg22.vibrion.domain.usecase.trends.LoadGenreTrendsUseCase
 import io.github.kingg22.vibrion.domain.usecase.trends.LoadPlaylistTrendsUseCase
 import io.github.kingg22.vibrion.domain.usecase.trends.LoadTopTracksTrendsUseCase
 import io.github.kingg22.vibrion.ui.asPagingSource
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.flow.onStart
 
 class HomeViewModel(
     loadArtistTrendsUseCase: LoadArtistTrendsUseCase,
@@ -22,7 +24,9 @@ class HomeViewModel(
     val genrePaged = Pager(
         config = PagingConfig(pageSize = 10, initialLoadSize = 10),
         pagingSourceFactory = { loadGenreTrendsUseCase().asPagingSource() },
-    ).flow.cachedIn(viewModelScope)
+    ).flow.onStart {
+        delay(3000)
+    }.cachedIn(viewModelScope)
 
     val topTracksPaged = Pager(
         config = PagingConfig(pageSize = 10),
@@ -32,15 +36,21 @@ class HomeViewModel(
     val albumsPaged = Pager(
         config = PagingConfig(pageSize = 15, initialLoadSize = 20),
         pagingSourceFactory = { loadAlbumsTrendsUseCase().asPagingSource() },
-    ).flow.cachedIn(viewModelScope)
+    ).flow.onStart {
+        delay(3500)
+    }.cachedIn(viewModelScope)
 
     val playlistsPaged = Pager(
         config = PagingConfig(pageSize = 15, initialLoadSize = 20),
         pagingSourceFactory = { loadPlaylistTrendsUseCase().asPagingSource() },
-    ).flow.cachedIn(viewModelScope)
+    ).flow.onStart {
+        delay(2000)
+    }.cachedIn(viewModelScope)
 
     val artistsPaged = Pager(
         config = PagingConfig(pageSize = 10),
         pagingSourceFactory = { loadArtistTrendsUseCase().asPagingSource() },
-    ).flow.cachedIn(viewModelScope)
+    ).flow.onStart {
+        delay(1000)
+    }.cachedIn(viewModelScope)
 }
