@@ -1,5 +1,6 @@
 package io.github.kingg22.vibrion.ui.widgets
 
+import android.annotation.SuppressLint
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
@@ -13,6 +14,7 @@ import androidx.glance.appwidget.action.actionRunCallback
 import androidx.glance.appwidget.components.CircleIconButton
 import androidx.glance.appwidget.cornerRadius
 import androidx.glance.background
+import androidx.glance.color.ColorProvider
 import androidx.glance.layout.Alignment
 import androidx.glance.layout.Column
 import androidx.glance.layout.Row
@@ -21,12 +23,15 @@ import androidx.glance.layout.fillMaxSize
 import androidx.glance.layout.fillMaxWidth
 import androidx.glance.layout.padding
 import androidx.glance.layout.size
+import androidx.glance.preview.ExperimentalGlancePreviewApi
+import androidx.glance.preview.Preview
 import androidx.glance.text.FontWeight
 import androidx.glance.text.Text
 import androidx.glance.text.TextStyle
-import androidx.glance.unit.ColorProvider
 import io.github.kingg22.vibrion.R
+import androidx.glance.unit.ColorProvider as TextColorProvider
 
+@SuppressLint("RestrictedApi") // false-positive, I use overload function
 @Composable
 fun MusicWidgetContent(
     modifier: GlanceModifier = GlanceModifier,
@@ -60,11 +65,15 @@ fun MusicWidgetContent(
                         style = TextStyle(
                             fontWeight = FontWeight.Medium,
                             fontSize = 16.sp,
-                            color = androidx.glance.color.ColorProvider(day = Color.Black, night = Color.White),
+                            color = ColorProvider(day = Color.Black, night = Color.White),
                         ),
                         maxLines = 1,
                     )
-                    Text(artist, style = TextStyle(fontSize = 14.sp, color = ColorProvider(Color.Gray)), maxLines = 1)
+                    Text(
+                        artist,
+                        style = TextStyle(fontSize = 14.sp, color = TextColorProvider(color = Color.Gray)),
+                        maxLines = 1,
+                    )
                 }
             }
 
@@ -115,5 +124,15 @@ fun MusicWidgetContent(
                 )
             }
         }
+    }
+}
+
+@Suppress("unused")
+@OptIn(ExperimentalGlancePreviewApi::class)
+@Preview
+@Composable
+private fun MusicWidgetContentPreview() {
+    GlanceTheme(colors = VibrionWidgetGlanceColorScheme.colors) {
+        MusicWidgetContent()
     }
 }
