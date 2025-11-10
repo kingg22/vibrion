@@ -27,7 +27,6 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableIntStateOf
-import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
@@ -74,7 +73,7 @@ fun HomeContent(
     modifier: Modifier = Modifier,
     topBar: @Composable () -> Unit,
 ) {
-    val options = remember { listOf(R.string.deezer_name) }
+    val options = rememberSaveable { listOf(R.string.deezer_name) }
     var selectedIndex by rememberSaveable { mutableIntStateOf(0) }
     val coroutineScope = rememberCoroutineScope()
     val scrollState = rememberLazyListState()
@@ -292,7 +291,7 @@ fun HomeContent(
 private fun HomePreview() {
     val artistPages = PagingData.empty<ArtistInfo>(
         LoadStates(
-            LoadState.NotLoading(true),
+            LoadState.Loading,
             LoadState.NotLoading(true),
             LoadState.NotLoading(true),
         ),
@@ -302,7 +301,7 @@ private fun HomePreview() {
 
     val genrePages = PagingData.empty<GenreInfo>(
         LoadStates(
-            LoadState.NotLoading(true),
+            LoadState.Loading,
             LoadState.NotLoading(true),
             LoadState.NotLoading(true),
         ),
@@ -312,7 +311,7 @@ private fun HomePreview() {
 
     val carouselPages = PagingData.empty<DownloadableItem>(
         LoadStates(
-            LoadState.NotLoading(true),
+            LoadState.Loading,
             LoadState.NotLoading(true),
             LoadState.NotLoading(true),
         ),
@@ -322,7 +321,7 @@ private fun HomePreview() {
 
     val playlistPages = PagingData.empty<DownloadableItem>(
         LoadStates(
-            LoadState.NotLoading(true),
+            LoadState.Loading,
             LoadState.NotLoading(true),
             LoadState.NotLoading(true),
         ),
