@@ -88,7 +88,6 @@ fun SettingsAccountSection(token: String?, updateToken: (String) -> Unit, modifi
                     }
                 },
             )
-            HorizontalDivider()
         }
     }
 }

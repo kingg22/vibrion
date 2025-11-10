@@ -65,7 +65,7 @@
     <string name="retry">Reintentar</string>
     <string name="resume">Resumen</string>
     <string name="search">Buscar</string>
-    <string name="search_placeholder">Buscar...</string>
+    <string name="search_placeholder">Buscar…</string>
     <string name="see_more">Ver más sobre %1$s</string>
     <string name="show">Mostrar</string>
     <string name="shuffle">Aleatorio</string>
@@ -81,7 +81,6 @@
     <string name="token">Token</string>
     <string name="total">Total</string>
     <string name="top_music_country">Top de %1$s</string>
-    <string name="version">0.0.2-dev.0</string>
     <string name="users">Usuarios</string>
     <!-- Only android -->
     <string name="required_permissions">Permisos necesarios</string>

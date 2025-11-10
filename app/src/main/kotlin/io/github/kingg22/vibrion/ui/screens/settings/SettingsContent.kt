@@ -30,6 +30,7 @@ import androidx.compose.ui.platform.LocalUriHandler
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import io.github.kingg22.vibrion.BuildConfig
 import io.github.kingg22.vibrion.R
 import io.github.kingg22.vibrion.domain.model.AppSettings
 import io.github.kingg22.vibrion.domain.model.Quality
@@ -236,7 +237,7 @@ fun SettingsContent(
             // Version Info
             item {
                 AppVersion(
-                    "Version ${stringResource(R.string.version)}",
+                    """Version ${BuildConfig.VERSION_NAME} ${BuildConfig.BUILD_TYPE}""",
                     "${stringResource(R.string.author)} Rey Acosta (Kingg22)",
                     onClick = { uriHandler.openUri("https://github.com/Kingg22/") },
                     Modifier.padding(16.dp),
