@@ -78,7 +78,9 @@ dependencies {
     implementation(libs.koin.androidx.startup)
 
     // glance for android widgets with special compose API
+    implementation(libs.androidx.glance.appwidget)
     implementation(libs.androidx.glance.material3)
+    implementation(libs.androidx.glance.appwidget.preview)
     implementation(libs.androidx.glance.preview)
 
     implementation(libs.compose.runtime)
