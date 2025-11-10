@@ -7,7 +7,6 @@ agp = "8.13.0"
 # https://developer.android.com/tools/releases/platforms
 android-compileSdk = "36"
 android-minSdk = "30"
-android-targetSdk = "36"
 
 # https://developer.android.com/jetpack/androidx/releases/activity
 androidx-activity-compose = "1.11.0"
@@ -15,7 +14,7 @@ androidx-activity-compose = "1.11.0"
 androidx-data-store = "1.1.7"
 # See CMP https://github.com/JetBrains/compose-multiplatform/releases based on
 # https://developer.android.com/jetpack/androidx/releases/lifecycle
-jetbrains-androidx-lifecycle = "2.9.6"
+#jetbrains-androidx-lifecycle = "2.9.6"
 androidx-lifecycle = "2.9.4"
 # https://developer.android.com/jetpack/androidx/releases/paging
 androidx-paging = "3.3.6"
@@ -29,9 +28,9 @@ clikt = "5.0.3"
 # https://github.com/coil-kt/coil/releases
 coil = "3.3.0"
 # https://github.com/JetBrains/compose-hot-reload/releases
-compose-hotReload = "1.0.0-rc02"
+#compose-hotReload = "1.0.0-rc02"
 # https://github.com/JetBrains/compose-multiplatform/releases
-compose-multiplatform = "1.9.3"
+#compose-multiplatform = "1.9.3"
 # https://developer.android.com/develop/ui/compose/bom/bom-mapping
 compose-bom = "2025.11.00"
 # https://github.com/kingg22/deezer-client-kt/releases
@@ -72,7 +71,7 @@ mockk = "1.14.6"
 navigation3 = "1.0.0-rc01"
 # https://github.com/JetBrains/compose-multiplatform/releases
 # https://mvnrepository.com/artifact/org.jetbrains.androidx.navigation3/navigation3-ui
-jetbrains-nav3 = "1.0.0-alpha04"
+#jetbrains-nav3 = "1.0.0-alpha04"
 # https://square.github.io/okio/changelog/
 okio = "3.16.2"
 # https://github.com/drewhamilton/Poko/releases
@@ -100,9 +99,8 @@ ktorgen-compiler = { group = "io.github.kingg22", name = "ktorgen-compiler", ver
 
 # Logger
 kermit = { group = "co.touchlab", name = "kermit", version.ref = "kermit" }
-kermit-koin = { group = "co.touchlab", name = "kermit-koin", version.ref = "kermit" }
 
-# Kotest
+# Kotest test DSL
 kotest-assertions-core = { group = "io.kotest", name = "kotest-assertions-core", version.ref = "kotest" }
 kotest-assertions-json = { group = "io.kotest", name = "kotest-assertions-json", version.ref = "kotest" }
 
@@ -151,18 +149,18 @@ compose-material3 = { module = "androidx.compose.material3:material3" }
 compose-material3-navigation-suite = { module = "androidx.compose.material3:material3-adaptive-navigation-suite" }
 
 # Glance
-androidx-glance-appwidget = { group = "androidx.glance", name = "glance-appwidget", version.ref = "glance" }
 androidx-glance-material3 = { group = "androidx.glance", name = "glance-material3", version.ref = "glance" }
+androidx-glance-preview = { group = "androidx.glance", name = "glance-preview", version.ref = "glance" }
 
 coil-compose = { group = "io.coil-kt.coil3", name = "coil-compose", version.ref = "coil" }
 coil-ktor3 = { group = "io.coil-kt.coil3", name = "coil-network-ktor3", version.ref = "coil" }
+coil-network-cache-control = { group = "io.coil-kt.coil3", name = "coil-network-cache-control", version.ref = "coil" }
 
 # Koin
-koin-bom = { group = "io.insert-koin", name = "koin-bom", version.ref = "koin" }
-koin-core = { group = "io.insert-koin", name = "koin-core" }
-koin-androidx-startup = { group = "io.insert-koin", name = "koin-androidx-startup" }
-koin-compose = { group = "io.insert-koin", name = "koin-compose" }
-koin-compose-viewmodel = { group = "io.insert-koin", name = "koin-compose-viewmodel" }
+koin-core = { group = "io.insert-koin", name = "koin-core", version.ref = "koin" }
+koin-androidx-startup = { group = "io.insert-koin", name = "koin-androidx-startup", version.ref = "koin" }
+koin-compose = { group = "io.insert-koin", name = "koin-compose", version.ref = "koin" }
+koin-compose-viewmodel = { group = "io.insert-koin", name = "koin-compose-viewmodel", version.ref = "koin" }
 
 # Konsist
 konsist = { group = "com.lemonappdev", name = "konsist", version.ref = "konsist" }
@@ -212,8 +210,8 @@ androidApplication = { id = "com.android.application", version.ref = "agp" }
 androidLibrary = { id = "com.android.library", version.ref = "agp" }
 androidMultiplatformLibrary = { id = "com.android.kotlin.multiplatform.library", version.ref = "agp" }
 composeCompiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
-composeMultiplatform = { id = "org.jetbrains.compose", version.ref = "compose-multiplatform" }
-composeHotReload = { id = "org.jetbrains.compose.hot-reload", version.ref = "compose-hotReload" }
+#composeMultiplatform = { id = "org.jetbrains.compose", version.ref = "compose-multiplatform" }
+#composeHotReload = { id = "org.jetbrains.compose.hot-reload", version.ref = "compose-hotReload" }
 kotlinAndroid = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 kotlinJvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
 kotlinMultiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin" }

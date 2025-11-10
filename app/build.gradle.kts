@@ -34,7 +34,7 @@ android {
     defaultConfig {
         applicationId = "$group.vibrion"
         minSdk = libs.versions.android.minSdk.get().toInt()
-        targetSdk = libs.versions.android.targetSdk.get().toInt()
+        targetSdk = libs.versions.android.compileSdk.get().toInt()
         versionCode = 4
         versionName = project.version.toString()
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
@@ -78,8 +78,8 @@ dependencies {
     implementation(libs.koin.androidx.startup)
 
     // glance for android widgets with special compose API
-    implementation(libs.androidx.glance.appwidget)
     implementation(libs.androidx.glance.material3)
+    implementation(libs.androidx.glance.preview)
 
     implementation(libs.compose.runtime)
     implementation(libs.compose.foundation)
@@ -91,7 +91,6 @@ dependencies {
     implementation(libs.androidx.lifecycle.runtime.compose)
 
     // koin DI
-    implementation(project.dependencies.platform(libs.koin.bom))
     implementation(libs.koin.compose)
     implementation(libs.koin.compose.viewmodel)
 
@@ -111,10 +110,10 @@ dependencies {
     // coil for async images
     implementation(libs.coil.compose)
     implementation(libs.coil.ktor3)
+    implementation(libs.coil.network.cache.control)
 
     // kermit for logging
     implementation(libs.kermit)
-    implementation(libs.kermit.koin)
 
     // aboutlibraries
     implementation(libs.aboutlibraries.compose.m3)
