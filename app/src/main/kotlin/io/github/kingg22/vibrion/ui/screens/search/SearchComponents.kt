@@ -11,6 +11,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Download
 import androidx.compose.material.icons.filled.MoreVert
@@ -34,6 +35,7 @@ import coil3.compose.AsyncImage
 import io.github.kingg22.vibrion.R
 import io.github.kingg22.vibrion.domain.model.DownloadableItem
 import io.github.kingg22.vibrion.domain.model.DownloadableSingle
+import io.github.kingg22.vibrion.ui.components.ShimmerBox
 
 @Composable
 fun FeaturedItem(
@@ -184,6 +186,8 @@ fun ListItemCard(
                 Modifier.size(80.dp),
             )
 
+            Spacer(Modifier.width(10.dp))
+
             // Content
             Column(
                 Modifier.weight(1f),
@@ -212,6 +216,67 @@ fun ListItemCard(
 
             IconButton(onClick = onDownloadClick, enabled = canDownload) {
                 Icon(Icons.Default.Download, stringResource(R.string.download))
+            }
+        }
+    }
+}
+
+@Composable
+fun ListItemCardPlaceholder(modifier: Modifier = Modifier) {
+    Card(
+        modifier
+            .fillMaxWidth()
+            .padding(horizontal = 16.dp),
+        elevation = CardDefaults.cardElevation(defaultElevation = 0.dp),
+    ) {
+        Row(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(16.dp),
+            horizontalArrangement = Arrangement.SpaceAround,
+            verticalAlignment = Alignment.CenterVertically,
+        ) {
+            // Imagen de portada simulada
+            ShimmerBox(
+                modifier = Modifier
+                    .size(80.dp)
+                    .clip(MaterialTheme.shapes.medium),
+            )
+
+            Spacer(Modifier.width(10.dp))
+
+            // Columnas simulando título y subtítulos
+            Column(
+                modifier = Modifier
+                    .weight(1f),
+                verticalArrangement = Arrangement.spacedBy(4.dp),
+            ) {
+                // Placeholder para el título
+                ShimmerBox(
+                    modifier = Modifier
+                        .fillMaxWidth(0.7f)
+                        .height(18.dp)
+                        .clip(MaterialTheme.shapes.small),
+                )
+
+                // Placeholder para subtítulos (ejemplo: 2 líneas)
+                repeat(2) {
+                    ShimmerBox(
+                        modifier = Modifier
+                            .fillMaxWidth(0.5f + it * 0.2f)
+                            .height(14.dp)
+                            .clip(MaterialTheme.shapes.small),
+                    )
+                }
+            }
+
+            // Botones de acción simulados
+            repeat(2) {
+                ShimmerBox(
+                    modifier = Modifier
+                        .size(24.dp)
+                        .clip(CircleShape),
+                )
             }
         }
     }
@@ -279,6 +344,18 @@ private fun ListItemMultiCardsPreview() {
                 onDownloadClick = {},
                 onSeeMoreClick = {},
             )
+        }
+    }
+}
+
+@Preview
+@Composable
+private fun ListItemCardPlaceholderPreview() {
+    LazyColumn(
+        verticalArrangement = Arrangement.spacedBy(8.dp),
+    ) {
+        items(10) {
+            ListItemCardPlaceholder()
         }
     }
 }
