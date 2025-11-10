@@ -52,7 +52,7 @@ fun ShimmerBox(modifier: Modifier = Modifier) {
 }
 
 @Composable
-fun SongCardPlaceholder(modifier: Modifier = Modifier) {
+fun ShimmeringSongCard(modifier: Modifier = Modifier) {
     Row(
         modifier = modifier
             .fillMaxWidth()
@@ -80,6 +80,6 @@ fun SongCardPlaceholder(modifier: Modifier = Modifier) {
 @Composable
 private fun SongCardPlaceholderPreview() {
     VibrionAppTheme {
-        SongCardPlaceholder()
+        ShimmeringSongCard()
     }
 }

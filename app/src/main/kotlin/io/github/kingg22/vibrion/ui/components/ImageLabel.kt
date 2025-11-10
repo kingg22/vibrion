@@ -56,19 +56,81 @@ fun ImageLabel(image: Any, label: String, modifier: Modifier = Modifier, imageMo
     }
 }
 
-@Preview
 @Composable
-private fun ImageLabelPreview() {
+fun ImageLabelPlaceholder(modifier: Modifier = Modifier, imageModifier: Modifier = Modifier) {
+    Column(
+        verticalArrangement = Arrangement.spacedBy(8.dp, Alignment.Top),
+        horizontalAlignment = Alignment.CenterHorizontally,
+        modifier = modifier
+            .width(96.dp)
+            .height(124.dp),
+    ) {
+        // Imagen simulada
+        ShimmerBox(
+            modifier = imageModifier
+                .width(96.dp)
+                .height(96.dp)
+                .clip(RoundedCornerShape(8.dp)),
+        )
+
+        // Etiqueta simulada (texto)
+        ShimmerBox(
+            modifier = Modifier
+                .width(96.dp)
+                .height(20.dp)
+                .clip(RoundedCornerShape(4.dp)),
+        )
+    }
+}
+
+@Preview(
+    name = "ImageLabel - Default",
+    showBackground = true,
+)
+@Composable
+private fun ImageLabelDefaultPreview() {
     VibrionAppTheme {
-        Column {
-            ImageLabel(painterResource(R.drawable.placeholder), "Test")
-            Text("Others:")
-            ImageLabel(painterResource(R.drawable.placeholder), "Test", Modifier.clip(CircleShape))
-            ImageLabel(
-                painterResource(R.drawable.placeholder),
-                "Test",
-                Modifier.clip(RoundedCornerShape(percent = 15)),
-            )
-        }
+        ImageLabel(painterResource(R.drawable.placeholder), "Test")
+    }
+}
+
+@Preview(
+    name = "ImageLabel - Circle Shape",
+    showBackground = true,
+)
+@Composable
+private fun ImageLabelCirclePreview() {
+    VibrionAppTheme {
+        ImageLabel(
+            image = painterResource(R.drawable.placeholder),
+            label = "Test",
+            modifier = Modifier.clip(CircleShape),
+        )
+    }
+}
+
+@Preview(
+    name = "ImageLabel - Rounded Shape",
+    showBackground = true,
+)
+@Composable
+private fun ImageLabelRoundedPreview() {
+    VibrionAppTheme {
+        ImageLabel(
+            image = painterResource(R.drawable.placeholder),
+            label = "Test",
+            modifier = Modifier.clip(RoundedCornerShape(percent = 15)),
+        )
+    }
+}
+
+@Preview(
+    name = "ImageLabel - Placeholder",
+    showBackground = true,
+)
+@Composable
+private fun ImageLabelPlaceholder1Preview() {
+    VibrionAppTheme {
+        ImageLabelPlaceholder()
     }
 }

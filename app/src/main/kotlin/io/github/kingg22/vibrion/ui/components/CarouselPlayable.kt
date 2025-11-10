@@ -128,6 +128,83 @@ fun SongCard(carouselItem: CarouselItem, onClick: () -> Unit, onPlayClick: () ->
 }
 
 @Composable
+fun SongCardPlaceholder(modifier: Modifier = Modifier) {
+    Card(
+        modifier = modifier
+            .aspectRatio(1f)
+            .clip(RoundedCornerShape(16.dp)),
+        colors = CardDefaults.cardColors(containerColor = Color(0xFFE8E8E8)),
+    ) {
+        Box(Modifier.fillMaxSize()) {
+            // Background shimmer (imagen)
+            ShimmerBox(modifier = Modifier.fillMaxSize())
+
+            // Overlay semi-transparente (igual que el real)
+            Box(
+                Modifier
+                    .fillMaxSize()
+                    .background(Color.Black.copy(alpha = 0.2f)),
+            )
+
+            // Indicador de posición (círculo en la esquina)
+            Surface(
+                Modifier
+                    .padding(8.dp)
+                    .size(40.dp),
+                shape = CircleShape,
+                color = Color.Gray.copy(alpha = 0.5f),
+            ) {
+                ShimmerBox(modifier = Modifier.fillMaxSize())
+            }
+
+            // Contenido inferior (artista, título, botón)
+            Column(
+                Modifier
+                    .align(Alignment.BottomStart)
+                    .padding(16.dp),
+            ) {
+                // Nombre del artista (rectángulo)
+                ShimmerBox(
+                    modifier = Modifier
+                        .height(20.dp)
+                        .width(120.dp)
+                        .clip(RoundedCornerShape(4.dp)),
+                )
+
+                Spacer(Modifier.height(8.dp))
+
+                // Título de la canción
+                ShimmerBox(
+                    modifier = Modifier
+                        .height(16.dp)
+                        .width(180.dp)
+                        .clip(RoundedCornerShape(4.dp)),
+                )
+
+                Spacer(Modifier.height(12.dp))
+
+                // Botón de play
+                Box(
+                    modifier = Modifier
+                        .size(48.dp)
+                        .background(
+                            color = Color.White.copy(alpha = 0.5f),
+                            shape = CircleShape,
+                        ),
+                    contentAlignment = Alignment.Center,
+                ) {
+                    ShimmerBox(
+                        modifier = Modifier
+                            .size(24.dp)
+                            .clip(CircleShape),
+                    )
+                }
+            }
+        }
+    }
+}
+
+@Composable
 @Preview
 private fun CarouselPreview() {
     val items = List(10) {
@@ -155,4 +232,14 @@ private fun CarouselPreview() {
             }
         }
     }
+}
+
+@Preview
+@Composable
+private fun PreviewSongCardPlaceholder() {
+    SongCardPlaceholder(
+        modifier = Modifier
+            .padding(8.dp)
+            .width(200.dp),
+    )
 }

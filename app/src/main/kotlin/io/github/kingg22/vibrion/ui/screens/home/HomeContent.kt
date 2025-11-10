@@ -1,21 +1,15 @@
 package io.github.kingg22.vibrion.ui.screens.home
 
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.gestures.Orientation
-import androidx.compose.foundation.gestures.draggable
-import androidx.compose.foundation.gestures.rememberDraggableState
-import androidx.compose.foundation.gestures.scrollBy
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
-import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.foundation.layout.wrapContentWidth
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyRow
-import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.CircularProgressIndicator
@@ -27,7 +21,6 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableIntStateOf
-import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
@@ -50,15 +43,17 @@ import io.github.kingg22.vibrion.domain.model.GenreInfo
 import io.github.kingg22.vibrion.domain.model.ModelType
 import io.github.kingg22.vibrion.ui.components.CarouselItem
 import io.github.kingg22.vibrion.ui.components.ImageLabel
+import io.github.kingg22.vibrion.ui.components.ImageLabelPlaceholder
 import io.github.kingg22.vibrion.ui.components.PlaylistCard
+import io.github.kingg22.vibrion.ui.components.PlaylistCardPlaceholder
 import io.github.kingg22.vibrion.ui.components.PlaylistItem
 import io.github.kingg22.vibrion.ui.components.SectionHeader
 import io.github.kingg22.vibrion.ui.components.SongCard
+import io.github.kingg22.vibrion.ui.components.SongCardPlaceholder
 import io.github.kingg22.vibrion.ui.items
 import io.github.kingg22.vibrion.ui.itemsIndexed
 import io.github.kingg22.vibrion.ui.theme.VibrionAppTheme
 import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.launch
 
 @Composable
 fun HomeContent(
@@ -75,13 +70,14 @@ fun HomeContent(
 ) {
     val options = rememberSaveable { listOf(R.string.deezer_name) }
     var selectedIndex by rememberSaveable { mutableIntStateOf(0) }
-    val coroutineScope = rememberCoroutineScope()
-    val scrollState = rememberLazyListState()
-    val scrollStateTop = rememberLazyListState()
-    val scrollStateArtist = rememberLazyListState()
 
-    Scaffold(modifier = modifier.fillMaxSize(), topBar = topBar, bottomBar = bottomBar) { paddingValues ->
+    Scaffold(
+        modifier = modifier.fillMaxSize(),
+        topBar = topBar,
+        bottomBar = bottomBar,
+    ) { paddingValues ->
         bottomBarPadding(paddingValues.calculateBottomPadding())
+
         LazyColumn(
             modifier = Modifier.padding(paddingValues).fillMaxSize(),
             horizontalAlignment = Alignment.Start,
@@ -108,29 +104,19 @@ fun HomeContent(
                 }
             }
 
-            // Genres
-            item { SectionHeader(stringResource(R.string.genres)) }
             // Genres icons
             item {
+                SectionHeader(stringResource(R.string.genres))
                 LazyRow(
-                    state = scrollState,
                     modifier = Modifier
                         .fillMaxWidth()
                         .height(124.dp)
-                        .padding(start = 16.dp, end = 16.dp)
-                        .draggable(
-                            orientation = Orientation.Horizontal,
-                            state = rememberDraggableState { delta ->
-                                coroutineScope.launch {
-                                    scrollState.scrollBy(-delta)
-                                }
-                            },
-                        ),
+                        .padding(start = 16.dp, end = 16.dp),
                     horizontalArrangement = Arrangement.spacedBy(8.dp, Alignment.Start),
                     verticalAlignment = Alignment.Top,
                 ) {
                     if (genresList.loadState.refresh == LoadState.Loading) {
-                        item { CircularProgressIndicator(modifier = Modifier.fillMaxSize().wrapContentSize()) }
+                        items(5) { ImageLabelPlaceholder(imageModifier = Modifier.clip(CircleShape)) }
                     }
 
                     items(genresList, key = { it.id }) { genre ->
@@ -158,24 +144,16 @@ fun HomeContent(
 
             // Top of country
             // TODO add country name based on location or something
-            item { SectionHeader(stringResource(R.string.top_music_country, "Panamá")) }
             item {
+                SectionHeader(stringResource(R.string.top_music_country, "Panamá"))
                 LazyRow(
-                    state = scrollStateTop,
-                    modifier = Modifier
-                        .padding(16.dp)
-                        .draggable(
-                            orientation = Orientation.Horizontal,
-                            state = rememberDraggableState { delta ->
-                                coroutineScope.launch {
-                                    scrollStateTop.scrollBy(-delta)
-                                }
-                            },
-                        ),
+                    modifier = Modifier.padding(16.dp),
                     horizontalArrangement = Arrangement.spacedBy(12.dp),
                 ) {
                     if (carouselItems.loadState.refresh == LoadState.Loading) {
-                        item { CircularProgressIndicator(modifier = Modifier.fillMaxSize().wrapContentSize()) }
+                        items(count = 5) { _ ->
+                            SongCardPlaceholder(modifier = Modifier.width(280.dp))
+                        }
                     }
 
                     itemsIndexed(carouselItems, key = { _, entry -> entry.id }) { index, item ->
@@ -195,39 +173,28 @@ fun HomeContent(
                     }
 
                     if (carouselItems.loadState.append == LoadState.Loading) {
-                        item {
-                            CircularProgressIndicator(
-                                modifier = Modifier
-                                    .fillMaxWidth()
-                                    .wrapContentWidth(Alignment.CenterHorizontally),
-                            )
+                        items(count = 5) { _ ->
+                            SongCardPlaceholder(modifier = Modifier.width(280.dp))
                         }
                     }
                 }
             }
 
             // Favorites Artist
-            item { SectionHeader(stringResource(R.string.artists)) }
             item {
+                SectionHeader(stringResource(R.string.artists))
                 LazyRow(
-                    state = scrollStateArtist,
                     modifier = Modifier
                         .fillMaxWidth()
                         .height(136.dp)
-                        .padding(start = 16.dp, top = 8.dp, end = 16.dp, bottom = 8.dp)
-                        .draggable(
-                            orientation = Orientation.Horizontal,
-                            state = rememberDraggableState { delta ->
-                                coroutineScope.launch {
-                                    scrollStateArtist.scrollBy(-delta)
-                                }
-                            },
-                        ),
+                        .padding(start = 16.dp, top = 8.dp, end = 16.dp, bottom = 8.dp),
                     horizontalArrangement = Arrangement.spacedBy(8.dp, Alignment.Start),
                     verticalAlignment = Alignment.Top,
                 ) {
                     if (artistList.loadState.refresh == LoadState.Loading) {
-                        item { CircularProgressIndicator(modifier = Modifier.fillMaxSize().wrapContentSize()) }
+                        items(5) {
+                            ImageLabelPlaceholder(imageModifier = Modifier.clip(RoundedCornerShape(percent = 15)))
+                        }
                     }
 
                     items(artistList, key = { it.id }) { artist ->
@@ -240,12 +207,8 @@ fun HomeContent(
                     }
 
                     if (artistList.loadState.append == LoadState.Loading) {
-                        item {
-                            CircularProgressIndicator(
-                                modifier = Modifier
-                                    .fillMaxWidth()
-                                    .wrapContentWidth(Alignment.CenterHorizontally),
-                            )
+                        items(5) {
+                            ImageLabelPlaceholder(imageModifier = Modifier.clip(RoundedCornerShape(percent = 15)))
                         }
                     }
                 }
@@ -254,7 +217,9 @@ fun HomeContent(
             // Playlist
             item { SectionHeader(stringResource(R.string.playlists)) }
             if (playlistsList.loadState.refresh == LoadState.Loading) {
-                item { CircularProgressIndicator(modifier = Modifier.fillMaxSize().wrapContentSize()) }
+                items(10) { _ ->
+                    PlaylistCardPlaceholder(modifier = Modifier.padding(start = 10.dp, end = 10.dp))
+                }
             }
 
             items(playlistsList, key = { it.id }) { item ->
@@ -272,12 +237,8 @@ fun HomeContent(
             }
 
             if (playlistsList.loadState.append == LoadState.Loading) {
-                item {
-                    CircularProgressIndicator(
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .wrapContentWidth(Alignment.CenterHorizontally),
-                    )
+                items(10) { _ ->
+                    PlaylistCardPlaceholder(modifier = Modifier.padding(start = 10.dp, end = 10.dp))
                 }
             }
 
