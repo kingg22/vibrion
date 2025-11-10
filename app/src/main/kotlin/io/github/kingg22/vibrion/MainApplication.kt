@@ -12,9 +12,15 @@ import coil3.memory.MemoryCache
 import coil3.network.cachecontrol.CacheControlCacheStrategy
 import coil3.network.ktor3.KtorNetworkFetcherFactory
 import coil3.request.crossfade
+import io.github.kingg22.deezer.client.utils.ExperimentalDeezerClient
+import io.github.kingg22.deezer.client.utils.HttpClientBuilder
 import io.github.kingg22.vibrion.di.vibrionAppModule
-import io.ktor.client.HttpClient
-import org.koin.android.ext.android.inject
+import io.ktor.client.plugins.HttpRedirect
+import io.ktor.client.plugins.HttpResponseValidator
+import io.ktor.client.plugins.RedirectResponseException
+import io.ktor.client.plugins.cache.HttpCache
+import io.ktor.client.plugins.cache.storage.FileStorage
+import io.ktor.http.HttpStatusCode
 import org.koin.android.ext.koin.androidContext
 import org.koin.androix.startup.KoinStartup
 import org.koin.core.annotation.KoinExperimentalAPI
@@ -23,6 +29,7 @@ import org.koin.dsl.KoinConfiguration
 import kotlin.time.ExperimentalTime
 import co.touchlab.kermit.Logger as KermitLogger
 import coil3.util.Logger as Coil3Logger
+import org.koin.android.ext.android.get as koinGet
 import org.koin.core.logger.Level as KoinLoggerLevel
 import org.koin.core.logger.Logger as KoinLogger
 
@@ -31,17 +38,41 @@ class MainApplication :
     Application(),
     KoinStartup,
     SingletonImageLoader.Factory {
-    private val httpClient: HttpClient by inject()
 
     init {
         KermitLogger.mutableConfig.minSeverity = if (BuildConfig.DEBUG) Severity.Verbose else Severity.Info
     }
 
-    @OptIn(ExperimentalTime::class, ExperimentalCoilApi::class)
+    @OptIn(ExperimentalTime::class, ExperimentalCoilApi::class, ExperimentalDeezerClient::class)
     override fun newImageLoader(context: Context) = ImageLoader.Builder(context)
         .crossfade(true)
         .components {
-            add(KtorNetworkFetcherFactory({ httpClient }, { CacheControlCacheStrategy() }))
+            add(
+                KtorNetworkFetcherFactory(
+                    httpClient = {
+                        koinGet<HttpClientBuilder>()
+                            .addCustomConfig {
+                                // Change default configuration to handle cache, needs to document or change in deezer api
+                                install(HttpRedirect)
+                                install(HttpCache) {
+                                    publicStorage(FileStorage(context.cacheDir.resolve("ktor_image_cache")))
+                                }
+                                expectSuccess = false
+                                HttpResponseValidator {
+                                    handleResponseExceptionWithRequest { cause, _ ->
+                                        if (cause is RedirectResponseException &&
+                                            cause.response.status == HttpStatusCode.NotModified
+                                        ) {
+                                            return@handleResponseExceptionWithRequest
+                                        }
+                                        throw cause
+                                    }
+                                }
+                            }.build()
+                    },
+                    cacheStrategy = { CacheControlCacheStrategy() },
+                ),
+            )
         }
         .logger(
             if (BuildConfig.DEBUG) {
