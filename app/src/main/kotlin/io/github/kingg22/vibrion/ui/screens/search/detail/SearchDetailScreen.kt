@@ -7,8 +7,10 @@ import androidx.compose.ui.Modifier
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.paging.compose.collectAsLazyPagingItems
 import io.github.kingg22.vibrion.domain.model.ModelType
+import io.github.kingg22.vibrion.domain.service.AudioPlayerService
 import io.github.kingg22.vibrion.ui.screens.download.DownloadViewModel
 import io.github.kingg22.vibrion.ui.screens.search.SearchViewModel
+import org.koin.compose.koinInject
 import org.koin.compose.viewmodel.koinViewModel
 
 @Composable
@@ -19,6 +21,7 @@ fun SearchDetailScreen(
     modifier: Modifier = Modifier,
     searchViewModel: SearchViewModel = koinViewModel(),
     downloadViewModel: DownloadViewModel = koinViewModel(),
+    playerService: AudioPlayerService = koinInject(),
 ) {
     LaunchedEffect(query, title) {
         searchViewModel.searchDetail(query, title)
@@ -32,7 +35,10 @@ fun SearchDetailScreen(
         onBackClick = onBackClick,
         onDownloadClick = downloadViewModel::download,
         canDownload = canDownload == DownloadViewModel.CanDownloadState.Success,
-        onPlayClick = { /* TODO */ },
+        onPlayClick = { item ->
+            playerService.setTrack(item)
+            playerService.play()
+        },
         modifier = modifier,
     )
 }

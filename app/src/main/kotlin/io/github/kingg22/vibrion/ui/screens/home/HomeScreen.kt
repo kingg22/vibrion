@@ -10,8 +10,10 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.paging.compose.collectAsLazyPagingItems
 import io.github.kingg22.vibrion.domain.model.ModelType
+import io.github.kingg22.vibrion.domain.service.AudioPlayerService
 import io.github.kingg22.vibrion.ui.components.TopSearchBar
 import io.github.kingg22.vibrion.ui.screens.search.SearchHistoryViewModel
+import org.koin.compose.koinInject
 import org.koin.compose.viewmodel.koinViewModel
 
 @Composable
@@ -21,6 +23,7 @@ fun HomeScreen(
     modifier: Modifier = Modifier,
     historyViewModel: SearchHistoryViewModel = koinViewModel(),
     homeViewModel: HomeViewModel = koinViewModel(),
+    audioService: AudioPlayerService = koinInject(),
     bottomBar: @Composable (() -> Unit),
 ) {
     var bottomBarPadding by remember { mutableStateOf(0.dp) }
@@ -43,7 +46,10 @@ fun HomeScreen(
             bottomBarPadding = it
         },
         onDetailClick = onDetailClick,
-        onPlayTrackClick = { /* TODO */ },
+        onPlayTrackClick = { item ->
+            audioService.setTrack(item)
+            audioService.play()
+        },
     ) {
         TopSearchBar(
             bottomBarPadding = bottomBarPadding,
