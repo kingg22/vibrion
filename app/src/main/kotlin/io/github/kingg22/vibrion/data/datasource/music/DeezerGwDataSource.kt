@@ -200,7 +200,7 @@ class DeezerGwDataSource(
                     @OptIn(ExperimentalDeezerClient::class)
                     gwClient.httpClient.use { it.coroutineContext.cancel() }
                 }
-                gwClient = DeezerGwClient.initialize(token, httpClientBuilder.copy())
+                gwClient = DeezerGwClient.initialize(token, httpClientBuilder)
                 latestToken = token
             } catch (e: IllegalArgumentException) {
                 logger.e(e) { "Failed to (re)initialize Deezer client" }
