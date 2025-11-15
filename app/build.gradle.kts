@@ -120,6 +120,10 @@ dependencies {
     // aboutlibraries
     implementation(libs.aboutlibraries.compose.m3)
 
+    // exoplayer
+    implementation(libs.androidx.media3.exoplayer)
+    implementation(libs.androidx.media3.session)
+
     // internal projects
     implementation(projects.deezerSdkKt)
     implementation(projects.vibrionCore)

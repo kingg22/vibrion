@@ -65,6 +65,8 @@ ktlint-pinterest = "1.7.1"
 ktlint-plugin = "13.1.0"
 # https://github.com/mrmans0n/compose-rules/releases
 ktlint-compose = "0.4.27"
+# https://developer.android.com/jetpack/androidx/releases/media3?hl=es-419
+media3 = "1.8.0"
 # https://github.com/mockk/mockk/releases
 mockk = "1.14.6"
 # https://developer.android.com/jetpack/androidx/releases/navigation3
@@ -196,6 +198,10 @@ vibrion-id3 = { group = "io.github.kingg22", name = "vibrion-id3", version.ref =
 
 # deezer api client
 deezer-client-kt = { group = "io.github.kingg22", name = "deezer-client-kt", version.ref = "deezer-client-kt" }
+
+# exoplayer
+androidx-media3-exoplayer = { group = "androidx.media3", name = "media3-exoplayer", version.ref = "media3" }
+androidx-media3-session = { group = "androidx.media3", name = "media3-session", version.ref = "media3" }
 
 # Libraries can be bundled together for easier import
 [bundles]
