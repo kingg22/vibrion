@@ -8,6 +8,7 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.filled.Download
+import androidx.compose.material.icons.filled.PlayCircle
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
@@ -35,6 +36,7 @@ fun MusicDetailContent(
     canDownload: () -> Boolean,
     onDownloadClick: (item: DownloadableItem) -> Unit,
     onTrackClick: (item: DownloadableItem) -> Unit,
+    onTrackPlayClick: (item: DownloadableItem) -> Unit,
     modifier: Modifier = Modifier,
 ) {
     val scrollBehavior = TopAppBarDefaults.exitUntilCollapsedScrollBehavior()
@@ -136,11 +138,12 @@ fun MusicDetailContent(
                 }
             }
 
-            if (detail is DownloadableAlbum || detail is DownloadablePlaylist) {
+            if (detail is DownloadableItem.ItemWithTracks) {
                 // Lista de canciones
                 items(detail.tracks, key = { it.id }) { track ->
                     TrackListItem(
                         track = track,
+                        onPlayClick = { onTrackPlayClick(track) },
                         onClick = { onTrackClick(track) },
                         onDownload = { onDownloadClick(track) },
                         canDownload = canDownload,
@@ -155,6 +158,7 @@ fun MusicDetailContent(
 @Composable
 fun TrackListItem(
     track: DownloadableItem,
+    onPlayClick: () -> Unit,
     onClick: () -> Unit,
     onDownload: () -> Unit,
     canDownload: () -> Boolean,
@@ -177,8 +181,13 @@ fun TrackListItem(
             )
         },
         trailingContent = {
-            IconButton(onClick = onDownload, enabled = canDownload()) {
-                Icon(Icons.Default.Download, stringResource(R.string.download))
+            Row {
+                IconButton(onClick = onPlayClick) {
+                    Icon(Icons.Default.PlayCircle, stringResource(R.string.play_track, track.title))
+                }
+                IconButton(onClick = onDownload, enabled = canDownload()) {
+                    Icon(Icons.Default.Download, stringResource(R.string.download))
+                }
             }
         },
         modifier = modifier
@@ -206,6 +215,7 @@ private fun MusicDetailContentPreview() {
         onBackClick = {},
         onDownloadClick = {},
         onTrackClick = {},
+        onTrackPlayClick = {},
         canDownload = { true },
     )
 }
