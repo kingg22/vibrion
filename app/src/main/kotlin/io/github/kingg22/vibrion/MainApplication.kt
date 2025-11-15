@@ -1,7 +1,11 @@
 package io.github.kingg22.vibrion
 
 import android.app.Application
+import android.content.ComponentName
 import android.content.Context
+import androidx.core.content.ContextCompat
+import androidx.media3.session.MediaController
+import androidx.media3.session.SessionToken
 import co.touchlab.kermit.Severity
 import coil3.ImageLoader
 import coil3.SingletonImageLoader
@@ -12,8 +16,10 @@ import coil3.memory.MemoryCache
 import coil3.network.cachecontrol.CacheControlCacheStrategy
 import coil3.network.ktor3.KtorNetworkFetcherFactory
 import coil3.request.crossfade
+import com.google.common.util.concurrent.ListenableFuture
 import io.github.kingg22.deezer.client.utils.ExperimentalDeezerClient
 import io.github.kingg22.deezer.client.utils.HttpClientBuilder
+import io.github.kingg22.vibrion.data.service.VibrionMediaService
 import io.github.kingg22.vibrion.di.vibrionAppModule
 import io.ktor.client.plugins.HttpRedirect
 import io.ktor.client.plugins.HttpResponseValidator
@@ -38,6 +44,8 @@ class MainApplication :
     Application(),
     KoinStartup,
     SingletonImageLoader.Factory {
+    private var controllerFuture: ListenableFuture<MediaController>? = null
+    private var controller: MediaController? = null
 
     init {
         KermitLogger.mutableConfig.minSeverity = if (BuildConfig.DEBUG) Severity.Verbose else Severity.Info
@@ -156,5 +164,39 @@ class MainApplication :
         androidContext(this@MainApplication)
         // Load modules
         modules(vibrionAppModule) // specific module for android
+    }
+
+    /**
+     * Devuelve el MediaController, inicializándolo si es necesario.
+     * Usas un StateFlow si quieres observarlo desde la UI.
+     */
+    fun getMediaController(context: Context): ListenableFuture<MediaController> {
+        val existing = controllerFuture
+        if (existing != null) return existing
+
+        val sessionToken = SessionToken(context, ComponentName(context, VibrionMediaService::class.java))
+
+        val future = MediaController.Builder(context, sessionToken)
+            .buildAsync()
+
+        controllerFuture = future
+
+        future.addListener(
+            {
+                controller = future.get()
+            },
+            ContextCompat.getMainExecutor(context),
+        )
+
+        return future
+    }
+
+    fun getControllerOrNull() = controller
+
+    override fun onTerminate() {
+        controllerFuture?.let { MediaController.releaseFuture(it) }
+        controllerFuture = null
+        controller = null
+        super.onTerminate()
     }
 }

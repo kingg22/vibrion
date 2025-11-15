@@ -19,6 +19,9 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        val app = this.applicationContext as MainApplication
+        app.getMediaController(this)
+
         setContent {
             // TODO find a solution to init before draw this composable to avoid splash
             // Can use Splash Screen API to load before draw this composable
