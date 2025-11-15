@@ -12,10 +12,12 @@ import io.github.kingg22.vibrion.data.repository.SearchRepositoryImpl
 import io.github.kingg22.vibrion.data.repository.SettingsRepositoryImpl
 import io.github.kingg22.vibrion.data.repository.TrendsRepositoryImpl
 import io.github.kingg22.vibrion.data.service.DownloadServiceImpl
+import io.github.kingg22.vibrion.data.service.ExoPlayerAudioPlayerService
 import io.github.kingg22.vibrion.domain.repository.SearchHistoryRepository
 import io.github.kingg22.vibrion.domain.repository.SearchRepository
 import io.github.kingg22.vibrion.domain.repository.SettingsRepository
 import io.github.kingg22.vibrion.domain.repository.TrendsRepository
+import io.github.kingg22.vibrion.domain.service.AudioPlayerService
 import io.github.kingg22.vibrion.domain.service.DownloadService
 import io.ktor.client.engine.cio.CIO
 import org.koin.android.ext.koin.androidContext
@@ -50,6 +52,7 @@ val dataModule = module {
 
     // Services
     factory<DownloadService> { DownloadServiceImpl(get(), get()) }
+    single<AudioPlayerService> { ExoPlayerAudioPlayerService(androidContext()) }
     factory { PlatformHelper(androidContext()) }
 
     // Repositories
