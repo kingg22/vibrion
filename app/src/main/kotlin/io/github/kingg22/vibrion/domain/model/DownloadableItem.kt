@@ -15,4 +15,9 @@ sealed interface DownloadableItem {
     sealed interface ItemWithTracks {
         val tracks: List<DownloadableItem>
     }
+
+    /** Sub–interfaz para items con URL pública de streaming */
+    interface StreamableItem {
+        val streamUrl: String
+    }
 }
