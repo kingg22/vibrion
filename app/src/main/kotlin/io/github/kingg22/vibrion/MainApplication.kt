@@ -17,20 +17,14 @@ import coil3.network.cachecontrol.CacheControlCacheStrategy
 import coil3.network.ktor3.KtorNetworkFetcherFactory
 import coil3.request.crossfade
 import com.google.common.util.concurrent.ListenableFuture
-import io.github.kingg22.deezer.client.utils.ExperimentalDeezerClient
 import io.github.kingg22.deezer.client.utils.HttpClientBuilder
 import io.github.kingg22.vibrion.data.service.VibrionMediaService
 import io.github.kingg22.vibrion.di.vibrionAppModule
-import io.ktor.client.plugins.HttpRedirect
-import io.ktor.client.plugins.HttpResponseValidator
-import io.ktor.client.plugins.RedirectResponseException
-import io.ktor.client.plugins.cache.HttpCache
-import io.ktor.client.plugins.cache.storage.FileStorage
-import io.ktor.http.HttpStatusCode
 import org.koin.android.ext.koin.androidContext
 import org.koin.androix.startup.KoinStartup
 import org.koin.core.annotation.KoinExperimentalAPI
 import org.koin.core.logger.MESSAGE
+import org.koin.core.parameter.parametersOf
 import org.koin.dsl.KoinConfiguration
 import kotlin.time.ExperimentalTime
 import co.touchlab.kermit.Logger as KermitLogger
@@ -51,33 +45,13 @@ class MainApplication :
         KermitLogger.mutableConfig.minSeverity = if (BuildConfig.DEBUG) Severity.Verbose else Severity.Info
     }
 
-    @OptIn(ExperimentalTime::class, ExperimentalCoilApi::class, ExperimentalDeezerClient::class)
+    @OptIn(ExperimentalTime::class, ExperimentalCoilApi::class)
     override fun newImageLoader(context: Context) = ImageLoader.Builder(context)
         .crossfade(true)
         .components {
             add(
                 KtorNetworkFetcherFactory(
-                    httpClient = {
-                        koinGet<HttpClientBuilder>()
-                            .addCustomConfig {
-                                // Change default configuration to handle cache, needs to document or change in deezer api
-                                install(HttpRedirect)
-                                install(HttpCache) {
-                                    publicStorage(FileStorage(context.cacheDir.resolve("ktor_image_cache")))
-                                }
-                                expectSuccess = false
-                                HttpResponseValidator {
-                                    handleResponseExceptionWithRequest { cause, _ ->
-                                        if (cause is RedirectResponseException &&
-                                            cause.response.status == HttpStatusCode.NotModified
-                                        ) {
-                                            return@handleResponseExceptionWithRequest
-                                        }
-                                        throw cause
-                                    }
-                                }
-                            }.build()
-                    },
+                    httpClient = { koinGet<HttpClientBuilder> { parametersOf("Coil3") }.build() },
                     cacheStrategy = { CacheControlCacheStrategy() },
                 ),
             )
@@ -171,12 +145,13 @@ class MainApplication :
      * Usas un StateFlow si quieres observarlo desde la UI.
      */
     fun getMediaController(context: Context): ListenableFuture<MediaController> {
+        val appContext = context.applicationContext
         val existing = controllerFuture
         if (existing != null) return existing
 
-        val sessionToken = SessionToken(context, ComponentName(context, VibrionMediaService::class.java))
+        val sessionToken = SessionToken(appContext, ComponentName(appContext, VibrionMediaService::class.java))
 
-        val future = MediaController.Builder(context, sessionToken)
+        val future = MediaController.Builder(appContext, sessionToken)
             .buildAsync()
 
         controllerFuture = future
@@ -185,7 +160,7 @@ class MainApplication :
             {
                 controller = future.get()
             },
-            ContextCompat.getMainExecutor(context),
+            ContextCompat.getMainExecutor(appContext),
         )
 
         return future

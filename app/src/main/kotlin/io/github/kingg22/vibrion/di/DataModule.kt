@@ -1,7 +1,11 @@
+@file:OptIn(ExperimentalDeezerClient::class, ExperimentalUuidApi::class, InternalDeezerClient::class)
+
 package io.github.kingg22.vibrion.di
 
 import io.github.kingg22.deezer.client.api.DeezerApiClient
+import io.github.kingg22.deezer.client.utils.ExperimentalDeezerClient
 import io.github.kingg22.deezer.client.utils.HttpClientBuilder
+import io.github.kingg22.deezer.client.utils.InternalDeezerClient
 import io.github.kingg22.vibrion.BuildConfig
 import io.github.kingg22.vibrion.data.PlatformHelper
 import io.github.kingg22.vibrion.data.datasource.music.DeezerApiDataSource
@@ -20,44 +24,59 @@ import io.github.kingg22.vibrion.domain.repository.TrendsRepository
 import io.github.kingg22.vibrion.domain.service.AudioPlayerService
 import io.github.kingg22.vibrion.domain.service.DownloadService
 import io.ktor.client.engine.cio.CIO
+import io.ktor.client.plugins.HttpRedirect
+import io.ktor.client.plugins.cache.HttpCache
+import io.ktor.client.plugins.cache.storage.FileStorage
 import org.koin.android.ext.koin.androidContext
+import org.koin.core.parameter.parametersOf
 import org.koin.dsl.module
+import org.koin.dsl.onClose
+import kotlin.uuid.ExperimentalUuidApi
 import co.touchlab.kermit.Logger as KermitLogger
 import io.ktor.client.plugins.logging.Logger as KtorLogger
 
 /** All data-related modules */
 val dataModule = module {
     // Raw data-sources
-    factory { CIO.create() }
-    factory {
+    factory { (name: String) ->
         HttpClientBuilder()
-            .httpEngine(get())
+            .httpEngine(CIO.create())
+            .addCustomConfig {
+                install(HttpRedirect)
+                install(HttpCache) {
+                    publicStorage(FileStorage(androidContext().cacheDir.resolve("ktor_image_cache")))
+                    privateStorage(FileStorage(androidContext().cacheDir.resolve("ktor_private_image_cache")))
+                }
+                expectSuccess = true
+            }
             .apply {
                 if (BuildConfig.DEBUG) {
                     logger = object : KtorLogger {
                         override fun log(message: String) {
                             // verbose level
-                            KermitLogger.v("HttpClient") { message }
+                            KermitLogger.v("HttpClient $name") { message }
                         }
                     }
                 }
             }
     }
-    factory { DeezerApiClient(get()) }
+    single { _ ->
+        DeezerApiClient.initialize(get { parametersOf("D API") })
+    } onClose { deezerApiClient -> deezerApiClient?.httpClient?.close() }
 
     // DataSources
-    factory { DeezerApiDataSource(get()) }
-    single { DeezerGwDataSource(get(), get(), get()) }
-    factory { PreferencesDataSource(get()) }
+    factory { _ -> DeezerApiDataSource(get()) }
+    single { _ -> DeezerGwDataSource(get { parametersOf("D GW API") }, get(), get()) }
+    factory { _ -> PreferencesDataSource(get()) }
 
     // Services
-    factory<DownloadService> { DownloadServiceImpl(get(), get()) }
-    single<AudioPlayerService> { ExoPlayerAudioPlayerService(androidContext()) }
-    factory { PlatformHelper(androidContext()) }
+    factory<DownloadService> { _ -> DownloadServiceImpl(get(), get()) }
+    single<AudioPlayerService> { _ -> ExoPlayerAudioPlayerService(androidContext()) }
+    factory { _ -> PlatformHelper(androidContext()) }
 
     // Repositories
-    factory<SearchHistoryRepository> { SearchHistoryRepositoryImpl(get()) }
-    factory<SettingsRepository> { SettingsRepositoryImpl(get(), get()) }
-    factory<SearchRepository> { SearchRepositoryImpl(get()) }
-    factory<TrendsRepository> { TrendsRepositoryImpl(get()) }
+    factory<SearchHistoryRepository> { _ -> SearchHistoryRepositoryImpl(get()) }
+    factory<SettingsRepository> { _ -> SettingsRepositoryImpl(get(), get()) }
+    factory<SearchRepository> { _ -> SearchRepositoryImpl(get()) }
+    factory<TrendsRepository> { _ -> TrendsRepositoryImpl(get()) }
 }
