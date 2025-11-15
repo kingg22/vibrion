@@ -74,6 +74,9 @@ dependencies {
     // android activity
     implementation(libs.androidx.activity.compose)
 
+    // KTOR ENFORCE TO USE SL4FJ
+    runtimeOnly(libs.slf4j.android)
+
     // koin DI android specific
     implementation(libs.koin.androidx.startup)
 
