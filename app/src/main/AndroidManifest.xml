@@ -15,8 +15,6 @@
         android:minSdkVersion="35"
         android:name="android.permission.FOREGROUND_SERVICE_MEDIA_PROCESSING" />
     <uses-permission
-        android:minSdkVersion="34"
-        android:maxSdkVersion="34"
         android:name="android.permission.FOREGROUND_SERVICE_MEDIA_PLAYBACK" />
     <!-- Notifications -->
     <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
@@ -55,9 +53,20 @@
 
         <!-- Foreground service of Downloads -->
         <service
-            android:name="io.github.kingg22.vibrion.core.application.DownloadForegroundService"
+            android:name=".core.application.DownloadForegroundService"
             android:exported="false"
             android:foregroundServiceType="dataSync|mediaPlayback|mediaProcessing" />
+
+        <!-- Foreground service of Music streaming/preview -->
+        <service
+            android:name=".data.service.VibrionMediaService"
+            android:foregroundServiceType="mediaPlayback"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="androidx.media3.session.MediaSessionService"/>
+                <action android:name="android.media.browse.MediaBrowserService"/>
+            </intent-filter>
+        </service>
     </application>
 
 </manifest>
