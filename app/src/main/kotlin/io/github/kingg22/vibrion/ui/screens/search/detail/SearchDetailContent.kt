@@ -95,7 +95,7 @@ fun SearchDetailContent(
 @Preview(group = "Search Detail")
 @Composable
 private fun SearchDetailLoadedPreview() {
-    val data = List(10) { DownloadableSingle("id$it", "Title $it", "Description $it") }
+    val data = List(10) { DownloadableSingle("id$it", "Title $it", "Description $it", streamUrl = "") }
     val pagingData = PagingData.from(data)
     val fakeFlow = MutableStateFlow(pagingData)
     val listItems = fakeFlow.collectAsLazyPagingItems()

@@ -13,12 +13,13 @@ class DownloadableSingle(
     override val title: String,
     override val description: String?,
     override val thumbnailUrl: String? = null,
-    val mediaUrl: String? = null,
+    override val streamUrl: String,
     override val releaseDate: String? = null,
     override val duration: Duration? = null,
     override val artists: List<ArtistInfo> = emptyList(),
     override val album: String? = null,
-) : DownloadableItem {
+) : DownloadableItem,
+    DownloadableItem.StreamableItem {
     companion object {
         @OptIn(kotlin.uuid.ExperimentalUuidApi::class)
         @JvmStatic
@@ -28,6 +29,7 @@ class DownloadableSingle(
                 title = "Title",
                 description = "Description",
                 thumbnailUrl = DEFAULT_THUMBNAIL_URL,
+                streamUrl = "",
             )
         const val DEFAULT_THUMBNAIL_URL =
             "https://img.freepik.com/premium-psd/music-icon-user-interface-element-3d-render-illustration_516938-1693.jpg"
