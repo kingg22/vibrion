@@ -69,7 +69,7 @@ class ExoPlayerAudioPlayerService(private val androidContext: AndroidContext) : 
         return app.getControllerOrNull()
     }
 
-    override suspend fun setQueue(queue: List<DownloadableItem>, startIndex: Int) {
+    override fun setQueue(queue: List<DownloadableItem>, startIndex: Int) {
         controller()?.stop()
         controller()?.clearMediaItems()
 

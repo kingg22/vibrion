@@ -8,7 +8,7 @@ interface AudioPlayerService {
     val playbackState: StateFlow<PlaybackState>
 
     /** Reemplaza toda la cola y empieza desde [startIndex] */
-    suspend fun setQueue(queue: List<DownloadableItem>, startIndex: Int = 0)
+    fun setQueue(queue: List<DownloadableItem>, startIndex: Int = 0)
     fun play()
     fun pause()
     operator fun hasNext(): Boolean
