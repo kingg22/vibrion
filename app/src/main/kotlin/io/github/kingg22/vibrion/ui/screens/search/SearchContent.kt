@@ -49,6 +49,7 @@ fun SearchContent(
     albums: List<DownloadableItem>,
     artists: LazyPagingItems<ArtistInfo>,
     canDownload: Boolean,
+    onPlayClick: (item: DownloadableItem) -> Unit,
     onDownloadClick: (item: DownloadableItem) -> Unit,
     onDetailClick: (type: ModelType, id: String) -> Unit,
     onSectionClick: (type: ModelType) -> Unit,
@@ -72,7 +73,7 @@ fun SearchContent(
                 canDownload = canDownload,
                 onDownloadClick = { onDownloadClick(it) },
                 onCardClick = { onDetailClick(ModelType.SINGLE, it.id) },
-                onSeeMoreClick = {},
+                onPlayClick = {},
             )
             Spacer(Modifier.height(12.dp))
         }
@@ -82,16 +83,16 @@ fun SearchContent(
             Spacer(Modifier.height(8.dp))
         }
 
-        items(playlists, key = { it.id }) {
+        items(playlists, key = { it.id }) { item ->
             ListItem(
-                title = it.title,
+                title = item.title,
                 supportingText =
-                it.artists.joinToString { a -> a.name }.takeIf { l -> l.isNotEmpty() } ?: it.album ?: "",
-                image = it.thumbnailUrl ?: DownloadableSingle.DEFAULT_THUMBNAIL_URL,
+                item.artists.joinToString { a -> a.name }.takeIf { l -> l.isNotEmpty() } ?: item.album ?: "",
+                image = item.thumbnailUrl ?: DownloadableSingle.DEFAULT_THUMBNAIL_URL,
                 canDownload = canDownload,
-                onPlayClick = { onDetailClick(ModelType.PLAYLIST, it.id) },
-                onDownloadClick = { onDownloadClick(it) },
-                onSeeMoreClick = {},
+                onPlayClick = { onDetailClick(ModelType.PLAYLIST, item.id) },
+                onDownloadClick = { onDownloadClick(item) },
+                onSeeMoreClick = { onPlayClick(item) },
             )
             Spacer(Modifier.height(4.dp))
         }
@@ -101,13 +102,13 @@ fun SearchContent(
             Spacer(Modifier.height(8.dp))
         }
 
-        items(albums, key = { it.id }) {
+        items(albums, key = { it.id }) { item ->
             FeaturedItem(
-                it,
+                item,
                 canDownload = canDownload,
-                onDownloadClick = { onDownloadClick(it) },
-                onCardClick = { onDetailClick(ModelType.ALBUM, it.id) },
-                onSeeMoreClick = {},
+                onDownloadClick = { onDownloadClick(item) },
+                onCardClick = { onDetailClick(ModelType.ALBUM, item.id) },
+                onPlayClick = { onPlayClick(item) },
             )
             Spacer(Modifier.height(12.dp))
         }
@@ -184,6 +185,7 @@ private fun SearchContentPreview() {
                 onDownloadClick = {},
                 onDetailClick = { _, _ -> },
                 onSectionClick = {},
+                onPlayClick = {},
             )
         }
     }

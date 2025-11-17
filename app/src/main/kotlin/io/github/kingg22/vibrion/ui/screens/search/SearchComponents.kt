@@ -15,6 +15,7 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Download
 import androidx.compose.material.icons.filled.MoreVert
+import androidx.compose.material.icons.filled.PlayCircle
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.ElevatedCard
@@ -43,7 +44,7 @@ fun FeaturedItem(
     canDownload: Boolean,
     onDownloadClick: () -> Unit,
     onCardClick: () -> Unit,
-    onSeeMoreClick: () -> Unit,
+    onPlayClick: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
     ElevatedCard(
@@ -96,8 +97,10 @@ fun FeaturedItem(
                 }
             }
 
-            IconButton(onSeeMoreClick) {
-                Icon(Icons.Default.MoreVert, stringResource(R.string.see_more, item.title))
+            if (item is DownloadableItem.StreamableItem) {
+                IconButton(onPlayClick) {
+                    Icon(Icons.Default.PlayCircle, stringResource(R.string.play_track, item.title))
+                }
             }
 
             IconButton(onDownloadClick, enabled = canDownload) {
@@ -290,7 +293,7 @@ private fun FeaturedItemPreview() {
         canDownload = true,
         onDownloadClick = {},
         onCardClick = {},
-        onSeeMoreClick = {},
+        onPlayClick = {},
     )
 }
 

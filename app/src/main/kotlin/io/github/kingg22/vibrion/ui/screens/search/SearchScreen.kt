@@ -26,11 +26,13 @@ import io.github.kingg22.vibrion.domain.model.ArtistInfo
 import io.github.kingg22.vibrion.domain.model.DownloadableItem
 import io.github.kingg22.vibrion.domain.model.DownloadableSingle
 import io.github.kingg22.vibrion.domain.model.ModelType
+import io.github.kingg22.vibrion.domain.service.AudioPlayerService
 import io.github.kingg22.vibrion.ui.components.ErrorScreen
 import io.github.kingg22.vibrion.ui.components.LoadingScreen
 import io.github.kingg22.vibrion.ui.screens.download.DownloadViewModel
 import io.github.kingg22.vibrion.ui.theme.VibrionAppTheme
 import kotlinx.coroutines.flow.MutableStateFlow
+import org.koin.compose.koinInject
 import org.koin.compose.viewmodel.koinViewModel
 
 @Composable
@@ -43,6 +45,7 @@ fun SearchScreen(
     historyViewModel: SearchHistoryViewModel = koinViewModel(),
     searchViewModel: SearchViewModel = koinViewModel(),
     downloadViewModel: DownloadViewModel = koinViewModel(),
+    audioPlayerService: AudioPlayerService = koinInject(),
 ) {
     var query by rememberSaveable { mutableStateOf(query) }
     val history by historyViewModel.searchHistory.collectAsStateWithLifecycle()
@@ -61,6 +64,10 @@ fun SearchScreen(
         artists = artists,
         onDownloadClick = downloadViewModel::download,
         onListDetailClick = { onListDetailClick(query, it) },
+        onPlayClick = { item ->
+            audioPlayerService.setTrack(item)
+            audioPlayerService.play()
+        },
         onDetailClick = onItemDetailClick,
         modifier = modifier,
     ) {
@@ -84,6 +91,7 @@ private fun SearchAnimatedContent(
     state: SearchViewModel.SearchUiState,
     canDownload: Boolean,
     artists: LazyPagingItems<ArtistInfo>,
+    onPlayClick: (DownloadableItem) -> Unit,
     onDownloadClick: (item: DownloadableItem) -> Unit,
     onListDetailClick: (type: ModelType) -> Unit,
     onDetailClick: (type: ModelType, id: String) -> Unit,
@@ -116,6 +124,7 @@ private fun SearchAnimatedContent(
                         onDownloadClick = onDownloadClick,
                         onSectionClick = onListDetailClick,
                         onDetailClick = onDetailClick,
+                        onPlayClick = onPlayClick,
                     )
                 }
             }
@@ -140,10 +149,11 @@ private fun SearchLoadingPreview() {
         SearchAnimatedContent(
             state = SearchViewModel.SearchUiState.Loading,
             canDownload = true,
+            artists = listItems,
             onDownloadClick = {},
             onListDetailClick = {},
             onDetailClick = { _, _ -> },
-            artists = listItems,
+            onPlayClick = {},
         ) {
             SearchTopBar(
                 query = "Test",
@@ -173,11 +183,12 @@ private fun SearchErrorPreview() {
     VibrionAppTheme {
         SearchAnimatedContent(
             state = SearchViewModel.SearchUiState.Error("Error"),
-            artists = listItems,
             canDownload = true,
+            artists = listItems,
             onDownloadClick = {},
             onListDetailClick = {},
             onDetailClick = { _, _ -> },
+            onPlayClick = {},
         ) {
             SearchTopBar(
                 query = "Test",
@@ -212,11 +223,12 @@ private fun SearchLoadedPreview() {
                 playlists = listOf(DownloadableSingle.previewDefault),
                 albums = listOf(DownloadableSingle.previewDefault),
             ),
-            artists = listItems,
             canDownload = true,
+            artists = listItems,
             onDownloadClick = {},
             onListDetailClick = {},
             onDetailClick = { _, _ -> },
+            onPlayClick = {},
         ) {
             SearchTopBar(
                 query = "Test",
