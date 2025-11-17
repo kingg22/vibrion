@@ -14,7 +14,6 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Download
-import androidx.compose.material.icons.filled.MoreVert
 import androidx.compose.material.icons.filled.PlayCircle
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
@@ -116,9 +115,8 @@ fun ListItem(
     supportingText: String,
     image: Any,
     canDownload: Boolean,
-    onPlayClick: () -> Unit,
+    onClick: () -> Unit,
     onDownloadClick: () -> Unit,
-    onSeeMoreClick: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
     ListItem(
@@ -142,10 +140,6 @@ fun ListItem(
         },
         trailingContent = {
             Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.End) {
-                IconButton(onSeeMoreClick) {
-                    Icon(Icons.Default.MoreVert, stringResource(R.string.see_more, title))
-                }
-
                 IconButton(onClick = onDownloadClick, enabled = canDownload) {
                     Icon(Icons.Default.Download, stringResource(R.string.download))
                 }
@@ -154,7 +148,7 @@ fun ListItem(
         modifier = modifier.fillMaxWidth()
             .padding(start = 16.dp, end = 16.dp)
             .clip(CardDefaults.shape)
-            .clickable(onClick = onPlayClick),
+            .clickable(onClick = onClick),
     )
 }
 
@@ -164,16 +158,17 @@ fun ListItemCard(
     image: Any?,
     subtitles: List<String>,
     canDownload: Boolean,
-    onPlayClick: () -> Unit,
+    canPlay: Boolean,
+    onClick: () -> Unit,
     onDownloadClick: () -> Unit,
-    onSeeMoreClick: () -> Unit,
+    onPlayClick: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
     Card(
         modifier
             .fillMaxWidth()
             .padding(horizontal = 16.dp)
-            .clickable(onClick = onPlayClick),
+            .clickable(onClick = onClick),
         elevation = CardDefaults.cardElevation(defaultElevation = 0.dp),
     ) {
         Row(
@@ -213,8 +208,10 @@ fun ListItemCard(
                 }
             }
 
-            IconButton(onSeeMoreClick) {
-                Icon(Icons.Default.MoreVert, stringResource(R.string.see_more, title))
+            if (canPlay) {
+                IconButton(onPlayClick) {
+                    Icon(Icons.Default.PlayCircle, stringResource(R.string.play_track, title))
+                }
             }
 
             IconButton(onClick = onDownloadClick, enabled = canDownload) {
@@ -305,9 +302,8 @@ private fun ListItemPreview() {
         supportingText = "Supporting line text lorem ipsum dolor sit amet, consectetur.",
         image = DownloadableSingle.DEFAULT_THUMBNAIL_URL,
         canDownload = true,
-        onPlayClick = {},
+        onClick = {},
         onDownloadClick = {},
-        onSeeMoreClick = {},
     )
 }
 
@@ -322,9 +318,10 @@ private fun ListItemCardPreview() {
             "Another supporting line",
         ),
         canDownload = true,
-        onPlayClick = {},
+        canPlay = true,
+        onClick = {},
         onDownloadClick = {},
-        onSeeMoreClick = {},
+        onPlayClick = {},
     )
 }
 
@@ -343,9 +340,10 @@ private fun ListItemMultiCardsPreview() {
                     "Another supporting line",
                 ),
                 canDownload = true,
-                onPlayClick = {},
+                canPlay = true,
+                onClick = {},
                 onDownloadClick = {},
-                onSeeMoreClick = {},
+                onPlayClick = {},
             )
         }
     }

@@ -38,6 +38,7 @@ import io.github.kingg22.vibrion.domain.model.DownloadableSingle
 import io.github.kingg22.vibrion.domain.model.ModelType
 import io.github.kingg22.vibrion.ui.components.ImageLabel
 import io.github.kingg22.vibrion.ui.components.SectionHeader
+import io.github.kingg22.vibrion.ui.getModelType
 import io.github.kingg22.vibrion.ui.items
 import io.github.kingg22.vibrion.ui.theme.VibrionAppTheme
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -67,13 +68,13 @@ fun SearchContent(
         }
 
         // List of elevated items
-        items(singles, key = { it.id }) {
+        items(singles, key = { it.id }) { item ->
             FeaturedItem(
-                it,
+                item,
                 canDownload = canDownload,
-                onDownloadClick = { onDownloadClick(it) },
-                onCardClick = { onDetailClick(ModelType.SINGLE, it.id) },
-                onPlayClick = {},
+                onDownloadClick = { onDownloadClick(item) },
+                onCardClick = { onDetailClick(item.getModelType(), item.id) },
+                onPlayClick = { onPlayClick(item) },
             )
             Spacer(Modifier.height(12.dp))
         }
@@ -90,9 +91,8 @@ fun SearchContent(
                 item.artists.joinToString { a -> a.name }.takeIf { l -> l.isNotEmpty() } ?: item.album ?: "",
                 image = item.thumbnailUrl ?: DownloadableSingle.DEFAULT_THUMBNAIL_URL,
                 canDownload = canDownload,
-                onPlayClick = { onDetailClick(ModelType.PLAYLIST, item.id) },
+                onClick = { onDetailClick(item.getModelType(), item.id) },
                 onDownloadClick = { onDownloadClick(item) },
-                onSeeMoreClick = { onPlayClick(item) },
             )
             Spacer(Modifier.height(4.dp))
         }
@@ -107,7 +107,7 @@ fun SearchContent(
                 item,
                 canDownload = canDownload,
                 onDownloadClick = { onDownloadClick(item) },
-                onCardClick = { onDetailClick(ModelType.ALBUM, item.id) },
+                onCardClick = { onDetailClick(item.getModelType(), item.id) },
                 onPlayClick = { onPlayClick(item) },
             )
             Spacer(Modifier.height(12.dp))
@@ -137,11 +137,11 @@ fun SearchContent(
                     item { CircularProgressIndicator(modifier = Modifier.fillMaxSize().wrapContentSize()) }
                 }
 
-                items(artists, key = { it.id }) {
+                items(artists, key = { it.id }) { artist ->
                     ImageLabel(
-                        image = it.pictureUrl ?: DownloadableSingle.DEFAULT_THUMBNAIL_URL,
-                        label = it.name,
-                        modifier = Modifier.clickable(onClick = { onDetailClick(ModelType.ARTIST, it.id) }),
+                        image = artist.pictureUrl ?: DownloadableSingle.DEFAULT_THUMBNAIL_URL,
+                        label = artist.name,
+                        modifier = Modifier.clickable(onClick = { onDetailClick(ModelType.ARTIST, artist.id) }),
                         imageModifier = Modifier.clip(CircleShape),
                     )
                 }
@@ -166,9 +166,9 @@ fun SearchContent(
 private fun SearchContentPreview() {
     val pagingData = PagingData.empty<ArtistInfo>(
         LoadStates(
-            LoadState.NotLoading(true),
-            LoadState.NotLoading(true),
-            LoadState.NotLoading(true),
+            LoadState.Loading,
+            LoadState.Loading,
+            LoadState.Loading,
         ),
     )
     val fakeFlow = MutableStateFlow(pagingData)
