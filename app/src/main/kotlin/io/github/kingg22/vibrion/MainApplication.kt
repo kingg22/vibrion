@@ -57,41 +57,32 @@ class MainApplication :
             )
         }
         .logger(
-            if (BuildConfig.DEBUG) {
-                object : Coil3Logger {
-                    private val logger = KermitLogger.withTag("Coil3")
+            object : Coil3Logger {
+                private val logger = KermitLogger.withTag("Coil3")
 
-                    override var minLevel: Coil3Logger.Level
-                        get() = when (logger.mutableConfig.minSeverity) {
-                            Severity.Verbose -> Coil3Logger.Level.Verbose
-                            Severity.Debug -> Coil3Logger.Level.Debug
-                            Severity.Info -> Coil3Logger.Level.Info
-                            Severity.Warn -> Coil3Logger.Level.Warn
-                            Severity.Error -> Coil3Logger.Level.Error
-                            Severity.Assert -> Coil3Logger.Level.Error
-                        }
-                        set(value) {
-                            when (value) {
-                                Coil3Logger.Level.Verbose -> logger.mutableConfig.minSeverity = Severity.Verbose
-                                Coil3Logger.Level.Debug -> logger.mutableConfig.minSeverity = Severity.Debug
-                                Coil3Logger.Level.Info -> logger.mutableConfig.minSeverity = Severity.Info
-                                Coil3Logger.Level.Warn -> logger.mutableConfig.minSeverity = Severity.Warn
-                                Coil3Logger.Level.Error -> logger.mutableConfig.minSeverity = Severity.Error
-                            }
-                        }
+                override var minLevel: Coil3Logger.Level
+                    get() = when (logger.mutableConfig.minSeverity) {
+                        Severity.Verbose -> Coil3Logger.Level.Verbose
+                        Severity.Debug -> Coil3Logger.Level.Debug
+                        Severity.Info -> Coil3Logger.Level.Info
+                        Severity.Warn -> Coil3Logger.Level.Warn
+                        Severity.Error -> Coil3Logger.Level.Error
+                        Severity.Assert -> Coil3Logger.Level.Error
+                    }
+                    set(value) {
+                        // NO Op
+                    }
 
-                    override fun log(tag: String, level: Coil3Logger.Level, message: String?, throwable: Throwable?) {
-                        when (level) {
-                            Coil3Logger.Level.Verbose -> logger.v(message ?: "", throwable, tag)
-                            Coil3Logger.Level.Debug -> logger.d(message ?: "", throwable, tag)
-                            Coil3Logger.Level.Info -> logger.i(message ?: "", throwable, tag)
-                            Coil3Logger.Level.Warn -> logger.w(message ?: "", throwable, tag)
-                            Coil3Logger.Level.Error -> logger.e(message ?: "", throwable, tag)
-                        }
+                override fun log(tag: String, level: Coil3Logger.Level, message: String?, throwable: Throwable?) {
+                    when (level) {
+                        Coil3Logger.Level.Verbose -> logger.v(message ?: "", throwable, tag)
+                        Coil3Logger.Level.Debug -> logger.d(message ?: "", throwable, tag)
+                        // Logs as verbose because coil3 have a lot of logs in level Info
+                        Coil3Logger.Level.Info -> logger.v(message ?: "", throwable, tag)
+                        Coil3Logger.Level.Warn -> logger.w(message ?: "", throwable, tag)
+                        Coil3Logger.Level.Error -> logger.e(message ?: "", throwable, tag)
                     }
                 }
-            } else {
-                null
             },
         )
         .memoryCache {
@@ -110,26 +101,29 @@ class MainApplication :
     override fun onKoinStartup() = KoinConfiguration {
         // Log Koin into Android logger
         logger(
-            if (BuildConfig.DEBUG) {
-                object : KoinLogger() {
-                    private val logger = KermitLogger.withTag("koin")
+            object : KoinLogger() {
+                private val logger = KermitLogger.withTag("koin")
 
-                    override fun display(level: KoinLoggerLevel, msg: MESSAGE) {
-                        when (level) {
-                            KoinLoggerLevel.DEBUG -> logger.d(msg)
-                            KoinLoggerLevel.INFO -> logger.i(msg)
-                            KoinLoggerLevel.WARNING -> logger.w(msg)
-                            KoinLoggerLevel.ERROR -> logger.e(msg)
-                            KoinLoggerLevel.NONE -> {
-                                // do nothing
-                            }
-                        }
+                init {
+                    this.level = when (logger.mutableConfig.minSeverity) {
+                        Severity.Verbose -> KoinLoggerLevel.DEBUG
+                        Severity.Debug -> KoinLoggerLevel.DEBUG
+                        Severity.Info -> KoinLoggerLevel.INFO
+                        Severity.Warn -> KoinLoggerLevel.WARNING
+                        Severity.Error -> KoinLoggerLevel.ERROR
+                        Severity.Assert -> KoinLoggerLevel.ERROR
                     }
                 }
-            } else {
-                object : KoinLogger() {
-                    override fun display(level: KoinLoggerLevel, msg: MESSAGE) {
-                        // No Op
+
+                override fun display(level: KoinLoggerLevel, msg: MESSAGE) {
+                    when (level) {
+                        KoinLoggerLevel.DEBUG -> logger.d(msg)
+                        KoinLoggerLevel.INFO -> logger.i(msg)
+                        KoinLoggerLevel.WARNING -> logger.w(msg)
+                        KoinLoggerLevel.ERROR -> logger.e(msg)
+                        KoinLoggerLevel.NONE -> {
+                            // do nothing
+                        }
                     }
                 }
             },
