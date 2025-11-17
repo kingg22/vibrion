@@ -27,6 +27,7 @@ import io.github.kingg22.vibrion.domain.model.DownloadableAlbum
 import io.github.kingg22.vibrion.domain.model.DownloadableItem
 import io.github.kingg22.vibrion.domain.model.DownloadablePlaylist
 import io.github.kingg22.vibrion.domain.model.DownloadableSingle
+import io.github.kingg22.vibrion.ui.theme.VibrionAppTheme
 import kotlin.time.Duration.Companion.seconds
 
 @Composable
@@ -37,6 +38,7 @@ fun MusicDetailContent(
     onDownloadClick: (item: DownloadableItem) -> Unit,
     onTrackClick: (item: DownloadableItem) -> Unit,
     onTrackPlayClick: (item: DownloadableItem) -> Unit,
+    onPlayClick: (item: DownloadableItem) -> Unit,
     modifier: Modifier = Modifier,
 ) {
     val scrollBehavior = TopAppBarDefaults.exitUntilCollapsedScrollBehavior()
@@ -129,6 +131,14 @@ fun MusicDetailContent(
                         horizontalArrangement = Arrangement.Center,
                         modifier = Modifier.fillMaxWidth(),
                     ) {
+                        IconButton(onClick = { onPlayClick(detail) }) {
+                            Icon(
+                                Icons.Default.PlayCircle,
+                                contentDescription = stringResource(R.string.play_track, detail.title),
+                                modifier = Modifier.size(48.dp),
+                            )
+                        }
+                        Spacer(Modifier.width(8.dp))
                         Button(onClick = { onDownloadClick(detail) }, enabled = canDownload()) {
                             Icon(Icons.Default.Download, contentDescription = stringResource(R.string.download))
                             Spacer(Modifier.width(8.dp))
@@ -207,15 +217,18 @@ private fun MusicDetailContentPreview() {
         releaseDate = "2023-01-01",
         duration = 1800.seconds,
         artists = emptyList(),
-        tracks = emptyList(),
+        tracks = listOf(DownloadableSingle.previewDefault),
         upc = null,
     )
-    MusicDetailContent(
-        albumItem,
-        onBackClick = {},
-        onDownloadClick = {},
-        onTrackClick = {},
-        onTrackPlayClick = {},
-        canDownload = { true },
-    )
+    VibrionAppTheme {
+        MusicDetailContent(
+            albumItem,
+            onBackClick = {},
+            canDownload = { true },
+            onDownloadClick = {},
+            onTrackClick = {},
+            onPlayClick = {},
+            onTrackPlayClick = {},
+        )
+    }
 }
