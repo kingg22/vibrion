@@ -62,6 +62,35 @@
                 <action android:name="android.media.browse.MediaBrowserService"/>
             </intent-filter>
         </service>
+
+        <!-- Required: set your sentry.io project identifier (DSN) -->
+        <meta-data
+            android:name="io.sentry.dsn"
+            android:value="https://654eee1af4bc85842f36c6256ea5b989@o4509217378533376.ingest.us.sentry.io/4510377979543552" />
+
+        <!-- Add data like request headers, user ip address and device name, see https://docs.sentry.io/platforms/android/data-management/data-collected/ for more info -->
+        <meta-data
+            android:name="io.sentry.send-default-pii"
+            android:value="true" />
+
+        <!-- enable automatic breadcrumbs for user interactions (clicks, swipes, scrolls) -->
+        <meta-data
+            android:name="io.sentry.traces.user-interaction.enable"
+            android:value="true" />
+
+        <!-- enable screenshot for crashes -->
+        <meta-data
+            android:name="io.sentry.attach-screenshot"
+            android:value="true" />
+
+        <!-- record session replays for 100% of errors and 10% of sessions -->
+        <meta-data
+            android:name="io.sentry.session-replay.on-error-sample-rate"
+            android:value="1.0" />
+
+        <meta-data
+            android:name="io.sentry.session-replay.session-sample-rate"
+            android:value="0.1" />
     </application>
 
 </manifest>
