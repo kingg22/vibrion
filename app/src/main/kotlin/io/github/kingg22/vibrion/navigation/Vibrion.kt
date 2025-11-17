@@ -116,11 +116,21 @@ fun Vibrion(modifier: Modifier = Modifier) {
                 }
 
                 is SearchDetail -> entry(key) {
-                    SearchDetailScreen(query = key.query, key.modelType, onBackClick = { backStack.removeLastOrNull() })
+                    SearchDetailScreen(
+                        query = key.query,
+                        modelType = key.modelType,
+                        onBackClick = { backStack.removeLastOrNull() },
+                        onDetailClick = { type, id -> backStack += Detail(type = type, id = id) },
+                    )
                 }
 
                 is Detail -> entry(key) {
-                    MusicDetailScreen(key.modelType, key.id, onBackClick = { backStack.removeLastOrNull() })
+                    MusicDetailScreen(
+                        type = key.modelType,
+                        id = key.id,
+                        onBackClick = { backStack.removeLastOrNull() },
+                        onDetailClick = { type, id -> backStack += Detail(type = type, id = id) },
+                    )
                 }
             }
         }
