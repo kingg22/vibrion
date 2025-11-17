@@ -27,6 +27,7 @@ import io.ktor.client.engine.cio.CIO
 import io.ktor.client.plugins.HttpRedirect
 import io.ktor.client.plugins.cache.HttpCache
 import io.ktor.client.plugins.cache.storage.FileStorage
+import io.sentry.ktorClient.SentryKtorClientPlugin
 import org.koin.android.ext.koin.androidContext
 import org.koin.core.parameter.parametersOf
 import org.koin.dsl.module
@@ -42,6 +43,7 @@ val dataModule = module {
         HttpClientBuilder()
             .httpEngine(CIO.create())
             .addCustomConfig {
+                install(SentryKtorClientPlugin)
                 install(HttpRedirect)
                 install(HttpCache) {
                     publicStorage(FileStorage(androidContext().cacheDir.resolve("ktor_image_cache")))
