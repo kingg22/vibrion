@@ -9,6 +9,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.paging.compose.collectAsLazyPagingItems
+import io.github.kingg22.vibrion.domain.model.DownloadableItem
 import io.github.kingg22.vibrion.domain.model.ModelType
 import io.github.kingg22.vibrion.domain.service.AudioPlayerService
 import io.github.kingg22.vibrion.ui.components.TopSearchBar
@@ -47,8 +48,15 @@ fun HomeScreen(
         },
         onDetailClick = onDetailClick,
         onPlayTrackClick = { item ->
-            audioService.setTrack(item)
-            audioService.play()
+            if (item is DownloadableItem.StreamableItem) {
+                audioService.setTrack(item)
+                audioService.play()
+            } else if (item is DownloadableItem.ItemWithTracks) {
+                @Suppress("UNCHECKED_CAST")
+                audioService.setQueue(
+                    item.tracks.filterIsInstance<DownloadableItem.StreamableItem>() as List<DownloadableItem>,
+                )
+            }
         },
     ) {
         TopSearchBar(
