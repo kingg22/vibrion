@@ -16,7 +16,7 @@ plugins {
 }
 
 group = "io.github.kingg22"
-version = "0.0.6"
+version = "0.0.7"
 
 kotlin {
     compilerOptions {
@@ -37,7 +37,7 @@ android {
         applicationId = "$group.vibrion"
         minSdk = libs.versions.android.minSdk.get().toInt()
         targetSdk = libs.versions.android.compileSdk.get().toInt()
-        versionCode = 6
+        versionCode = 7
         versionName = project.version.toString()
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -172,6 +172,7 @@ ktlint {
 val hasSentryToken = System.getenv("SENTRY_AUTH_TOKEN") != null
 
 sentry {
+    autoInstallation.enabled.set(false)
     org.set("kingg22")
     projectName.set("vibrion")
     telemetry.set(false)
@@ -186,4 +187,8 @@ sentry {
         autoUploadProguardMapping.set(false)
         autoUploadSourceContext.set(false)
     }
+}
+
+configurations.configureEach {
+    exclude(group = "io.sentry", module = "sentry-android-ndk")
 }
