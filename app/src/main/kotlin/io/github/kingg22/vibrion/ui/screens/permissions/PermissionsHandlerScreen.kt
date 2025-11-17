@@ -23,7 +23,6 @@ import androidx.compose.material3.SnackbarResult
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
@@ -42,53 +41,44 @@ import kotlinx.coroutines.launch
 @Composable
 fun PermissionsHandlerScreen(modifier: Modifier = Modifier) {
     val context = LocalContext.current
-    val resources = LocalResources.current
     val activity = LocalActivity.current ?: return
+    val resources = LocalResources.current
     val coroutineScope = rememberCoroutineScope()
+
     val snackbarHostState = remember { SnackbarHostState() }
 
-    val requiredPermissions = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-        listOf(Manifest.permission.POST_NOTIFICATIONS)
+    // Solo se pide esta si es necesaria.
+    val notificationPermission = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+        Manifest.permission.POST_NOTIFICATIONS
     } else {
-        listOf(Manifest.permission.WRITE_EXTERNAL_STORAGE)
-    }
-    val missingPermissions = remember {
-        mutableStateListOf<String>().apply {
-            addAll(
-                requiredPermissions.filter {
-                    ContextCompat.checkSelfPermission(context, it) != PackageManager.PERMISSION_GRANTED
-                },
-            )
-        }
+        null
     }
 
-    val permanentlyDeniedPermissions = remember { mutableStateListOf<String>() }
-    var showSheet by rememberSaveable { mutableStateOf(false) }
+    // Estado simple: ¿faltan permisos?
+    var shouldShowSheet by rememberSaveable { mutableStateOf(false) }
 
+    // Launcher simplificado (solo 1 permiso)
     val permissionLauncher = rememberLauncherForActivityResult(
-        contract = ActivityResultContracts.RequestMultiplePermissions(),
-    ) { permissions ->
-        missingPermissions.clear()
-        permanentlyDeniedPermissions.clear()
-
-        permissions.filter { !it.value }.forEach { (permission, _) ->
-            val showRationale = ActivityCompat.shouldShowRequestPermissionRationale(activity, permission)
-            if (showRationale) {
-                missingPermissions.add(permission)
-            } else {
-                permanentlyDeniedPermissions.add(permission)
-            }
+        ActivityResultContracts.RequestPermission(),
+    ) { granted ->
+        if (granted) {
+            shouldShowSheet = false
+            return@rememberLauncherForActivityResult
         }
 
-        permanentlyDeniedPermissions.forEach { permission ->
+        val permission = notificationPermission ?: return@rememberLauncherForActivityResult
+
+        val canRequestAgain = ActivityCompat.shouldShowRequestPermissionRationale(activity, permission)
+
+        if (!canRequestAgain) {
+            // Usuario lo negó permanentemente
             coroutineScope.launch {
                 val result = snackbarHostState.showSnackbar(
                     message = resources.getString(
                         R.string.permission_denied,
-                        resources.getString(getPermissionName(permission)),
+                        resources.getString(R.string.notifications),
                     ),
                     actionLabel = resources.getString(R.string.open_settings),
-                    withDismissAction = true,
                     duration = SnackbarDuration.Long,
                 )
                 if (result == SnackbarResult.ActionPerformed) {
@@ -101,43 +91,37 @@ fun PermissionsHandlerScreen(modifier: Modifier = Modifier) {
             }
         }
 
-        showSheet = missingPermissions.isNotEmpty()
+        // Si puede solicitarse nuevamente, o incluso si no, mantenemos bottom sheet abierto
+        shouldShowSheet = true
     }
 
+    // Primera evaluación al entrar
     LaunchedEffect(Unit) {
-        val stillMissing = requiredPermissions.filter {
-            ContextCompat.checkSelfPermission(context, it) != PackageManager.PERMISSION_GRANTED
+        notificationPermission?.let { perm ->
+            val missing = ContextCompat.checkSelfPermission(context, perm) != PackageManager.PERMISSION_GRANTED
+            shouldShowSheet = missing
         }
-        showSheet = stillMissing.isNotEmpty()
-        missingPermissions.clear()
-        missingPermissions.addAll(stillMissing)
     }
 
-    Box(modifier = modifier.fillMaxSize().windowInsetsPadding(WindowInsets.systemGestures)) {
+    Box(
+        modifier = modifier
+            .fillMaxSize()
+            .windowInsetsPadding(WindowInsets.systemGestures),
+    ) {
         SnackbarHost(
             hostState = snackbarHostState,
             modifier = Modifier
                 .align(Alignment.BottomCenter)
                 .padding(bottom = 16.dp),
         )
-        AnimatedVisibility(showSheet) {
+
+        AnimatedVisibility(visible = shouldShowSheet && notificationPermission != null) {
             PermissionsBottomSheet(
-                permissionsToRequest = missingPermissions,
-                onDismiss = { showSheet = false },
+                onDismiss = { shouldShowSheet = false },
                 onRequestPermissions = {
-                    permissionLauncher.launch(it.toTypedArray())
+                    notificationPermission?.let { p -> permissionLauncher.launch(p) }
                 },
             )
         }
     }
-}
-
-private fun getPermissionName(permission: String) = when (permission) {
-    Manifest.permission.POST_NOTIFICATIONS -> R.string.notifications
-    Manifest.permission.READ_MEDIA_AUDIO,
-    Manifest.permission.READ_EXTERNAL_STORAGE,
-    Manifest.permission.WRITE_EXTERNAL_STORAGE,
-    -> R.string.audio
-
-    else -> R.string.unknown_permission
 }

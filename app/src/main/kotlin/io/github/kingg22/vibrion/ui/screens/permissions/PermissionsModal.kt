@@ -1,6 +1,5 @@
 package io.github.kingg22.vibrion.ui.screens.permissions
 
-import android.Manifest
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -15,17 +14,14 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import io.github.kingg22.vibrion.R
+import io.github.kingg22.vibrion.ui.theme.VibrionAppTheme
 
 @Composable
 @OptIn(ExperimentalMaterial3Api::class)
-fun PermissionsBottomSheet(
-    onDismiss: () -> Unit,
-    permissionsToRequest: List<String>,
-    onRequestPermissions: (List<String>) -> Unit,
-    modifier: Modifier = Modifier,
-) {
+fun PermissionsBottomSheet(onDismiss: () -> Unit, onRequestPermissions: () -> Unit, modifier: Modifier = Modifier) {
     ModalBottomSheet(
         onDismissRequest = onDismiss,
         modifier = modifier,
@@ -41,28 +37,25 @@ fun PermissionsBottomSheet(
             Text(stringResource(R.string.permissions_required), style = MaterialTheme.typography.bodyMedium)
             Spacer(Modifier.height(16.dp))
 
-            permissionsToRequest.forEach { permission ->
-                val explanation = when (permission) {
-                    Manifest.permission.POST_NOTIFICATIONS -> R.string.notifications_permission
-                    Manifest.permission.READ_MEDIA_AUDIO,
-                    Manifest.permission.READ_EXTERNAL_STORAGE,
-                    Manifest.permission.WRITE_EXTERNAL_STORAGE,
-                    -> R.string.audio_permission
-
-                    else -> R.string.unknown_permission
-                }
-                Text(stringResource(explanation), style = MaterialTheme.typography.bodyMedium)
-                Spacer(Modifier.height(3.dp))
-            }
+            Text(stringResource(R.string.notifications_permission), style = MaterialTheme.typography.bodyMedium)
+            Spacer(Modifier.height(3.dp))
 
             Spacer(Modifier.height(24.dp))
 
             Button(
-                onClick = { onRequestPermissions(permissionsToRequest) },
+                onClick = onRequestPermissions,
                 modifier = Modifier.fillMaxWidth(),
             ) {
                 Text(stringResource(R.string.allow_permissions))
             }
         }
+    }
+}
+
+@Preview
+@Composable
+private fun PermissionBottomSheetPreview() {
+    VibrionAppTheme {
+        PermissionsBottomSheet(onDismiss = {}, onRequestPermissions = {})
     }
 }
