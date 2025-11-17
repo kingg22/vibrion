@@ -47,7 +47,8 @@ fun FeaturedItem(
     modifier: Modifier = Modifier,
 ) {
     ElevatedCard(
-        modifier = modifier.fillMaxWidth()
+        modifier = modifier
+            .fillMaxWidth()
             .padding(start = 16.dp, end = 16.dp)
             .clip(CardDefaults.elevatedShape)
             .clickable(onClick = onCardClick),
@@ -145,7 +146,8 @@ fun ListItem(
                 }
             }
         },
-        modifier = modifier.fillMaxWidth()
+        modifier = modifier
+            .fillMaxWidth()
             .padding(start = 16.dp, end = 16.dp)
             .clip(CardDefaults.shape)
             .clickable(onClick = onClick),
@@ -158,7 +160,6 @@ fun ListItemCard(
     image: Any?,
     subtitles: List<String>,
     canDownload: Boolean,
-    canPlay: Boolean,
     onClick: () -> Unit,
     onDownloadClick: () -> Unit,
     onPlayClick: () -> Unit,
@@ -208,10 +209,8 @@ fun ListItemCard(
                 }
             }
 
-            if (canPlay) {
-                IconButton(onPlayClick) {
-                    Icon(Icons.Default.PlayCircle, stringResource(R.string.play_track, title))
-                }
+            IconButton(onPlayClick) {
+                Icon(Icons.Default.PlayCircle, stringResource(R.string.play_track, title))
             }
 
             IconButton(onClick = onDownloadClick, enabled = canDownload) {
@@ -318,7 +317,6 @@ private fun ListItemCardPreview() {
             "Another supporting line",
         ),
         canDownload = true,
-        canPlay = true,
         onClick = {},
         onDownloadClick = {},
         onPlayClick = {},
@@ -340,7 +338,6 @@ private fun ListItemMultiCardsPreview() {
                     "Another supporting line",
                 ),
                 canDownload = true,
-                canPlay = true,
                 onClick = {},
                 onDownloadClick = {},
                 onPlayClick = {},

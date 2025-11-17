@@ -25,6 +25,8 @@ import androidx.paging.compose.collectAsLazyPagingItems
 import io.github.kingg22.vibrion.R
 import io.github.kingg22.vibrion.domain.model.DownloadableItem
 import io.github.kingg22.vibrion.domain.model.DownloadableSingle
+import io.github.kingg22.vibrion.domain.model.ModelType
+import io.github.kingg22.vibrion.ui.getDisplayName
 import io.github.kingg22.vibrion.ui.items
 import io.github.kingg22.vibrion.ui.screens.search.ListItemCard
 import io.github.kingg22.vibrion.ui.screens.search.ListItemCardPlaceholder
@@ -33,19 +35,20 @@ import kotlinx.coroutines.flow.MutableStateFlow
 
 @Composable
 fun SearchDetailContent(
-    title: String,
+    modelType: ModelType,
     listResult: LazyPagingItems<out DownloadableItem>,
     canDownload: Boolean,
     onBackClick: () -> Unit,
-    onPlayClick: (DownloadableItem) -> Unit,
-    onDownloadClick: (DownloadableItem) -> Unit,
+    onItemClick: (item: DownloadableItem) -> Unit,
+    onPlayClick: (item: DownloadableItem) -> Unit,
+    onDownloadClick: (item: DownloadableItem) -> Unit,
     modifier: Modifier = Modifier,
 ) {
     Scaffold(
         modifier,
         topBar = {
             TopAppBar(
-                title = { Text(title) },
+                title = { Text(stringResource(modelType.getDisplayName())) },
                 modifier = Modifier.fillMaxWidth(),
                 navigationIcon = {
                     IconButton(onBackClick) {
@@ -79,9 +82,9 @@ fun SearchDetailContent(
                     image = item.thumbnailUrl,
                     subtitles = listOfNotNull(artist, album, duration, releaseDate),
                     canDownload = canDownload,
-                    onPlayClick = { onPlayClick(item) },
+                    onClick = { onItemClick(item) },
                     onDownloadClick = { onDownloadClick(item) },
-                    onSeeMoreClick = {},
+                    onPlayClick = { onPlayClick(item) },
                 )
             }
 
@@ -102,12 +105,13 @@ private fun SearchDetailLoadedPreview() {
 
     VibrionAppTheme {
         SearchDetailContent(
-            title = "Section Title",
+            modelType = ModelType.SINGLE,
             listResult = listItems,
             canDownload = true,
             onBackClick = {},
             onPlayClick = {},
             onDownloadClick = {},
+            onItemClick = {},
         )
     }
 }
@@ -127,12 +131,13 @@ private fun SearchDetailErrorPreview() {
 
     VibrionAppTheme {
         SearchDetailContent(
-            title = "Section Title",
+            modelType = ModelType.ALBUM,
             listResult = listItems,
             canDownload = true,
             onBackClick = {},
             onPlayClick = {},
             onDownloadClick = {},
+            onItemClick = {},
         )
     }
 }
