@@ -11,6 +11,8 @@ plugins {
     alias(libs.plugins.kotlinSerialization)
     alias(libs.plugins.ktlint)
     alias(libs.plugins.poko)
+    alias(libs.plugins.sentry)
+    alias(libs.plugins.sentry.compiler)
 }
 
 group = "io.github.kingg22"
@@ -88,6 +90,13 @@ dependencies {
     implementation(libs.androidx.glance.appwidget.preview)
     implementation(libs.androidx.glance.preview)
 
+    // sentry sdk for android
+    implementation(platform(libs.sentry.bom))
+    implementation(libs.sentry.kt)
+    implementation(libs.sentry.android)
+    implementation(libs.sentry.compose.android)
+    implementation(libs.sentry.ktor.client)
+
     implementation(libs.compose.runtime)
     implementation(libs.compose.foundation)
     implementation(libs.compose.material3)
@@ -158,4 +167,23 @@ aboutLibraries {
 
 ktlint {
     version.set(libs.versions.ktlint.pinterest.get())
+}
+
+val hasSentryToken = System.getenv("SENTRY_AUTH_TOKEN") != null
+
+sentry {
+    org.set("kingg22")
+    projectName.set("vibrion")
+    telemetry.set(false)
+
+    if (hasSentryToken) {
+        authToken.set(System.getenv("SENTRY_AUTH_TOKEN"))
+        includeSourceContext.set(true)
+        autoUploadProguardMapping.set(true)
+        autoUploadSourceContext.set(true)
+    } else {
+        includeSourceContext.set(false)
+        autoUploadProguardMapping.set(false)
+        autoUploadSourceContext.set(false)
+    }
 }
