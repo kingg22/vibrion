@@ -62,7 +62,7 @@ ktorgen = "0.5.1"
 # https://github.com/pinterest/ktlint/releases
 ktlint-pinterest = "1.7.1"
 # https://github.com/jlleitschuh/ktlint-gradle/releases
-ktlint-plugin = "13.1.0"
+ktlint-plugin = "14.0.1"
 # https://github.com/mrmans0n/compose-rules/releases
 ktlint-compose = "0.4.27"
 # https://developer.android.com/jetpack/androidx/releases/media3?hl=es-419
