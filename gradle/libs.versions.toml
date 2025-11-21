@@ -77,7 +77,7 @@ navigation3 = "1.0.0"
 # https://square.github.io/okio/changelog/
 okio = "3.16.4"
 # https://github.com/drewhamilton/Poko/releases
-poko = "0.20.1"
+poko = "0.20.2"
 # https://github.com/getsentry/sentry-java/releases
 sentry-bom = "8.27.1"
 # https://github.com/getsentry/sentry-android-gradle-plugin/releases
