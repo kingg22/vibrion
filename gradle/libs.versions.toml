@@ -11,7 +11,7 @@ android-minSdk = "30"
 # https://developer.android.com/jetpack/androidx/releases/activity
 androidx-activity-compose = "1.11.0"
 # https://developer.android.com/jetpack/androidx/releases/datastore
-androidx-data-store = "1.1.7"
+androidx-data-store = "1.2.0"
 # See CMP https://github.com/JetBrains/compose-multiplatform/releases based on
 # https://developer.android.com/jetpack/androidx/releases/lifecycle
 #jetbrains-androidx-lifecycle = "2.9.6"
