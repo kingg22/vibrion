@@ -79,7 +79,7 @@ okio = "3.16.4"
 # https://github.com/drewhamilton/Poko/releases
 poko = "0.20.1"
 # https://github.com/getsentry/sentry-java/releases
-sentry-bom = "8.26.0"
+sentry-bom = "8.27.1"
 # https://github.com/getsentry/sentry-android-gradle-plugin/releases
 sentry-plugin = "5.12.2"
 # https://mvnrepository.com/artifact/org.slf4j/slf4j-android
