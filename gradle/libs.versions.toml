@@ -120,12 +120,9 @@ androidx-data-store-preferences = { group = "androidx.datastore", name = "datast
 # use jetbrains androidx lifecycle when use KMP
 #jetbrains-lifecycle-runtime-compose = { group = "org.jetbrains.androidx.lifecycle", name = "lifecycle-runtime-compose", version.ref = "jetbrains-androidx-lifecycle" }
 androidx-lifecycle-runtime-compose = { group = "androidx.lifecycle", name = "lifecycle-runtime-compose", version.ref = "androidx-lifecycle" }
-# TODO use VM for nav3 when is released CMP 1.10.0 or androidx going stable
-# jetbrains-androidx-lifecycle-viewmodel-nav3 = { group = "org.jetbrains.androidx.lifecycle", name = "lifecycle-viewmodel-navigation3", version = "2.10.0-alpha03" }
+# jetbrains-androidx-lifecycle-viewmodel-nav3 = { group = "org.jetbrains.androidx.lifecycle", name = "lifecycle-viewmodel-navigation3", version.ref = "jetbrains-androidx-lifecycle" }
+androidx-lifecycle-viewmodel-nav3 = { group = "androidx.lifecycle", name = "lifecycle-viewmodel-navigation3", version.ref = "androidx-lifecycle" }
 # android specific
-# https://developer.android.com/jetpack/androidx/releases/lifecycle
-# TODO remove harcoded version when CMP fork is sync with androidx
-androidx-lifecycle-viewmodel-nav3 = { group = "androidx.lifecycle", name = "lifecycle-viewmodel-navigation3", version = "2.10.0-rc01" }
 androidx-lifecycle-service = { group = "androidx.lifecycle", name = "lifecycle-service", version.ref = "androidx-lifecycle" }
 
 androidx-test-core = { group = "androidx.test", name = "core", version.ref = "androidx-test-core" }
@@ -187,9 +184,6 @@ clikt = { group = "com.github.ajalt.clikt", name = "clikt", version.ref = "clikt
 
 # nav3
 androidx-navigation3-ui = { group = "androidx.navigation3", name = "navigation3-ui", version.ref = "navigation3" }
-
-# TODO await next release with compose-multiplatform 1.10.0 to remove androidx
-# or simple don't use jetbrains fork in android specific module
 # jetbrains-navigation3-ui = { group = "org.jetbrains.androidx.navigation3", name = "navigation3-ui", version.ref = "jetbrains-nav3" }
 
 # paging3
