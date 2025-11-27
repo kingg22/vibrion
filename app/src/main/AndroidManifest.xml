@@ -83,6 +83,10 @@
             android:name="io.sentry.attach-screenshot"
             android:value="true" />
 
+        <meta-data
+            android:name="io.sentry.attach-view-hierarchy"
+            android:value="true" />
+
         <!-- record session replays for 100% of errors and 10% of sessions -->
         <meta-data
             android:name="io.sentry.session-replay.on-error-sample-rate"
