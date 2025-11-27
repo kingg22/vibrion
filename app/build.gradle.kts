@@ -16,18 +16,27 @@ plugins {
 }
 
 group = "io.github.kingg22"
-version = "0.0.7"
+version = "0.0.8"
 
 kotlin {
     compilerOptions {
         extraWarnings.set(true)
         allWarningsAsErrors.set(true)
-        optIn.add("androidx.compose.material3.ExperimentalMaterial3Api")
+        optIn.addAll(
+            "kotlin.contracts.ExperimentalContracts",
+            "kotlin.time.ExperimentalTime",
+            "kotlin.uuid.ExperimentalUuidApi",
+            "androidx.compose.material3.ExperimentalMaterial3Api",
+            "androidx.compose.animation.ExperimentalSharedTransitionApi",
+        )
         // freeCompilerArgs.add("-Xexpect-actual-classes")
         jvmTarget.set(JvmTarget.JVM_11)
         jvmDefault.set(JvmDefaultMode.NO_COMPATIBILITY)
     }
 }
+
+val doMinify = project.hasProperty("minify") && project.property("minify") == "true"
+val doShrink = project.hasProperty("shrink") && project.property("shrink") == "true"
 
 android {
     namespace = "$group.vibrion"
@@ -37,7 +46,7 @@ android {
         applicationId = "$group.vibrion"
         minSdk = libs.versions.android.minSdk.get().toInt()
         targetSdk = libs.versions.android.compileSdk.get().toInt()
-        versionCode = 7
+        versionCode = 8
         versionName = project.version.toString()
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -48,16 +57,32 @@ android {
             excludes += "/META-INF/LICENSE-notice.md"
         }
     }
+    signingConfigs {
+        if (System.getenv("KEYSTORE_FILE") != null) {
+            create("release") {
+                storeFile = file(System.getenv("KEYSTORE_FILE"))
+                storePassword = System.getenv("KEYSTORE_PASSWORD")
+                keyAlias = System.getenv("KEY_ALIAS")
+                keyPassword = System.getenv("KEY_PASSWORD")
+            }
+        }
+    }
     buildTypes {
         release {
-            isMinifyEnabled = false
-            isShrinkResources = false
+            val signingKey = signingConfigs.findByName("release")
+
+            isMinifyEnabled = doMinify
+            isShrinkResources = doShrink
+            if (signingKey != null) {
+                signingConfig = signingKey
+            }
+            if ((doMinify || doShrink) && signingKey == null) {
+                logger.warn("Minify release without a signing key, this will fail in runtime")
+            }
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro",
             )
-            // ONlY to run with AS IDE
-            // signingConfig = signingConfigs.getByName("debug")
         }
     }
     buildFeatures {
@@ -170,6 +195,12 @@ ktlint {
 }
 
 val hasSentryToken = System.getenv("SENTRY_AUTH_TOKEN") != null
+logger.info("Sentry source code context upload token: $hasSentryToken")
+if ((doMinify || doShrink) && !hasSentryToken) {
+    logger.warn(
+        "Minify release without a sentry token, all sentry reports for this build ($version) will contain obfuscated code",
+    )
+}
 
 sentry {
     autoInstallation.enabled.set(false)
