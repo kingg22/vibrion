@@ -8,6 +8,7 @@ import io.github.kingg22.vibrion.domain.service.DownloadService
 import io.github.kingg22.vibrion.domain.usecase.settings.LoadTokenUseCase
 import io.github.kingg22.vibrion.ui.getModelType
 import io.sentry.Sentry
+import io.sentry.SpanStatus
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.currentCoroutineContext
@@ -70,13 +71,18 @@ class DownloadViewModel(
     }
 
     fun download(item: DownloadableItem) {
+        val transaction = Sentry.startTransaction(
+            "Download ${item.getModelType()}",
+            "download",
+        )
         Sentry.configureScope { scope ->
-            scope.setTransaction("Download ${item.getModelType()}")
+            scope.transaction = transaction
             scope.setExtra("item", item.toString())
         }
         if (!canDownloadState.value.isSuccess) {
             logger.e { "Can't download, state is not success, this is an implementation error." }
-            Sentry.logger().error("Can't download, state is not success, item: $item")
+            Sentry.captureMessage("Can't download, state is not success, item: $item")
+            transaction.finish(SpanStatus.INTERNAL_ERROR)
             return
         }
         logger.v { "Try to download $item" }
@@ -84,11 +90,19 @@ class DownloadViewModel(
             val currentToken = token.filterNotNull().firstOrNull()
             if (currentToken == null) {
                 logger.e { "Can't download, token is null, this is an implementation error." }
-                Sentry.logger().error("Can't download, user token is null, item: $item")
+                Sentry.captureMessage("Can't download, user token is null, item: $item")
+                transaction.finish(SpanStatus.INTERNAL_ERROR)
                 return@launch
             }
             logger.d { "Downloading $item" }
-            downloadService.downloadItem(item, currentToken)
+            try {
+                downloadService.downloadItem(item, currentToken)
+                transaction.finish(SpanStatus.OK)
+            } catch (e: Exception) {
+                currentCoroutineContext().ensureActive()
+                Sentry.captureException(e)
+                transaction.finish(SpanStatus.INTERNAL_ERROR)
+            }
         }
     }
 
