@@ -6,7 +6,6 @@ import io.github.kingg22.deezer.client.api.DeezerApiClient
 import io.github.kingg22.deezer.client.utils.ExperimentalDeezerClient
 import io.github.kingg22.deezer.client.utils.HttpClientBuilder
 import io.github.kingg22.deezer.client.utils.InternalDeezerClient
-import io.github.kingg22.vibrion.BuildConfig
 import io.github.kingg22.vibrion.data.PlatformHelper
 import io.github.kingg22.vibrion.data.datasource.music.DeezerApiDataSource
 import io.github.kingg22.vibrion.data.datasource.music.DeezerGwDataSource
@@ -52,12 +51,10 @@ val dataModule = module {
                 expectSuccess = true
             }
             .apply {
-                if (BuildConfig.DEBUG) {
-                    logger = object : KtorLogger {
-                        override fun log(message: String) {
-                            // verbose level
-                            KermitLogger.v("HttpClient $name") { message }
-                        }
+                logger = object : KtorLogger {
+                    override fun log(message: String) {
+                        // verbose level
+                        KermitLogger.v("HttpClient $name") { message }
                     }
                 }
             }
