@@ -12,6 +12,7 @@ import io.github.kingg22.vibrion.domain.service.AudioPlayerService
 import io.github.kingg22.vibrion.ui.getModelType
 import io.github.kingg22.vibrion.ui.screens.download.DownloadViewModel
 import io.github.kingg22.vibrion.ui.screens.search.SearchViewModel
+import io.sentry.Sentry
 import org.koin.compose.koinInject
 import org.koin.compose.viewmodel.koinViewModel
 
@@ -27,6 +28,11 @@ fun SearchDetailScreen(
     playerService: AudioPlayerService = koinInject(),
 ) {
     LaunchedEffect(query, modelType) {
+        Sentry.configureScope { scope ->
+            scope.setTransaction("Searching in detail")
+            scope.setExtra("query", query)
+            scope.setExtra("modelType", modelType.toString())
+        }
         searchViewModel.searchDetail(query, modelType)
     }
     val listResult = searchViewModel.searchPagedResult.collectAsLazyPagingItems()
@@ -37,9 +43,13 @@ fun SearchDetailScreen(
         listResult = listResult,
         onBackClick = onBackClick,
         onDownloadClick = downloadViewModel::download,
-        canDownload = canDownload == DownloadViewModel.CanDownloadState.Success,
+        canDownload = canDownload.isSuccess,
         onItemClick = { item -> onDetailClick(item.getModelType(), item.id) },
         onPlayClick = { item ->
+            Sentry.configureScope { scope ->
+                scope.setTransaction("Play ${item.getModelType()}")
+                scope.setExtra("item", item.toString())
+            }
             if (item is DownloadableItem.StreamableItem) {
                 playerService.setTrack(item)
                 playerService.play()

@@ -13,6 +13,7 @@ import io.github.kingg22.vibrion.ui.components.ErrorScreen
 import io.github.kingg22.vibrion.ui.components.LoadingScreen
 import io.github.kingg22.vibrion.ui.getModelType
 import io.github.kingg22.vibrion.ui.screens.download.DownloadViewModel
+import io.sentry.Sentry
 import org.koin.compose.koinInject
 import org.koin.compose.viewmodel.koinViewModel
 
@@ -45,10 +46,18 @@ fun MusicDetailScreen(
                 onDownloadClick = { downloadViewModel.download(it) },
                 onTrackClick = { item -> onDetailClick(item.getModelType(), item.id) },
                 onTrackPlayClick = { item ->
+                    Sentry.configureScope { scope ->
+                        scope.setTransaction("Play ${item.getModelType()}")
+                        scope.setExtra("item", item.toString())
+                    }
                     playerService.setTrack(item)
                     playerService.play()
                 },
                 onPlayClick = { item ->
+                    Sentry.configureScope { scope ->
+                        scope.setTransaction("Play ${item.getModelType()}")
+                        scope.setExtra("item", item.toString())
+                    }
                     if (item is DownloadableItem.StreamableItem) {
                         playerService.setTrack(item)
                         playerService.play()

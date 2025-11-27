@@ -29,8 +29,10 @@ import io.github.kingg22.vibrion.domain.model.ModelType
 import io.github.kingg22.vibrion.domain.service.AudioPlayerService
 import io.github.kingg22.vibrion.ui.components.ErrorScreen
 import io.github.kingg22.vibrion.ui.components.LoadingScreen
+import io.github.kingg22.vibrion.ui.getModelType
 import io.github.kingg22.vibrion.ui.screens.download.DownloadViewModel
 import io.github.kingg22.vibrion.ui.theme.VibrionAppTheme
+import io.sentry.Sentry
 import kotlinx.coroutines.flow.MutableStateFlow
 import org.koin.compose.koinInject
 import org.koin.compose.viewmodel.koinViewModel
@@ -54,6 +56,10 @@ fun SearchScreen(
     val artists = searchViewModel.searchArtistsPagedResult.collectAsLazyPagingItems()
 
     LaunchedEffect(query) {
+        Sentry.configureScope { scope ->
+            scope.setTransaction("Searching")
+            scope.setExtra("query", query)
+        }
         searchViewModel.search(query)
         searchViewModel.searchArtist(query)
     }
@@ -65,6 +71,10 @@ fun SearchScreen(
         onDownloadClick = downloadViewModel::download,
         onListDetailClick = { onListDetailClick(query, it) },
         onPlayClick = { item ->
+            Sentry.configureScope { scope ->
+                scope.setTransaction("Play ${item.getModelType()}")
+                scope.setExtra("item", item.toString())
+            }
             audioPlayerService.setTrack(item)
             audioPlayerService.play()
         },

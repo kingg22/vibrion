@@ -6,6 +6,8 @@ import co.touchlab.kermit.Logger
 import io.github.kingg22.vibrion.domain.model.DownloadableItem
 import io.github.kingg22.vibrion.domain.service.DownloadService
 import io.github.kingg22.vibrion.domain.usecase.settings.LoadTokenUseCase
+import io.github.kingg22.vibrion.ui.getModelType
+import io.sentry.Sentry
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.currentCoroutineContext
@@ -36,22 +38,22 @@ class DownloadViewModel(
         viewModelScope.launch(ioDispatcher) {
             token
                 .distinctUntilChanged()
-                .onEach {
+                .onEach { token ->
                     logger.d { "Token changed for download." }
-                    if (it == null) {
+                    if (token == null) {
                         logger.d { "Token is null, can't download." }
                         _canDownloadState.update { CanDownloadState.Unavailable }
                     }
                 }
                 .filterNotNull()
-                .catch {
-                    logger.e(throwable = it) { "Unexpected error while loading token for download." }
+                .catch { e ->
+                    logger.e(e) { "Unexpected error while loading token for download." }
                     _canDownloadState.update { CanDownloadState.Error }
                 }
-                .collect {
+                .collect { token ->
                     _canDownloadState.update { CanDownloadState.Loading }
                     try {
-                        if (downloadService.canDownload(it)) {
+                        if (downloadService.canDownload(token)) {
                             logger.i { "Can download with current token." }
                             _canDownloadState.update { CanDownloadState.Success }
                         } else {
@@ -68,8 +70,13 @@ class DownloadViewModel(
     }
 
     fun download(item: DownloadableItem) {
-        if (canDownloadState.value != CanDownloadState.Success) {
+        Sentry.configureScope { scope ->
+            scope.setTransaction("Download ${item.getModelType()}")
+            scope.setExtra("item", item.toString())
+        }
+        if (!canDownloadState.value.isSuccess) {
             logger.e { "Can't download, state is not success, this is an implementation error." }
+            Sentry.logger().error("Can't download, state is not success, item: $item")
             return
         }
         logger.v { "Try to download $item" }
@@ -77,6 +84,7 @@ class DownloadViewModel(
             val currentToken = token.filterNotNull().firstOrNull()
             if (currentToken == null) {
                 logger.e { "Can't download, token is null, this is an implementation error." }
+                Sentry.logger().error("Can't download, user token is null, item: $item")
                 return@launch
             }
             logger.d { "Downloading $item" }
