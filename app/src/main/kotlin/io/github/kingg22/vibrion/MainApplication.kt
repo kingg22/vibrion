@@ -17,14 +17,12 @@ import coil3.network.cachecontrol.CacheControlCacheStrategy
 import coil3.network.ktor3.KtorNetworkFetcherFactory
 import coil3.request.crossfade
 import com.google.common.util.concurrent.ListenableFuture
-import io.github.kingg22.deezer.client.utils.HttpClientBuilder
 import io.github.kingg22.vibrion.data.service.VibrionMediaService
 import io.github.kingg22.vibrion.di.vibrionAppModule
 import org.koin.android.ext.koin.androidContext
 import org.koin.androix.startup.KoinStartup
 import org.koin.core.annotation.KoinExperimentalAPI
 import org.koin.core.logger.MESSAGE
-import org.koin.core.parameter.parametersOf
 import org.koin.dsl.KoinConfiguration
 import kotlin.time.ExperimentalTime
 import co.touchlab.kermit.Logger as KermitLogger
@@ -51,7 +49,7 @@ class MainApplication :
         .components {
             add(
                 KtorNetworkFetcherFactory(
-                    httpClient = { koinGet<HttpClientBuilder> { parametersOf("Coil3") }.build() },
+                    httpClient = { koinGet() },
                     cacheStrategy = { CacheControlCacheStrategy() },
                 ),
             )

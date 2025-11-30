@@ -7,7 +7,6 @@ import io.github.kingg22.deezer.client.gw.requests.MediaRequest
 import io.github.kingg22.deezer.client.gw.requests.MediaRequest.Companion.toMediaRequest
 import io.github.kingg22.deezer.client.gw.withTokenCheck
 import io.github.kingg22.deezer.client.utils.ExperimentalDeezerClient
-import io.github.kingg22.deezer.client.utils.HttpClientBuilder
 import io.github.kingg22.deezer.client.utils.UnofficialDeezerApi
 import io.github.kingg22.vibrion.core.application.DownloadOrchestrator
 import io.github.kingg22.vibrion.core.domain.model.Download
@@ -19,6 +18,7 @@ import io.github.kingg22.vibrion.domain.model.DownloadablePlaylist
 import io.github.kingg22.vibrion.domain.model.DownloadableSingle
 import io.github.kingg22.vibrion.ext.DeezerId3
 import io.github.kingg22.vibrion.ext.toMusicMetadata
+import io.ktor.client.HttpClient
 import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.cancel
 import kotlinx.coroutines.coroutineScope
@@ -26,9 +26,9 @@ import kotlinx.coroutines.currentCoroutineContext
 import kotlinx.coroutines.ensureActive
 import kotlinx.coroutines.launch
 
-@OptIn(UnofficialDeezerApi::class)
+@OptIn(UnofficialDeezerApi::class, ExperimentalDeezerClient::class)
 class DeezerGwDataSource(
-    private val httpClientBuilder: HttpClientBuilder,
+    private val httpClient: HttpClient,
     private val orchestrator: DownloadOrchestrator,
     private val platformHelper: PlatformHelper,
 ) {
@@ -39,7 +39,7 @@ class DeezerGwDataSource(
     private lateinit var latestToken: String
 
     suspend fun canDownload(token: String): Boolean = try {
-        val result = DeezerGwClient.verifyArl(token, httpClientBuilder)
+        val result = DeezerGwClient.verifyArl(token, httpClient)
         if (result != null) {
             logger.e { "Token is invalid because is $result" }
         }
@@ -91,7 +91,7 @@ class DeezerGwDataSource(
                 tracks.getTrackData(single.id.toLong())
             }
             // Don't call withTokenCheck because the previous request has already verified the token
-            val mediaResult = gwClient.getMedias(track.trackToken.toMediaRequest())
+            val mediaResult = gwClient.getMedias(track.trackToken.toMediaRequest(gwClient.licenseToken))
             val urls = mediaResult.getAllUrls()
 
             if (urls.isEmpty()) {
@@ -131,7 +131,7 @@ class DeezerGwDataSource(
         logger.d { "Start downloading $type '$title'" }
 
         val mediaResult = gwClient.withTokenCheck {
-            getMedias(MediaRequest(trackTokens)).getAllMedias()
+            getMedias(MediaRequest(trackTokens, gwClient.licenseToken)).getAllMedias()
         }
         if (mediaResult.isEmpty()) {
             logger.e { "No media found for $type '$title'" }
@@ -197,10 +197,9 @@ class DeezerGwDataSource(
             logger.d { if (shouldInit) "Initializing Deezer client" else "Restarting client with new token" }
             try {
                 if (!shouldInit) {
-                    @OptIn(ExperimentalDeezerClient::class)
                     gwClient.httpClient.use { it.coroutineContext.cancel() }
                 }
-                gwClient = DeezerGwClient.initialize(token, httpClientBuilder)
+                gwClient = DeezerGwClient.initialize(token, httpClient)
                 latestToken = token
             } catch (e: IllegalArgumentException) {
                 logger.e(e) { "Failed to (re)initialize Deezer client" }
