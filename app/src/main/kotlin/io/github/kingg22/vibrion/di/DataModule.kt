@@ -1,5 +1,3 @@
-@file:OptIn(UnofficialDeezerApi::class)
-
 package io.github.kingg22.vibrion.di
 
 import io.github.kingg22.deezer.client.api.DeezerApiClient
@@ -33,15 +31,18 @@ import io.ktor.client.plugins.cache.HttpCache
 import io.ktor.client.plugins.cache.storage.FileStorage
 import io.ktor.client.plugins.contentnegotiation.ContentNegotiation
 import io.ktor.client.plugins.cookies.HttpCookies
+import io.ktor.client.plugins.defaultRequest
+import io.ktor.client.plugins.logging.LogLevel
 import io.ktor.client.plugins.logging.Logging
 import io.ktor.client.plugins.logging.LoggingFormat
+import io.ktor.http.userAgent
 import io.ktor.serialization.kotlinx.json.json
 import io.sentry.ktorClient.SentryKtorClientPlugin
 import kotlinx.serialization.json.Json
 import org.koin.android.ext.koin.androidContext
 import org.koin.dsl.module
 import org.koin.dsl.onClose
-import kotlin.time.Duration.Companion.milliseconds
+import kotlin.time.Duration.Companion.seconds
 import co.touchlab.kermit.Logger as KermitLogger
 import io.ktor.client.plugins.logging.Logger as KtorLogger
 
@@ -68,7 +69,7 @@ val dataModule = module {
                 )
             }
             install(HttpTimeout) {
-                requestTimeoutMillis = 20.milliseconds.inWholeMilliseconds
+                requestTimeoutMillis = 20.seconds.inWholeMilliseconds
             }
             install(HttpRequestRetry) {
                 maxRetries = 3
@@ -82,6 +83,7 @@ val dataModule = module {
                     }
                 }
                 format = LoggingFormat.OkHttp
+                level = LogLevel.ALL
             }
 
             Charsets {
@@ -91,12 +93,19 @@ val dataModule = module {
             }
 
             install(DeezerClientPlugin)
+
+            @OptIn(UnofficialDeezerApi::class)
             install(DeezerGwPlugin)
+
             install(SentryKtorClientPlugin)
             install(HttpRedirect)
             install(HttpCache) {
                 publicStorage(FileStorage(androidContext().cacheDir.resolve("ktor_image_cache")))
                 privateStorage(FileStorage(androidContext().cacheDir.resolve("ktor_private_image_cache")))
+            }
+
+            defaultRequest {
+                userAgent("Mozilla/5.0 (X11; Linux i686; rv:135.0) Gecko/20100101 Firefox/135.0")
             }
             expectSuccess = true
         }
