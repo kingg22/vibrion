@@ -16,7 +16,7 @@ plugins {
 }
 
 group = "io.github.kingg22"
-version = "0.0.8"
+version = "0.0.9"
 
 kotlin {
     compilerOptions {
@@ -46,7 +46,7 @@ android {
         applicationId = "$group.vibrion"
         minSdk = libs.versions.android.minSdk.get().toInt()
         targetSdk = libs.versions.android.compileSdk.get().toInt()
-        versionCode = 8
+        versionCode = 9
         versionName = project.version.toString()
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
