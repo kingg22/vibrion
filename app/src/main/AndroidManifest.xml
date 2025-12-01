@@ -97,6 +97,8 @@
             android:value="0.1" />
 
         <meta-data android:name="io.sentry.ndk.enable" android:value="false" />
+
+        <meta-data android:name="io.sentry.traces.trace-propagation-targets" android:value="" />
     </application>
 
 </manifest>
