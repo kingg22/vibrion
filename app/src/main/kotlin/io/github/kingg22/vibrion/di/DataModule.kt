@@ -30,6 +30,7 @@ import io.ktor.client.plugins.HttpTimeout
 import io.ktor.client.plugins.cache.HttpCache
 import io.ktor.client.plugins.cache.storage.FileStorage
 import io.ktor.client.plugins.compression.ContentEncoding
+import io.ktor.client.plugins.compression.ContentEncodingConfig
 import io.ktor.client.plugins.contentnegotiation.ContentNegotiation
 import io.ktor.client.plugins.cookies.HttpCookies
 import io.ktor.client.plugins.defaultRequest
@@ -54,7 +55,7 @@ val dataModule = module {
         HttpClient(CIO) {
             install(HttpCookies)
             install(BodyProgress)
-            ContentEncoding()
+            ContentEncoding(mode = ContentEncodingConfig.Mode.All)
             install(ContentNegotiation) {
                 json(
                     Json {
