@@ -147,6 +147,7 @@ dependencies {
 
     // ktor client
     implementation(libs.ktor.client.engine.cio)
+    implementation(libs.ktor.client.encoding)
 
     // coil for async images
     implementation(libs.coil.compose)
