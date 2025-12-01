@@ -29,6 +29,7 @@ import io.ktor.client.plugins.HttpRequestRetry
 import io.ktor.client.plugins.HttpTimeout
 import io.ktor.client.plugins.cache.HttpCache
 import io.ktor.client.plugins.cache.storage.FileStorage
+import io.ktor.client.plugins.compression.ContentEncoding
 import io.ktor.client.plugins.contentnegotiation.ContentNegotiation
 import io.ktor.client.plugins.cookies.HttpCookies
 import io.ktor.client.plugins.defaultRequest
@@ -53,6 +54,7 @@ val dataModule = module {
         HttpClient(CIO) {
             install(HttpCookies)
             install(BodyProgress)
+            ContentEncoding()
             install(ContentNegotiation) {
                 json(
                     Json {
@@ -110,9 +112,7 @@ val dataModule = module {
             expectSuccess = true
         }
     } onClose { httpClient -> httpClient?.close() }
-    single { _ ->
-        DeezerApiClient(get<HttpClient>())
-    }
+    single { _ -> DeezerApiClient(get<HttpClient>()) }
 
     // DataSources
     factory { _ -> DeezerApiDataSource(get()) }
