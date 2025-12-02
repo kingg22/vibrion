@@ -4,6 +4,7 @@ import io.github.kingg22.deezer.client.api.DeezerApiClient
 import io.github.kingg22.deezer.client.api.DeezerClientPlugin
 import io.github.kingg22.deezer.client.gw.DeezerGwPlugin
 import io.github.kingg22.deezer.client.utils.UnofficialDeezerApi
+import io.github.kingg22.vibrion.BuildConfig
 import io.github.kingg22.vibrion.data.PlatformHelper
 import io.github.kingg22.vibrion.data.datasource.music.DeezerApiDataSource
 import io.github.kingg22.vibrion.data.datasource.music.DeezerGwDataSource
@@ -86,7 +87,7 @@ val dataModule = module {
                     }
                 }
                 format = LoggingFormat.OkHttp
-                level = LogLevel.ALL
+                level = if (BuildConfig.DEBUG) LogLevel.ALL else LogLevel.INFO
             }
 
             Charsets {
@@ -95,10 +96,14 @@ val dataModule = module {
                 responseCharsetFallback = Charsets.UTF_8
             }
 
-            install(DeezerClientPlugin)
+            install(DeezerClientPlugin) {
+                includeDefaultHeaders = true
+            }
 
             @OptIn(UnofficialDeezerApi::class)
-            install(DeezerGwPlugin)
+            install(DeezerGwPlugin) {
+                includeDefaultHeaders = true
+            }
 
             install(SentryKtorClientPlugin)
             install(HttpRedirect)
