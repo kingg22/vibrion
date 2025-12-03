@@ -16,6 +16,7 @@ import io.github.kingg22.vibrion.ui.components.TopSearchBar
 import io.github.kingg22.vibrion.ui.getModelType
 import io.github.kingg22.vibrion.ui.screens.search.SearchHistoryViewModel
 import io.sentry.Sentry
+import io.sentry.SpanStatus
 import org.koin.compose.koinInject
 import org.koin.compose.viewmodel.koinViewModel
 
@@ -50,18 +51,23 @@ fun HomeScreen(
         },
         onDetailClick = onDetailClick,
         onPlayTrackClick = { item ->
-            Sentry.configureScope { scope ->
-                scope.setTransaction("Play ${item.getModelType()}")
-                scope.setExtra("item", item.toString())
-            }
-            if (item is DownloadableItem.StreamableItem) {
-                audioService.setTrack(item)
-                audioService.play()
-            } else if (item is DownloadableItem.ItemWithTracks) {
-                @Suppress("UNCHECKED_CAST")
-                audioService.setQueue(
-                    item.tracks.filterIsInstance<DownloadableItem.StreamableItem>() as List<DownloadableItem>,
-                )
+            val sentryTransaction = Sentry.startTransaction("Play a ${item.getModelType()}", "play")
+            sentryTransaction.setData("item", item.toString())
+            try {
+                if (item is DownloadableItem.StreamableItem) {
+                    audioService.setTrack(item)
+                    audioService.play()
+                } else if (item is DownloadableItem.ItemWithTracks) {
+                    @Suppress("UNCHECKED_CAST")
+                    audioService.setQueue(
+                        item.tracks.filterIsInstance<DownloadableItem.StreamableItem>() as List<DownloadableItem>,
+                    )
+                }
+            } catch (e: Throwable) {
+                sentryTransaction.throwable = e
+                sentryTransaction.status = SpanStatus.INTERNAL_ERROR
+            } finally {
+                sentryTransaction.finish()
             }
         },
     ) {
