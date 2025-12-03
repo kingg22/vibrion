@@ -14,15 +14,7 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Scaffold
-import androidx.compose.material3.SegmentedButton
-import androidx.compose.material3.SegmentedButtonDefaults
-import androidx.compose.material3.SingleChoiceSegmentedButtonRow
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableIntStateOf
-import androidx.compose.runtime.saveable.rememberSaveable
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -68,8 +60,10 @@ fun HomeContent(
     modifier: Modifier = Modifier,
     topBar: @Composable () -> Unit,
 ) {
+    /*
     val options = rememberSaveable { listOf(R.string.deezer_name) }
     var selectedIndex by rememberSaveable { mutableIntStateOf(0) }
+     */
 
     Scaffold(
         modifier = modifier.fillMaxSize(),
@@ -83,7 +77,7 @@ fun HomeContent(
             horizontalAlignment = Alignment.Start,
             verticalArrangement = Arrangement.spacedBy(0.dp, Alignment.Top),
         ) {
-            // Button Bar of supported platforms
+            /* Button Bar of supported platforms
             item {
                 SingleChoiceSegmentedButtonRow(
                     modifier = Modifier
@@ -103,6 +97,7 @@ fun HomeContent(
                     }
                 }
             }
+             */
 
             // Genres icons
             item {
