@@ -2,13 +2,11 @@ package io.github.kingg22.vibrion.domain.model
 
 import androidx.compose.runtime.Immutable
 import androidx.compose.runtime.Stable
-import dev.drewhamilton.poko.Poko
 import kotlin.time.Duration
 
 @Stable
 @Immutable
-@Poko
-class DownloadableSingle(
+data class DownloadableSingle(
     override val id: String,
     override val title: String,
     override val description: String?,
@@ -21,7 +19,6 @@ class DownloadableSingle(
 ) : DownloadableItem,
     DownloadableItem.StreamableItem {
     companion object {
-        @OptIn(kotlin.uuid.ExperimentalUuidApi::class)
         @JvmStatic
         val previewDefault
             get() = DownloadableSingle(

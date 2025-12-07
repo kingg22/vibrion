@@ -1,16 +1,13 @@
-import com.mikepenz.aboutlibraries.plugin.DuplicateMode
-import com.mikepenz.aboutlibraries.plugin.DuplicateRule
 import org.jetbrains.kotlin.gradle.dsl.JvmDefaultMode
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
+import org.jetbrains.kotlin.gradle.dsl.KotlinVersion
 
 plugins {
-    alias(libs.plugins.aboutLibraries)
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.composeCompiler)
     alias(libs.plugins.kotlinAndroid)
     alias(libs.plugins.kotlinSerialization)
     alias(libs.plugins.ktlint)
-    alias(libs.plugins.poko)
     alias(libs.plugins.sentry)
     alias(libs.plugins.sentry.compiler)
 }
@@ -30,6 +27,8 @@ kotlin {
             "androidx.compose.animation.ExperimentalSharedTransitionApi",
         )
         // freeCompilerArgs.add("-Xexpect-actual-classes")
+        apiVersion.set(KotlinVersion.KOTLIN_2_2)
+        languageVersion.set(apiVersion)
         jvmTarget.set(JvmTarget.JVM_11)
         jvmDefault.set(JvmDefaultMode.NO_COMPATIBILITY)
     }
@@ -69,14 +68,11 @@ android {
     }
     buildTypes {
         release {
-            val signingKey = signingConfigs.findByName("release")
+            signingConfig = signingConfigs.findByName("release")
 
             isMinifyEnabled = doMinify
             isShrinkResources = doShrink
-            if (signingKey != null) {
-                signingConfig = signingKey
-            }
-            if ((doMinify || doShrink) && signingKey == null) {
+            if ((doMinify || doShrink) && signingConfig == null) {
                 logger.warn("Minify release without a signing key, this will fail in runtime")
             }
             proguardFiles(
@@ -180,16 +176,18 @@ composeCompiler {
     metricsDestination.set(layout.buildDirectory.dir("reports/compose_metrics"))
 }
 
+/*
 aboutLibraries {
     library {
-        duplicationRule.set(DuplicateRule.GROUP)
-        duplicationMode.set(DuplicateMode.MERGE)
+        duplicationRule.set(com.mikepenz.aboutlibraries.plugin.DuplicateRule.GROUP)
+        duplicationMode.set(com.mikepenz.aboutlibraries.plugin.DuplicateMode.MERGE)
     }
     export {
         outputFile.set(file("src/main/res/raw/aboutlibraries.json"))
         prettyPrint.set(true)
     }
 }
+ */
 
 ktlint {
     version.set(libs.versions.ktlint.pinterest.get())

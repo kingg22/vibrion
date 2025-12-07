@@ -1,12 +1,10 @@
 package io.github.kingg22.vibrion.domain.model
 
 import androidx.compose.runtime.Immutable
-import dev.drewhamilton.poko.Poko
 import kotlin.time.Duration
 
-@Poko
 @Immutable
-class DownloadableAlbum(
+data class DownloadableAlbum(
     override val id: String,
     override val title: String,
     override val description: String?,
