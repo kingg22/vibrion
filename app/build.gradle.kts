@@ -7,7 +7,6 @@ plugins {
     alias(libs.plugins.composeCompiler)
     alias(libs.plugins.kotlinAndroid)
     alias(libs.plugins.kotlinSerialization)
-    alias(libs.plugins.ktlint)
     alias(libs.plugins.sentry)
     alias(libs.plugins.sentry.compiler)
 }
@@ -168,7 +167,6 @@ dependencies {
 
     debugImplementation(platform(libs.compose.bom))
     debugImplementation(libs.compose.ui.tooling)
-    ktlintRuleset(libs.ktlint.compose)
 }
 
 composeCompiler {
@@ -188,10 +186,6 @@ aboutLibraries {
     }
 }
  */
-
-ktlint {
-    version.set(libs.versions.ktlint.pinterest.get())
-}
 
 val hasSentryToken = System.getenv("SENTRY_AUTH_TOKEN") != null
 logger.info("Sentry source code context upload token: $hasSentryToken")
