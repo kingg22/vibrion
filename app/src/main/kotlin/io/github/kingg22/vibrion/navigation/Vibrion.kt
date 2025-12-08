@@ -3,7 +3,6 @@ package io.github.kingg22.vibrion.navigation
 import androidx.compose.animation.AnimatedContentScope
 import androidx.compose.animation.AnimatedContentTransitionScope
 import androidx.compose.animation.ContentTransform
-import androidx.compose.animation.ExperimentalSharedTransitionApi
 import androidx.compose.animation.SharedTransitionLayout
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.saveable.rememberSerializable
@@ -20,14 +19,12 @@ import androidx.navigation3.ui.NavDisplay
 import androidx.navigation3.ui.NavDisplay.predictivePopTransitionSpec
 import co.touchlab.kermit.Logger
 import io.github.kingg22.vibrion.navigation.VibrionRoutes.Detail
-import io.github.kingg22.vibrion.navigation.VibrionRoutes.Download
 import io.github.kingg22.vibrion.navigation.VibrionRoutes.Home
 import io.github.kingg22.vibrion.navigation.VibrionRoutes.Libraries
 import io.github.kingg22.vibrion.navigation.VibrionRoutes.Search
 import io.github.kingg22.vibrion.navigation.VibrionRoutes.SearchDetail
 import io.github.kingg22.vibrion.navigation.VibrionRoutes.Settings
 import io.github.kingg22.vibrion.ui.screens.detail.MusicDetailScreen
-import io.github.kingg22.vibrion.ui.screens.download.DownloadScreen
 import io.github.kingg22.vibrion.ui.screens.home.HomeScreen
 import io.github.kingg22.vibrion.ui.screens.search.SearchScreen
 import io.github.kingg22.vibrion.ui.screens.search.detail.SearchDetailScreen
@@ -36,7 +33,6 @@ import io.github.kingg22.vibrion.ui.screens.settings.SettingsScreen
 import kotlinx.serialization.Serializable
 
 /** Navigation of Vibrion app. */
-@OptIn(ExperimentalSharedTransitionApi::class)
 @Composable
 fun Vibrion(modifier: Modifier = Modifier) {
     val backStack = rememberSerializable(
@@ -73,15 +69,6 @@ fun Vibrion(modifier: Modifier = Modifier) {
                             )
                         },
                     )
-                }
-
-                is Download -> entry(key) {
-                    DownloadScreen(bottomBar = {
-                        BottomNavigationBar(
-                            isSelected = { backStack.lastOrNull() == it },
-                            onNavigate = { backStack.singletonToLast(it) },
-                        )
-                    })
                 }
 
                 is Settings -> entry(key) {

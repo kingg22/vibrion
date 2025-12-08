@@ -159,11 +159,8 @@ dependencies {
     // aboutlibraries
     implementation(libs.aboutlibraries.compose.m3)
 
-    // internal projects
-    implementation(projects.deezerSdkKt)
-    implementation(projects.vibrionCore)
-    implementation(projects.integrations.deezerCore)
-    implementation(projects.integrations.id3Core)
+    // deezer
+    implementation(libs.deezer.client.kt)
 
     debugImplementation(platform(libs.compose.bom))
     debugImplementation(libs.compose.ui.tooling)

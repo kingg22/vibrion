@@ -1,7 +1,6 @@
 package io.github.kingg22.vibrion.di
 
 import io.github.kingg22.vibrion.ui.screens.detail.DetailViewModel
-import io.github.kingg22.vibrion.ui.screens.download.DownloadStatsViewModel
 import io.github.kingg22.vibrion.ui.screens.download.DownloadViewModel
 import io.github.kingg22.vibrion.ui.screens.home.HomeViewModel
 import io.github.kingg22.vibrion.ui.screens.search.SearchHistoryViewModel
@@ -14,7 +13,6 @@ val uiModule = module(false) {
     // View Models
     viewModel { SearchHistoryViewModel(get(), get(), get()) }
     viewModel { SearchViewModel(get(), get(), get(), get()) }
-    viewModel { DownloadStatsViewModel(get()) }
     viewModel { DownloadViewModel(get(), get()) }
     viewModel { DetailViewModel(get()) }
     viewModel { HomeViewModel(get(), get(), get(), get(), get()) }

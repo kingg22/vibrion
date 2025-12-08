@@ -31,6 +31,7 @@ class ExoPlayerAudioPlayerService(private val androidContext: AndroidContext) : 
                     Player.STATE_BUFFERING -> {
                         _playbackState.update { _ -> PlaybackState.Buffering }
                     }
+
                     Player.STATE_READY -> {
                         if (exo.isPlaying) {
                             _playbackState.update { _ -> PlaybackState.Playing }
@@ -38,9 +39,11 @@ class ExoPlayerAudioPlayerService(private val androidContext: AndroidContext) : 
                             _playbackState.update { _ -> PlaybackState.Paused }
                         }
                     }
+
                     Player.STATE_ENDED -> {
                         _playbackState.update { _ -> PlaybackState.Ended }
                     }
+
                     Player.STATE_IDLE -> {
                         _playbackState.update { _ -> PlaybackState.Idle }
                     }

@@ -1,7 +1,5 @@
 package io.github.kingg22.vibrion.di
 
-import io.github.kingg22.vibrion.core.di.vibrionCoreModule
-import io.github.kingg22.vibrion.ext.deezerId3Module
 import org.koin.dsl.module
 
 val vibrionAppModule = module {
@@ -12,7 +10,7 @@ val vibrionAppModule = module {
     includes(dataModule, domainModule)
     includes(uiModule)
     // External packages
-    includes(vibrionCoreModule, deezerId3Module)
+    // includes(vibrionCoreModule, deezerId3Module)
     // Platform
     includes(vibrionPlatformModule)
 }

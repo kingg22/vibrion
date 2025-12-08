@@ -1,7 +1,6 @@
 package io.github.kingg22.vibrion.navigation
 
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Download
 import androidx.compose.material.icons.filled.MusicNote
 import androidx.compose.material.icons.filled.Settings
 import androidx.compose.material3.Icon
@@ -51,6 +50,5 @@ private enum class NavigationItem(
     val destinationRoute: VibrionRoutes,
 ) {
     HOME(R.string.home, Icons.Filled.MusicNote, R.string.music_note, VibrionRoutes.Home),
-    DOWNLOADS(R.string.downloads, Icons.Filled.Download, R.string.download, VibrionRoutes.Download),
     SETTINGS(R.string.settings, Icons.Filled.Settings, R.string.settings, VibrionRoutes.Settings),
 }

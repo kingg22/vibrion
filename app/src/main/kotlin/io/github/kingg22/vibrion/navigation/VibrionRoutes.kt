@@ -30,10 +30,6 @@ sealed class VibrionRoutes : NavKey {
         val modelType = ModelType.valueOf(title.uppercase())
     }
 
-    /** Refers to [io.github.kingg22.vibrion.ui.screens.download.DownloadScreen] */
-    @Serializable
-    data object Download : VibrionRoutes()
-
     @Serializable
     data class Detail(val type: String, val id: String) : VibrionRoutes() {
         constructor(type: ModelType, id: String) : this(type.name.uppercase(), id)

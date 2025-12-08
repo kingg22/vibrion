@@ -2,18 +2,14 @@ package io.github.kingg22.vibrion.di
 
 import io.github.kingg22.deezer.client.api.DeezerApiClient
 import io.github.kingg22.deezer.client.api.DeezerClientPlugin
-import io.github.kingg22.deezer.client.gw.DeezerGwPlugin
-import io.github.kingg22.deezer.client.utils.UnofficialDeezerApi
 import io.github.kingg22.vibrion.BuildConfig
-import io.github.kingg22.vibrion.data.PlatformHelper
 import io.github.kingg22.vibrion.data.datasource.music.DeezerApiDataSource
-import io.github.kingg22.vibrion.data.datasource.music.DeezerGwDataSource
 import io.github.kingg22.vibrion.data.datasource.preferences.PreferencesDataSource
 import io.github.kingg22.vibrion.data.repository.SearchHistoryRepositoryImpl
 import io.github.kingg22.vibrion.data.repository.SearchRepositoryImpl
 import io.github.kingg22.vibrion.data.repository.SettingsRepositoryImpl
 import io.github.kingg22.vibrion.data.repository.TrendsRepositoryImpl
-import io.github.kingg22.vibrion.data.service.DownloadServiceImpl
+import io.github.kingg22.vibrion.data.service.DownloadServiceNoOpImpl
 import io.github.kingg22.vibrion.data.service.ExoPlayerAudioPlayerService
 import io.github.kingg22.vibrion.domain.repository.SearchHistoryRepository
 import io.github.kingg22.vibrion.domain.repository.SearchRepository
@@ -100,11 +96,6 @@ val dataModule = module {
                 includeDefaultHeaders = true
             }
 
-            @OptIn(UnofficialDeezerApi::class)
-            install(DeezerGwPlugin) {
-                includeDefaultHeaders = true
-            }
-
             install(SentryKtorClientPlugin)
             install(HttpRedirect)
             install(HttpCache) {
@@ -122,17 +113,15 @@ val dataModule = module {
 
     // DataSources
     factory { _ -> DeezerApiDataSource(get()) }
-    single { _ -> DeezerGwDataSource(get(), get(), get()) }
     factory { _ -> PreferencesDataSource(get()) }
 
     // Services
-    factory<DownloadService> { _ -> DownloadServiceImpl(get(), get()) }
+    single<DownloadService> { _ -> DownloadServiceNoOpImpl() }
     single<AudioPlayerService> { _ -> ExoPlayerAudioPlayerService(androidContext()) }
-    factory { _ -> PlatformHelper(androidContext()) }
 
     // Repositories
     factory<SearchHistoryRepository> { _ -> SearchHistoryRepositoryImpl(get()) }
-    factory<SettingsRepository> { _ -> SettingsRepositoryImpl(get(), get()) }
+    factory<SettingsRepository> { _ -> SettingsRepositoryImpl(get()) }
     factory<SearchRepository> { _ -> SearchRepositoryImpl(get()) }
     factory<TrendsRepository> { _ -> TrendsRepositoryImpl(get()) }
 }
