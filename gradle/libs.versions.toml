@@ -82,6 +82,8 @@ poko = "0.20.2"
 sentry-bom = "8.27.1"
 # https://github.com/getsentry/sentry-android-gradle-plugin/releases
 sentry-plugin = "5.12.2"
+# https://github.com/getsentry/sentry-kotlin-multiplatform/releases
+sentry-kotlin-multiplatform = "0.22.0"
 # https://mvnrepository.com/artifact/org.slf4j/slf4j-android
 slf4jAndroid = "1.7.36"
 # https://github.com/kingg22/vibrion-id3/releases
@@ -207,6 +209,7 @@ androidx-media3-session = { group = "androidx.media3", name = "media3-session", 
 
 # sentry
 sentry-bom = { group = "io.sentry", name = "sentry-bom", version.ref = "sentry-bom" }
+sentry-kotlin-multiplatform = { module = "io.sentry:sentry-kotlin-multiplatform", version.ref = "sentry-kotlin-multiplatform" }
 sentry-kt = { group = "io.sentry", name = "sentry-kotlin-extensions" }
 sentry-android = { group = "io.sentry", name = "sentry-android-core" }
 sentry-compose-android = { group = "io.sentry", name = "sentry-compose-android" }

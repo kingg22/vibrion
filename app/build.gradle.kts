@@ -110,6 +110,10 @@ dependencies {
     implementation(libs.androidx.glance.appwidget.preview)
     implementation(libs.androidx.glance.preview)
 
+    // exoplayer for android
+    implementation(libs.androidx.media3.exoplayer)
+    implementation(libs.androidx.media3.session)
+
     // sentry sdk for android
     implementation(platform(libs.sentry.bom))
     implementation(libs.sentry.kt)
@@ -154,10 +158,6 @@ dependencies {
 
     // aboutlibraries
     implementation(libs.aboutlibraries.compose.m3)
-
-    // exoplayer
-    implementation(libs.androidx.media3.exoplayer)
-    implementation(libs.androidx.media3.session)
 
     // internal projects
     implementation(projects.deezerSdkKt)
