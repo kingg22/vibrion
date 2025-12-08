@@ -79,7 +79,11 @@ settings:
     languageVersion: 2.2
     allWarningsAsErrors: true
     freeCompilerArgs:
-      - -Wextra
+      - "-Wextra"
+      - "-P"
+      - plugin:androidx.compose.compiler.plugins.kotlin:metricsDestination=build/reports/compose_metrics
+      - "-P"
+      - plugin:androidx.compose.compiler.plugins.kotlin:reportsDestination=build/reports/compose_reports
     optIns:
       - "kotlin.contracts.ExperimentalContracts"
       - "kotlin.time.ExperimentalTime"
