@@ -40,7 +40,7 @@ class MainApplication :
     private var controller: MediaController? = null
 
     init {
-        KermitLogger.mutableConfig.minSeverity = if (BuildConfig.DEBUG) Severity.Verbose else Severity.Info
+        KermitLogger.mutableConfig.minSeverity = Severity.Verbose
     }
 
     @OptIn(ExperimentalTime::class, ExperimentalCoilApi::class)
@@ -74,10 +74,14 @@ class MainApplication :
                 override fun log(tag: String, level: Coil3Logger.Level, message: String?, throwable: Throwable?) {
                     when (level) {
                         Coil3Logger.Level.Verbose -> logger.v(message ?: "", throwable, tag)
+
                         Coil3Logger.Level.Debug -> logger.d(message ?: "", throwable, tag)
+
                         // Logs as verbose because coil3 have a lot of logs in level Info
                         Coil3Logger.Level.Info -> logger.v(message ?: "", throwable, tag)
+
                         Coil3Logger.Level.Warn -> logger.w(message ?: "", throwable, tag)
+
                         Coil3Logger.Level.Error -> logger.e(message ?: "", throwable, tag)
                     }
                 }
@@ -116,9 +120,13 @@ class MainApplication :
                 override fun display(level: KoinLoggerLevel, msg: MESSAGE) {
                     when (level) {
                         KoinLoggerLevel.DEBUG -> logger.d(msg)
+
                         KoinLoggerLevel.INFO -> logger.i(msg)
+
                         KoinLoggerLevel.WARNING -> logger.w(msg)
+
                         KoinLoggerLevel.ERROR -> logger.e(msg)
+
                         KoinLoggerLevel.NONE -> {
                             // do nothing
                         }

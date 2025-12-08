@@ -2,7 +2,6 @@ package io.github.kingg22.vibrion.di
 
 import io.github.kingg22.deezer.client.api.DeezerApiClient
 import io.github.kingg22.deezer.client.api.DeezerClientPlugin
-import io.github.kingg22.vibrion.BuildConfig
 import io.github.kingg22.vibrion.data.datasource.music.DeezerApiDataSource
 import io.github.kingg22.vibrion.data.datasource.preferences.PreferencesDataSource
 import io.github.kingg22.vibrion.data.repository.SearchHistoryRepositoryImpl
@@ -83,7 +82,7 @@ val dataModule = module {
                     }
                 }
                 format = LoggingFormat.OkHttp
-                level = if (BuildConfig.DEBUG) LogLevel.ALL else LogLevel.INFO
+                level = LogLevel.INFO
             }
 
             Charsets {

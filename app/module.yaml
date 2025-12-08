@@ -1,0 +1,98 @@
+product: android/app
+
+dependencies:
+  - bom: $libs.compose.bom
+  - $libs.compose.ui.tooling.preview
+
+  # android activity
+  - $libs.androidx.activity.compose
+
+  # KTOR ENFORCE TO USE SL4FJ
+  - $libs.slf4j.android:
+      scope: runtime-only
+
+  # koin DI android specific
+  - $libs.koin.androidx.startup
+
+  # glance for android widgets with special compose API
+  - $libs.androidx.glance.appwidget
+  - $libs.androidx.glance.material3
+  - $libs.androidx.glance.appwidget.preview
+  - $libs.androidx.glance.preview
+
+  # exoplayer for android
+  - $libs.androidx.media3.exoplayer
+  - $libs.androidx.media3.session
+
+  # sentry sdk for android
+  - bom: $libs.sentry.bom
+  - $libs.sentry.kt
+  - $libs.sentry.android
+  - $libs.sentry.compose.android
+  - $libs.sentry.ktor.client
+
+  - $libs.compose.runtime
+  - $libs.compose.foundation
+  - $libs.compose.material3
+  - $libs.compose.material.icons.extended
+  - $libs.compose.ui
+
+  # androidx lifecycle
+  - $libs.androidx.lifecycle.runtime.compose
+
+  # koin DI
+  - $libs.koin.compose
+  - $libs.koin.compose.viewmodel
+
+  # navigation3
+  - $libs.androidx.navigation3.ui
+  - $libs.androidx.lifecycle.viewmodel.nav3
+
+  # data store preferences
+  - $libs.androidx.data.store.preferences
+
+  # paging3
+  - $libs.androidx.paging3.compose
+
+  # ktor client
+  - $libs.ktor.client.engine.cio
+  - $libs.ktor.client.encoding
+
+  # coil for async images
+  - $libs.coil.compose
+  - $libs.coil.ktor3
+  - $libs.coil.network.cache.control
+
+  # kermit for logging
+  - $libs.kermit
+
+  # aboutlibraries
+  - $libs.aboutlibraries.compose.m3
+
+  # deezer
+  - $libs.deezer.client.kt
+
+settings:
+  jvm:
+    release: 11
+  kotlin:
+    languageVersion: 2.2
+    allWarningsAsErrors: true
+    freeCompilerArgs:
+      - -Wextra
+    optIns:
+      - "kotlin.contracts.ExperimentalContracts"
+      - "kotlin.time.ExperimentalTime"
+      - "kotlin.uuid.ExperimentalUuidApi"
+      - "androidx.compose.material3.ExperimentalMaterial3Api"
+      - "androidx.compose.animation.ExperimentalSharedTransitionApi"
+    serialization:
+      enabled: true
+  compose:
+    enabled: true
+  android:
+    namespace: "io.github.kingg22.vibrion"
+    compileSdk: 36
+    minSdk: 30
+    versionCode: 9
+    versionName: 0.0.9

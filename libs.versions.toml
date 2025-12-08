@@ -210,10 +210,10 @@ androidx-media3-session = { group = "androidx.media3", name = "media3-session", 
 # sentry
 sentry-bom = { group = "io.sentry", name = "sentry-bom", version.ref = "sentry-bom" }
 sentry-kotlin-multiplatform = { module = "io.sentry:sentry-kotlin-multiplatform", version.ref = "sentry-kotlin-multiplatform" }
-sentry-kt = { group = "io.sentry", name = "sentry-kotlin-extensions" }
-sentry-android = { group = "io.sentry", name = "sentry-android-core" }
-sentry-compose-android = { group = "io.sentry", name = "sentry-compose-android" }
-sentry-ktor-client = { group = "io.sentry", name ="sentry-ktor-client" }
+sentry-kt = { module = "io.sentry:sentry-kotlin-extensions" }
+sentry-android = { module = "io.sentry:sentry-android-core" }
+sentry-compose-android = { module = "io.sentry:sentry-compose-android" }
+sentry-ktor-client = { module = "io.sentry:sentry-ktor-client" }
 
 # Libraries can be bundled together for easier import
 [bundles]
