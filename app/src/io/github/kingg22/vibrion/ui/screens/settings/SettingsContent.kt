@@ -1,21 +1,14 @@
 package io.github.kingg22.vibrion.ui.screens.settings
 
-import androidx.compose.foundation.BasicTooltipBox
-import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.rememberBasicTooltipState
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.filled.Folder
-import androidx.compose.material.icons.filled.Info
 import androidx.compose.material.icons.outlined.Handshake
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
@@ -38,7 +31,6 @@ import io.github.kingg22.vibrion.ui.getDisplayName
 import io.github.kingg22.vibrion.ui.theme.VibrionAppTheme
 
 @Composable
-@OptIn(ExperimentalFoundationApi::class)
 fun SettingsContent(
     state: AppSettings,
     callbacks: SettingsCallbacks,
@@ -166,28 +158,6 @@ fun SettingsContent(
                                         stringResource(R.string.quality) + " " +
                                             stringResource(R.string.preferred),
                                     )
-                                    Spacer(Modifier.width(4.dp))
-                                    BasicTooltipBox(
-                                        positionProvider = TooltipDefaults.rememberTooltipPositionProvider(
-                                            TooltipAnchorPosition.Above,
-                                        ),
-                                        tooltip = {
-                                            Surface(
-                                                shape = MaterialTheme.shapes.medium,
-                                                tonalElevation = 4.dp,
-                                                modifier = Modifier.padding(8.dp),
-                                            ) {
-                                                Text(
-                                                    stringResource(R.string.quality_description),
-                                                    style = MaterialTheme.typography.labelLarge,
-                                                    modifier = Modifier.padding(8.dp),
-                                                )
-                                            }
-                                        },
-                                        state = rememberBasicTooltipState(isPersistent = false),
-                                    ) {
-                                        Icon(Icons.Filled.Info, null, modifier = Modifier.size(20.dp))
-                                    }
                                 }
                             },
                             supportingContent = {
