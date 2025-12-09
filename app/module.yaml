@@ -2,6 +2,7 @@ product: android/app
 
 dependencies:
   - bom: $libs.compose.bom
+  - $libs.compose.ui.tooling
   - $libs.compose.ui.tooling.preview
 
   # android activity
