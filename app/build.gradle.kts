@@ -49,11 +49,7 @@ android {
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
     packaging {
-        resources {
-            excludes += "/META-INF/{AL2.0,LGPL2.1}"
-            excludes += "/META-INF/LICENSE.md"
-            excludes += "/META-INF/LICENSE-notice.md"
-        }
+        resources.excludes.add("META-INF/*")
     }
     signingConfigs {
         if (System.getenv("KEYSTORE_FILE") != null) {
@@ -88,6 +84,24 @@ android {
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_11
         targetCompatibility = JavaVersion.VERSION_11
+    }
+
+    // Workaround to maintain the same layout of amper during using gradle
+    sourceSets {
+        val main by getting {
+            java.srcDirs("src")
+            manifest.srcFile("src/AndroidManifest.xml")
+            res.srcDirs("res")
+            assets.srcDirs("assets")
+        }
+
+        val test by getting {
+            java.srcDirs("test")
+        }
+
+        val androidTest by getting {
+            java.srcDirs("androidTest")
+        }
     }
 }
 
@@ -185,7 +199,7 @@ aboutLibraries {
  */
 
 val hasSentryToken = System.getenv("SENTRY_AUTH_TOKEN") != null
-logger.info("Sentry source code context upload token: $hasSentryToken")
+logger.info("Sentry source code context upload token: " + hasSentryToken)
 if ((doMinify || doShrink) && !hasSentryToken) {
     logger.warn(
         "Minify release without a sentry token, all sentry reports for this build ($version) will contain obfuscated code",
