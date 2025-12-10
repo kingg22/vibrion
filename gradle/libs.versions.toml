@@ -1,6 +1,7 @@
 [versions]
 # https://github.com/mikepenz/AboutLibraries/releases
 about-libraries = "13.1.0"
+
 # https://developer.android.com/build/releases/gradle-plugin
 agp = "8.13.1"
 
@@ -9,114 +10,119 @@ android-compileSdk = "36"
 android-minSdk = "30"
 
 # https://developer.android.com/jetpack/androidx/releases/activity
-androidx-activity-compose = "1.12.0"
+androidx-activity-compose = "1.12.1"
+
 # https://developer.android.com/jetpack/androidx/releases/datastore
 androidx-data-store = "1.2.0"
+
 # See CMP https://github.com/JetBrains/compose-multiplatform/releases based on
 # https://developer.android.com/jetpack/androidx/releases/lifecycle
 #jetbrains-androidx-lifecycle = "2.9.6"
 androidx-lifecycle = "2.10.0"
+
 # https://developer.android.com/jetpack/androidx/releases/paging
 androidx-paging = "3.3.6"
+
 # https://developer.android.com/jetpack/androidx/releases/test
-androidx-test-core = "1.7.0"
-androidx-test-junit = "1.3.0"
-androidx-test-runner = "1.7.0"
-androidx-test-rules = "1.7.0"
+#androidx-test-core = "1.7.0"
+#androidx-test-junit = "1.3.0"
+#androidx-test-runner = "1.7.0"
+#androidx-test-rules = "1.7.0"
+
 # https://github.com/ajalt/clikt/releases
 clikt = "5.0.3"
+
 # https://github.com/coil-kt/coil/releases
 coil = "3.3.0"
+
 # https://github.com/JetBrains/compose-hot-reload/releases
 #compose-hotReload = "1.0.0-rc02"
+
 # https://github.com/JetBrains/compose-multiplatform/releases
 #compose-multiplatform = "1.9.3"
+
 # https://developer.android.com/develop/ui/compose/bom/bom-mapping
 compose-bom = "2025.11.00"
+
 # https://github.com/kingg22/deezer-client-kt/releases
 deezer-client-kt = "3.0.0"
+
 # https://developer.android.com/jetpack/androidx/releases/glance
 glance = "1.1.1"
+
 # https://github.com/touchlab/Kermit/releases
 kermit = "2.0.8"
+
 # https://github.com/InsertKoinIO/koin/releases
 koin = "4.1.1"
+
 # https://github.com/LemonAppDev/konsist/releases
-konsist = "0.17.3"
+#konsist = "0.17.3"
+
 # https://github.com/kotest/kotest/releases
-kotest = "6.0.7"
+#kotest = "6.0.7"
+
 # https://github.com/JetBrains/kotlin/releases
 kotlin = "2.2.21"
-# https://github.com/Kotlin/kotlinx.coroutines/releases
-kotlinx-coroutines = "1.10.2"
-# https://github.com/goncalossilva/kotlinx-resources/releases
-kotlinx-resource = "0.10.1"
-# https://github.com/Kotlin/kotlinx-kover/releases
-kover = "0.9.3"
-# https://github.com/google/ksp/releases
-ksp = "2.3.3"
+
 # https://github.com/ktorio/ktor/releases
 ktor = "3.3.3"
-# https://github.com/kingg22/ktorgen/releases
-ktorgen = "0.5.1"
+
 # https://github.com/pinterest/ktlint/releases
-ktlint-pinterest = "1.7.1"
+#ktlint-pinterest = "1.8.0"
+
 # https://github.com/jlleitschuh/ktlint-gradle/releases
-ktlint-plugin = "14.0.1"
+#ktlint-plugin = "14.0.1"
+
 # https://github.com/mrmans0n/compose-rules/releases
-ktlint-compose = "0.4.28"
+#ktlint-compose = "0.5.1"
+
 # https://developer.android.com/jetpack/androidx/releases/media3?hl=es-419
 media3 = "1.8.0"
+
 # https://github.com/mockk/mockk/releases
-mockk = "1.14.6"
+#mockk = "1.14.7"
+
 # https://developer.android.com/jetpack/androidx/releases/navigation3
 navigation3 = "1.0.0"
+
 # https://github.com/JetBrains/compose-multiplatform/releases
 # https://mvnrepository.com/artifact/org.jetbrains.androidx.navigation3/navigation3-ui
 #jetbrains-nav3 = "1.0.0-alpha04"
-# https://square.github.io/okio/changelog/
-okio = "3.16.4"
-# https://github.com/drewhamilton/Poko/releases
-poko = "0.20.2"
+
 # https://github.com/getsentry/sentry-java/releases
-sentry-bom = "8.27.1"
+sentry-bom = "8.28.0"
+
 # https://github.com/getsentry/sentry-android-gradle-plugin/releases
 sentry-plugin = "5.12.2"
+
 # https://github.com/getsentry/sentry-kotlin-multiplatform/releases
-sentry-kotlin-multiplatform = "0.22.0"
+#sentry-kotlin-multiplatform = "0.22.0"
+
 # https://mvnrepository.com/artifact/org.slf4j/slf4j-android
 slf4jAndroid = "1.7.36"
-# https://github.com/kingg22/vibrion-id3/releases
-vibrion-id3 = "0.7.0"
+
+# https://github.com/ComposeGears/Valkyrie/releases
+valkyrie-gradle = "0.2.0"
 
 [libraries]
 # Kotlin - Kotlinx essentials
-kotlin-test = { group = "org.jetbrains.kotlin", name = "kotlin-test", version.ref = "kotlin" }
+#kotlin-test = { group = "org.jetbrains.kotlin", name = "kotlin-test", version.ref = "kotlin" }
 #kotlinx-coroutines-swing = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-swing", version.ref = "kotlinx-coroutines" }
-kotlinx-coroutines-test = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-test", version.ref = "kotlinx-coroutines" }
-
-# Resources multiplatform
-kotlinx-resources = { group = "com.goncalossilva", name = "resources", version.ref = "kotlinx-resource" }
+#kotlinx-coroutines-test = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-test", version.ref = "kotlinx-coroutines" }
 
 # Ktor
-ktor-client-core = { group = "io.ktor", name = "ktor-client-core", version.ref = "ktor" }
 ktor-client-engine-cio = { group = "io.ktor", name = "ktor-client-cio", version.ref = "ktor" }
-ktor-client-mock = { group = "io.ktor", name = "ktor-client-mock", version.ref = "ktor" }
 ktor-client-encoding = { group = "io.ktor", name = "ktor-client-encoding", version.ref = "ktor" }
-
-# ktorgen
-ktorgen-annotations = { group = "io.github.kingg22", name = "ktorgen-annotations", version.ref = "ktorgen" }
-ktorgen-compiler = { group = "io.github.kingg22", name = "ktorgen-compiler", version.ref = "ktorgen" }
 
 # Logger
 kermit = { group = "co.touchlab", name = "kermit", version.ref = "kermit" }
 
 # Kotest test DSL
-kotest-assertions-core = { group = "io.kotest", name = "kotest-assertions-core", version.ref = "kotest" }
-kotest-assertions-json = { group = "io.kotest", name = "kotest-assertions-json", version.ref = "kotest" }
+#kotest-assertions-core = { group = "io.kotest", name = "kotest-assertions-core", version.ref = "kotest" }
+#kotest-assertions-json = { group = "io.kotest", name = "kotest-assertions-json", version.ref = "kotest" }
 
 # Compose
-androidx-activity = { group = "androidx.activity", name = "activity-ktx", version.ref = "androidx-activity-compose" }
 androidx-activity-compose = { group = "androidx.activity", name = "activity-compose", version.ref = "androidx-activity-compose" }
 androidx-data-store-preferences = { group = "androidx.datastore", name = "datastore-preferences", version.ref = "androidx-data-store" }
 
@@ -125,13 +131,11 @@ androidx-data-store-preferences = { group = "androidx.datastore", name = "datast
 androidx-lifecycle-runtime-compose = { group = "androidx.lifecycle", name = "lifecycle-runtime-compose", version.ref = "androidx-lifecycle" }
 # jetbrains-androidx-lifecycle-viewmodel-nav3 = { group = "org.jetbrains.androidx.lifecycle", name = "lifecycle-viewmodel-navigation3", version.ref = "jetbrains-androidx-lifecycle" }
 androidx-lifecycle-viewmodel-nav3 = { group = "androidx.lifecycle", name = "lifecycle-viewmodel-navigation3", version.ref = "androidx-lifecycle" }
-# android specific
-androidx-lifecycle-service = { group = "androidx.lifecycle", name = "lifecycle-service", version.ref = "androidx-lifecycle" }
 
-androidx-test-core = { group = "androidx.test", name = "core", version.ref = "androidx-test-core" }
-androidx-test-junit = { group = "androidx.test.ext", name = "junit", version.ref = "androidx-test-junit" }
-androidx-test-runner = { group = "androidx.test", name = "runner", version.ref = "androidx-test-runner" }
-androidx-test-rules = { group = "androidx.test", name = "rules", version.ref = "androidx-test-rules" }
+#androidx-test-core = { group = "androidx.test", name = "core", version.ref = "androidx-test-core" }
+#androidx-test-junit = { group = "androidx.test.ext", name = "junit", version.ref = "androidx-test-junit" }
+#androidx-test-runner = { group = "androidx.test", name = "runner", version.ref = "androidx-test-runner" }
+#androidx-test-rules = { group = "androidx.test", name = "rules", version.ref = "androidx-test-rules" }
 
 # From compose multiplatform
 compose-bom = { module = "androidx.compose:compose-bom", version.ref = "compose-bom" }
@@ -167,23 +171,16 @@ coil-ktor3 = { group = "io.coil-kt.coil3", name = "coil-network-ktor3", version.
 coil-network-cache-control = { group = "io.coil-kt.coil3", name = "coil-network-cache-control", version.ref = "coil" }
 
 # Koin
-koin-core = { group = "io.insert-koin", name = "koin-core", version.ref = "koin" }
 koin-androidx-startup = { group = "io.insert-koin", name = "koin-androidx-startup", version.ref = "koin" }
 koin-compose = { group = "io.insert-koin", name = "koin-compose", version.ref = "koin" }
 koin-compose-viewmodel = { group = "io.insert-koin", name = "koin-compose-viewmodel", version.ref = "koin" }
 
 # Konsist
-konsist = { group = "com.lemonappdev", name = "konsist", version.ref = "konsist" }
+#konsist = { group = "com.lemonappdev", name = "konsist", version.ref = "konsist" }
 
-ktlint-compose = { group = "io.nlopez.compose.rules", name = "ktlint", version.ref = "ktlint-compose" }
+#ktlint-compose = { group = "io.nlopez.compose.rules", name = "ktlint", version.ref = "ktlint-compose" }
 
 aboutlibraries-compose-m3 = { group = "com.mikepenz", name = "aboutlibraries-compose-m3", version.ref = "about-libraries" }
-
-# Okio
-okio-core = { group = "com.squareup.okio", name = "okio", version.ref = "okio" }
-
-# Clikt
-clikt = { group = "com.github.ajalt.clikt", name = "clikt", version.ref = "clikt" }
 
 # nav3
 androidx-navigation3-ui = { group = "androidx.navigation3", name = "navigation3-ui", version.ref = "navigation3" }
@@ -193,12 +190,11 @@ androidx-navigation3-ui = { group = "androidx.navigation3", name = "navigation3-
 androidx-paging3-compose = { group = "androidx.paging", name = "paging-compose", version.ref = "androidx-paging" }
 
 # mockk
-mockk-android = { group = "io.mockk", name = "mockk-android", version.ref = "mockk" }
-mockk-agent = { group = "io.mockk", name = "mockk-agent", version.ref = "mockk" }
+#mockk-android = { group = "io.mockk", name = "mockk-android", version.ref = "mockk" }
+#mockk-agent = { group = "io.mockk", name = "mockk-agent", version.ref = "mockk" }
 
 # id3
 slf4j-android = { module = "org.slf4j:slf4j-android", version.ref = "slf4jAndroid" }
-vibrion-id3 = { group = "io.github.kingg22", name = "vibrion-id3", version.ref = "vibrion-id3" }
 
 # deezer api client
 deezer-client-kt = { group = "io.github.kingg22", name = "deezer-client-kt", version.ref = "deezer-client-kt" }
@@ -209,7 +205,7 @@ androidx-media3-session = { group = "androidx.media3", name = "media3-session", 
 
 # sentry
 sentry-bom = { group = "io.sentry", name = "sentry-bom", version.ref = "sentry-bom" }
-sentry-kotlin-multiplatform = { module = "io.sentry:sentry-kotlin-multiplatform", version.ref = "sentry-kotlin-multiplatform" }
+#sentry-kotlin-multiplatform = { module = "io.sentry:sentry-kotlin-multiplatform", version.ref = "sentry-kotlin-multiplatform" }
 sentry-kt = { module = "io.sentry:sentry-kotlin-extensions" }
 sentry-android = { module = "io.sentry:sentry-android-core" }
 sentry-compose-android = { module = "io.sentry:sentry-compose-android" }
@@ -217,29 +213,18 @@ sentry-ktor-client = { module = "io.sentry:sentry-ktor-client" }
 
 # Libraries can be bundled together for easier import
 [bundles]
-testing = [
-    "kotlin-test",
-    "kotlinx-coroutines-test",
-    "kotest-assertions-core",
-]
-testing-ktor = ["ktor-client-mock", "kotlinx-resources", "kotest-assertions-json"]
 
 [plugins]
-aboutLibraries = { id = "com.mikepenz.aboutlibraries.plugin", version.ref = "about-libraries" }
+#aboutLibraries = { id = "com.mikepenz.aboutlibraries.plugin", version.ref = "about-libraries" }
 androidApplication = { id = "com.android.application", version.ref = "agp" }
-androidLibrary = { id = "com.android.library", version.ref = "agp" }
-androidMultiplatformLibrary = { id = "com.android.kotlin.multiplatform.library", version.ref = "agp" }
+#androidMultiplatformLibrary = { id = "com.android.kotlin.multiplatform.library", version.ref = "agp" }
 composeCompiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
 #composeMultiplatform = { id = "org.jetbrains.compose", version.ref = "compose-multiplatform" }
 #composeHotReload = { id = "org.jetbrains.compose.hot-reload", version.ref = "compose-hotReload" }
 kotlinAndroid = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
-kotlinJvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
-kotlinMultiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin" }
+#kotlinMultiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin" }
 kotlinSerialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
-kotlinxKover = { id = "org.jetbrains.kotlinx.kover", version.ref = "kover" }
-kotlinxResources = { id = "com.goncalossilva.resources", version.ref = "kotlinx-resource" }
-ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
-ktlint = { id = "org.jlleitschuh.gradle.ktlint", version.ref = "ktlint-plugin" }
-poko = { id = "dev.drewhamilton.poko", version.ref = "poko" }
+#ktlint = { id = "org.jlleitschuh.gradle.ktlint", version.ref = "ktlint-plugin" }
 sentry = { id = "io.sentry.android.gradle", version.ref = "sentry-plugin" }
 sentry-compiler = { id = "io.sentry.kotlin.compiler.gradle", version.ref = "sentry-plugin" }
+valkyrie = { id = "io.github.composegears.valkyrie", version.ref = "valkyrie-gradle" }

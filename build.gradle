@@ -5,7 +5,7 @@ plugins {
     alias(libs.plugins.composeCompiler) apply false
     alias(libs.plugins.kotlinAndroid) apply false
     alias(libs.plugins.kotlinSerialization) apply false
-    alias(libs.plugins.sentry) apply false 
+    alias(libs.plugins.sentry) apply false
     alias(libs.plugins.sentry.compiler) apply false
+    alias(libs.plugins.valkyrie) apply false
 }
-

@@ -199,7 +199,7 @@ aboutLibraries {
  */
 
 val hasSentryToken = System.getenv("SENTRY_AUTH_TOKEN") != null
-logger.info("Sentry source code context upload token: " + hasSentryToken)
+logger.info("Sentry source code context upload token: $hasSentryToken")
 if ((doMinify || doShrink) && !hasSentryToken) {
     logger.warn(
         "Minify release without a sentry token, all sentry reports for this build ($version) will contain obfuscated code",
