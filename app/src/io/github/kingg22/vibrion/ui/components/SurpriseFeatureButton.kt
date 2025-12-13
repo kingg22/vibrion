@@ -10,8 +10,13 @@ import androidx.compose.animation.fadeIn
 import androidx.compose.animation.scaleIn
 import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.BoxScope
+import androidx.compose.foundation.layout.Column
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Download
 import androidx.compose.material3.Button
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -23,30 +28,38 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
+import io.github.kingg22.vibrion.R
 import io.github.kingg22.vibrion.ui.theme.VibrionAppTheme
 import kotlinx.coroutines.delay
 import kotlin.math.cos
 import kotlin.math.sin
 
 @Composable
-fun SurpriseFeatureButton(featureAvailable: Boolean, onClick: () -> Unit, modifier: Modifier = Modifier) {
+fun SurpriseFeatureButton(
+    featureAvailable: Boolean,
+    modifier: Modifier = Modifier,
+    button: @Composable BoxScope.() -> Unit,
+) {
     var showConfetti by remember { mutableStateOf(false) }
 
-    // Se dispara cuando la característica se habilita
     LaunchedEffect(featureAvailable) {
         if (featureAvailable) {
             showConfetti = true
-            delay(1200) // Confetti se oculta luego del efecto
+            delay(1200)
             showConfetti = false
         }
     }
 
-    Box(modifier, contentAlignment = Alignment.Center) {
+    Box(
+        modifier = modifier,
+        contentAlignment = Alignment.Center,
+    ) {
         AnimatedVisibility(
             visible = featureAvailable,
-            enter = fadeIn(animationSpec = tween(600)) +
+            label = "Surprise Feature",
+            enter = fadeIn(tween(600)) +
                 scaleIn(
                     initialScale = 0.3f,
                     animationSpec = spring(
@@ -55,43 +68,56 @@ fun SurpriseFeatureButton(featureAvailable: Boolean, onClick: () -> Unit, modifi
                     ),
                 ),
         ) {
-            Button(onClick = onClick) { Text("Nueva Función ✨") }
+            button()
         }
 
-        // Confetti / Estrellas estilo pop
         if (showConfetti) {
-            ConfettiBurst()
+            ConfettiBurst(modifier = Modifier.matchParentSize())
         }
     }
 }
 
 @Composable
 fun ConfettiBurst(modifier: Modifier = Modifier) {
-    val particles = 15
+    val particles = 14
     val anim = remember { Animatable(0f) }
 
     LaunchedEffect(Unit) {
+        anim.snapTo(0f)
         anim.animateTo(
             targetValue = 1f,
             animationSpec = tween(900, easing = LinearOutSlowInEasing),
         )
     }
 
-    Canvas(modifier = modifier.size(150.dp)) {
+    Canvas(modifier = modifier) {
+        val minDimension = size.minDimension
+        val maxRadius = minDimension * 0.6f
+
         repeat(particles) { i ->
-            val angle = (360f / particles) * i
-            val radius = anim.value * 70.dp.toPx()
-            val x = center.x + cos(Math.toRadians(angle.toDouble())).toFloat() * radius
-            val y = center.y + sin(Math.toRadians(angle.toDouble())).toFloat() * radius
+            val angle = (2 * Math.PI / particles) * i
+            val radius = anim.value * maxRadius
+
+            val offset = Offset(
+                x = center.x + cos(angle).toFloat() * radius,
+                y = center.y + sin(angle).toFloat() * radius,
+            )
 
             drawCircle(
-                color = listOf(Color.Yellow, Color.Magenta, Color.Cyan, Color.Red).random(),
-                radius = (6.dp.toPx() * (1 - anim.value)).coerceAtLeast(2f),
-                center = Offset(x, y),
+                color = confettiColors[i % confettiColors.size],
+                radius = (minDimension * 0.08f * (1 - anim.value)).coerceAtLeast(minDimension * 0.03f),
+                center = offset,
             )
         }
     }
 }
+
+private val confettiColors = listOf(
+    Color.Yellow,
+    Color.Magenta,
+    Color.Cyan,
+    Color.Red,
+)
 
 @Preview
 @Composable
@@ -104,6 +130,15 @@ private fun SurpriseFeatureButtonPreview() {
     }
 
     VibrionAppTheme {
-        SurpriseFeatureButton(featureAvailable = showConfetti, onClick = {})
+        Column {
+            SurpriseFeatureButton(featureAvailable = showConfetti) {
+                Button(onClick = {}) { Text("Nueva Función ✨") }
+            }
+            SurpriseFeatureButton(featureAvailable = showConfetti) {
+                IconButton(onClick = {}) {
+                    Icon(Icons.Default.Download, stringResource(R.string.download))
+                }
+            }
+        }
     }
 }
