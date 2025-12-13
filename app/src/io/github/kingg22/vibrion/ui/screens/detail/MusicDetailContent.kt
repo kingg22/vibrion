@@ -27,14 +27,15 @@ import io.github.kingg22.vibrion.domain.model.DownloadableAlbum
 import io.github.kingg22.vibrion.domain.model.DownloadableItem
 import io.github.kingg22.vibrion.domain.model.DownloadablePlaylist
 import io.github.kingg22.vibrion.domain.model.DownloadableSingle
+import io.github.kingg22.vibrion.ui.components.SurpriseFeatureButton
 import io.github.kingg22.vibrion.ui.theme.VibrionAppTheme
 import kotlin.time.Duration.Companion.seconds
 
 @Composable
 fun MusicDetailContent(
     detail: DownloadableItem,
+    canDownload: Boolean,
     onBackClick: () -> Unit,
-    canDownload: () -> Boolean,
     onDownloadClick: (item: DownloadableItem) -> Unit,
     onTrackClick: (item: DownloadableItem) -> Unit,
     onTrackPlayClick: (item: DownloadableItem) -> Unit,
@@ -139,10 +140,12 @@ fun MusicDetailContent(
                             )
                         }
                         Spacer(Modifier.width(8.dp))
-                        Button(onClick = { onDownloadClick(detail) }, enabled = canDownload()) {
-                            Icon(Icons.Default.Download, contentDescription = stringResource(R.string.download))
-                            Spacer(Modifier.width(8.dp))
-                            Text(stringResource(R.string.download))
+                        SurpriseFeatureButton(canDownload) {
+                            Button(onClick = { onDownloadClick(detail) }, enabled = canDownload) {
+                                Icon(Icons.Default.Download, contentDescription = stringResource(R.string.download))
+                                Spacer(Modifier.width(8.dp))
+                                Text(stringResource(R.string.download))
+                            }
                         }
                     }
                 }
@@ -168,10 +171,10 @@ fun MusicDetailContent(
 @Composable
 fun TrackListItem(
     track: DownloadableItem,
+    canDownload: Boolean,
     onPlayClick: () -> Unit,
     onClick: () -> Unit,
     onDownload: () -> Unit,
-    canDownload: () -> Boolean,
     modifier: Modifier = Modifier,
 ) {
     ListItem(
@@ -192,11 +195,13 @@ fun TrackListItem(
         },
         trailingContent = {
             Row {
+                SurpriseFeatureButton(canDownload) {
+                    IconButton(onClick = onDownload, enabled = canDownload) {
+                        Icon(Icons.Default.Download, stringResource(R.string.download))
+                    }
+                }
                 IconButton(onClick = onPlayClick) {
                     Icon(Icons.Default.PlayCircle, stringResource(R.string.play_track, track.title))
-                }
-                IconButton(onClick = onDownload, enabled = canDownload()) {
-                    Icon(Icons.Default.Download, stringResource(R.string.download))
                 }
             }
         },
@@ -223,8 +228,8 @@ private fun MusicDetailContentPreview() {
     VibrionAppTheme {
         MusicDetailContent(
             albumItem,
+            canDownload = true,
             onBackClick = {},
-            canDownload = { true },
             onDownloadClick = {},
             onTrackClick = {},
             onPlayClick = {},

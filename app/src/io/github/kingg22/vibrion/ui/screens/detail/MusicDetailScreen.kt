@@ -42,7 +42,7 @@ fun MusicDetailScreen(
             is DetailViewModel.UiState.Success -> MusicDetailContent(
                 detail = targetState.detail,
                 onBackClick = onBackClick,
-                canDownload = { canDownload == DownloadViewModel.CanDownloadState.Success },
+                canDownload = canDownload.isSuccess,
                 onDownloadClick = { downloadViewModel.download(it) },
                 onTrackClick = { item -> onDetailClick(item.getModelType(), item.id) },
                 onTrackPlayClick = { item ->

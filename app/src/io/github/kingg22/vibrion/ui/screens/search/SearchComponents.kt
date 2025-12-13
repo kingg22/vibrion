@@ -36,6 +36,7 @@ import io.github.kingg22.vibrion.R
 import io.github.kingg22.vibrion.domain.model.DownloadableItem
 import io.github.kingg22.vibrion.domain.model.DownloadableSingle
 import io.github.kingg22.vibrion.ui.components.ShimmerBox
+import io.github.kingg22.vibrion.ui.components.SurpriseFeatureButton
 
 @Composable
 fun FeaturedItem(
@@ -97,14 +98,16 @@ fun FeaturedItem(
                 }
             }
 
+            SurpriseFeatureButton(canDownload) {
+                IconButton(onDownloadClick, enabled = canDownload) {
+                    Icon(Icons.Default.Download, stringResource(R.string.download))
+                }
+            }
+
             if (item is DownloadableItem.StreamableItem) {
                 IconButton(onPlayClick) {
                     Icon(Icons.Default.PlayCircle, stringResource(R.string.play_track, item.title))
                 }
-            }
-
-            IconButton(onDownloadClick, enabled = canDownload) {
-                Icon(Icons.Default.Download, stringResource(R.string.download))
             }
         }
     }
@@ -141,8 +144,10 @@ fun ListItem(
         },
         trailingContent = {
             Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.End) {
-                IconButton(onClick = onDownloadClick, enabled = canDownload) {
-                    Icon(Icons.Default.Download, stringResource(R.string.download))
+                SurpriseFeatureButton(canDownload) {
+                    IconButton(onClick = onDownloadClick, enabled = canDownload) {
+                        Icon(Icons.Default.Download, stringResource(R.string.download))
+                    }
                 }
             }
         },
@@ -209,12 +214,14 @@ fun ListItemCard(
                 }
             }
 
-            IconButton(onPlayClick) {
-                Icon(Icons.Default.PlayCircle, stringResource(R.string.play_track, title))
+            SurpriseFeatureButton(canDownload) {
+                IconButton(onClick = onDownloadClick, enabled = canDownload) {
+                    Icon(Icons.Default.Download, stringResource(R.string.download))
+                }
             }
 
-            IconButton(onClick = onDownloadClick, enabled = canDownload) {
-                Icon(Icons.Default.Download, stringResource(R.string.download))
+            IconButton(onPlayClick) {
+                Icon(Icons.Default.PlayCircle, stringResource(R.string.play_track, title))
             }
         }
     }
