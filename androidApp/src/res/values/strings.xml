@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="cover_of">Portada de %1$s</string>
+    <!-- Only android -->
+    <string name="required_permissions">Permisos necesarios</string>
+    <string name="allow_permissions">Conceder permisos</string>
+    <string name="permissions_required">Para un funcionamiento completo de la app, necesitamos acceso a:</string>
+    <string name="notifications_permission">• Notificaciones: Para informarte sobre tus descargas o cambios en el app.</string>
+    <string name="audio_permission">• Archivos de música: Para leer tu música local y guardar nuevas.</string>
+    <string name="unknown_permission">• Permiso requerido: %1$s</string>
+    <string name="permission_denied">Permiso denegado: %1$s</string>
+    <string name="open_settings">Abrir configuración</string>
+    <string name="notifications">Notificaciones</string>
+    <string name="audio">Música</string>
+</resources>
