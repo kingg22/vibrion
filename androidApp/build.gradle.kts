@@ -25,7 +25,6 @@ kotlin {
             "androidx.compose.material3.ExperimentalMaterial3Api",
             "androidx.compose.animation.ExperimentalSharedTransitionApi",
         )
-        // freeCompilerArgs.add("-Xexpect-actual-classes")
         apiVersion.set(KotlinVersion.KOTLIN_2_2)
         languageVersion.set(apiVersion)
         jvmTarget.set(JvmTarget.JVM_11)
@@ -85,30 +84,9 @@ android {
         sourceCompatibility = JavaVersion.VERSION_11
         targetCompatibility = JavaVersion.VERSION_11
     }
-
-    // Workaround to maintain the same layout of amper during using gradle
-    sourceSets {
-        val main by getting {
-            java.srcDirs("src")
-            manifest.srcFile("src/AndroidManifest.xml")
-            res.srcDirs("res")
-            assets.srcDirs("assets")
-        }
-
-        val test by getting {
-            java.srcDirs("test")
-        }
-
-        val androidTest by getting {
-            java.srcDirs("androidTest")
-        }
-    }
 }
 
 dependencies {
-    implementation(platform(libs.compose.bom))
-    implementation(libs.compose.ui.tooling.preview)
-
     // android activity
     implementation(libs.androidx.activity.compose)
 
@@ -124,10 +102,6 @@ dependencies {
     implementation(libs.androidx.glance.appwidget.preview)
     implementation(libs.androidx.glance.preview)
 
-    // exoplayer for android
-    implementation(libs.androidx.media3.exoplayer)
-    implementation(libs.androidx.media3.session)
-
     // sentry sdk for android
     implementation(platform(libs.sentry.bom))
     implementation(libs.sentry.kt)
@@ -135,49 +109,10 @@ dependencies {
     implementation(libs.sentry.compose.android)
     implementation(libs.sentry.ktor.client)
 
-    implementation(libs.compose.runtime)
-    implementation(libs.compose.foundation)
-    implementation(libs.compose.material3)
-    implementation(libs.compose.material.icons.extended)
-    implementation(libs.compose.ui)
+    implementation(projects.composeApp)
 
-    // androidx lifecycle
-    implementation(libs.androidx.lifecycle.runtime.compose)
-
-    // koin DI
-    implementation(libs.koin.compose)
-    implementation(libs.koin.compose.viewmodel)
-
-    // navigation3
-    implementation(libs.androidx.navigation3.ui)
-    implementation(libs.androidx.lifecycle.viewmodel.nav3)
-
-    // data store preferences
-    implementation(libs.androidx.data.store.preferences)
-
-    // paging3
-    implementation(libs.androidx.paging3.compose)
-
-    // ktor client
-    implementation(libs.ktor.client.engine.cio)
-    implementation(libs.ktor.client.encoding)
-
-    // coil for async images
-    implementation(libs.coil.compose)
-    implementation(libs.coil.ktor3)
-    implementation(libs.coil.network.cache.control)
-
-    // kermit for logging
-    implementation(libs.kermit)
-
-    // aboutlibraries
-    implementation(libs.aboutlibraries.compose.m3)
-
-    // deezer
-    implementation(libs.deezer.client.kt)
-
-    debugImplementation(platform(libs.compose.bom))
-    debugImplementation(libs.compose.ui.tooling)
+    debugImplementation(platform(libs.androidx.compose.bom))
+    debugImplementation(libs.androidx.compose.ui.tooling)
 }
 
 composeCompiler {
