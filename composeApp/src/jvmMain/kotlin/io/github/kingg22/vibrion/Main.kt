@@ -6,6 +6,7 @@ import androidx.compose.ui.window.WindowState
 import androidx.compose.ui.window.singleWindowApplication
 import io.github.kingg22.vibrion.di.vibrionAppModule
 import io.github.kingg22.vibrion.navigation.Vibrion
+import io.github.kingg22.vibrion.ui.theme.VibrionAppTheme
 import org.jetbrains.compose.resources.stringResource
 import org.koin.core.context.startKoin
 
@@ -18,6 +19,8 @@ fun main() {
     ) {
         window.title = stringResource(R.string.app_name)
         // window.setWindowsAdaptiveTitleBar(ThemeManager.isDarkTheme())
-        Vibrion()
+        VibrionAppTheme {
+            Vibrion()
+        }
     }
 }
