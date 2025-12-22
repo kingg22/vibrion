@@ -19,7 +19,7 @@ data class DownloadableSingle(
 ) : DownloadableItem,
     DownloadableItem.StreamableItem {
     companion object {
-        @JvmStatic
+        @kotlin.jvm.JvmStatic
         val previewDefault
             get() = DownloadableSingle(
                 id = kotlin.uuid.Uuid.random().toString(),

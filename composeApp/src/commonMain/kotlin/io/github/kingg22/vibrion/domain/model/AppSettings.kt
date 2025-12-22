@@ -9,7 +9,7 @@ class AppSettings(
     val useCompleteStream: Boolean,
 ) {
     companion object {
-        @JvmField
+        @kotlin.jvm.JvmField
         val default = AppSettings(
             theme = ThemeMode.SYSTEM,
             token = null,

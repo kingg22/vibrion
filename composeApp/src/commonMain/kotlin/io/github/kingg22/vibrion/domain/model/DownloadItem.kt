@@ -8,7 +8,7 @@ data class DownloadItem(
     val status: DownloadStatus,
 ) {
     companion object {
-        @JvmField
+        @kotlin.jvm.JvmField
         val EMPTY = DownloadItem(
             id = "",
             fileName = "",
@@ -17,7 +17,7 @@ data class DownloadItem(
             status = DownloadStatus.IN_PROGRESS,
         )
 
-        @JvmField
+        @kotlin.jvm.JvmField
         val PREVIEW = DownloadItem(
             id = "1",
             fileName = "Preview",
