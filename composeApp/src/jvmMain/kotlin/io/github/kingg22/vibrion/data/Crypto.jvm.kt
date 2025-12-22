@@ -19,7 +19,7 @@ actual object Crypto {
         if (System.getProperty("os.name").contains("Windows", ignoreCase = true)) {
             Path(System.getenv("APPDATA"), "Vibrion", "keystore.jceks").toFile()
         } else {
-            Path(System.getProperty("user.home"), ".config", "keystore.jceks").toFile()
+            Path(System.getProperty("user.home"), ".config", "Vibrion", "keystore.jceks").toFile()
         }
     }
     private const val STORE_PASSWORD = "storepass"
