@@ -33,9 +33,8 @@ import io.ktor.client.plugins.logging.Logging
 import io.ktor.client.plugins.logging.LoggingFormat
 import io.ktor.http.userAgent
 import io.ktor.serialization.kotlinx.json.json
-import io.sentry.ktorClient.SentryKtorClientPlugin
+import io.ktor.utils.io.charsets.Charsets
 import kotlinx.serialization.json.Json
-import org.koin.core.module.Module
 import org.koin.core.scope.Scope
 import org.koin.dsl.module
 import org.koin.dsl.onClose
@@ -94,7 +93,6 @@ val dataModule = module {
                 includeDefaultHeaders = true
             }
 
-            install(SentryKtorClientPlugin)
             install(HttpRedirect)
             install(HttpCache) {
                 publicStorage(this@single.cacheDirFor("ktor_image_cache"))
