@@ -8,7 +8,7 @@ plugins {
     alias(libs.plugins.kotlinAndroid)
     alias(libs.plugins.kotlinSerialization)
     alias(libs.plugins.sentry)
-    alias(libs.plugins.sentry.compiler)
+    // alias(libs.plugins.sentry.compiler) // Incompatible with kotlin 2.3.0
 }
 
 group = "io.github.kingg22"
