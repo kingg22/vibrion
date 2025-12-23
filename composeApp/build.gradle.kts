@@ -15,6 +15,43 @@ plugins {
 group = "io.github.kingg22"
 version = "0.0.1"
 
+enum class OS(val id: String) {
+    Linux("linux"),
+    Windows("windows"),
+    MacOS("macos"),
+}
+
+enum class Arch(val id: String) {
+    X64("x64"),
+    Arm64("arm64"),
+}
+
+data class Target(val os: OS, val arch: Arch) {
+    val id: String get() = "${os.id}-${arch.id}"
+}
+
+val currentTarget by lazy {
+    Target(currentOS, currentArch)
+}
+
+val currentArch: Arch by lazy {
+    when (val osArch = System.getProperty("os.arch")) {
+        "x86_64", "amd64" -> Arch.X64
+        "aarch64" -> Arch.Arm64
+        else -> error("Unsupported OS arch: $osArch")
+    }
+}
+
+val currentOS: OS by lazy {
+    val os = System.getProperty("os.name")
+    when {
+        os.equals("Mac OS X", ignoreCase = true) -> OS.MacOS
+        os.startsWith("Win", ignoreCase = true) -> OS.Windows
+        os.startsWith("Linux", ignoreCase = true) -> OS.Linux
+        else -> error("Unknown OS name: $os")
+    }
+}
+
 kotlin {
     compilerOptions {
         extraWarnings.set(true)
@@ -47,19 +84,6 @@ kotlin {
     }
 
     jvm()
-
-    js {
-        useEsModules()
-        browser()
-        binaries.executable()
-    }
-
-    @OptIn(org.jetbrains.kotlin.gradle.ExperimentalWasmDsl::class)
-    wasmJs {
-        useEsModules()
-        browser()
-        binaries.executable()
-    }
 
     @OptIn(org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi::class)
     dependencies {
@@ -126,9 +150,26 @@ kotlin {
                 // datastore with android extension
                 api(libs.androidx.data.store.preferences.android)
 
+                // sentry for android
+                implementation(project.dependencies.platform(libs.sentry.bom))
+                api(libs.sentry.ktor.client)
+
                 // exoplayer for android
                 api(libs.androidx.media3.exoplayer)
                 api(libs.androidx.media3.session)
+            }
+        }
+        jvmMain {
+            dependencies {
+                // Add JVM-specific dependencies here.
+                api(
+                    "org.jetbrains.compose.desktop:desktop-jvm-${currentTarget.id}:${libs.versions.compose.multiplatform.get()}",
+                )
+                api(libs.kotlinx.coroutines.swing)
+
+                // sentry for kotlin
+                implementation(project.dependencies.platform(libs.sentry.bom))
+                api(libs.sentry.ktor.client)
             }
         }
     }
