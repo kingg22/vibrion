@@ -27,7 +27,7 @@ kotlin {
             "androidx.compose.animation.ExperimentalSharedTransitionApi",
         )
         freeCompilerArgs.add("-Xexpect-actual-classes")
-        apiVersion.set(KotlinVersion.KOTLIN_2_2)
+        apiVersion.set(KotlinVersion.KOTLIN_2_3)
         languageVersion.set(apiVersion)
     }
 
@@ -42,21 +42,21 @@ kotlin {
             jvmTarget.set(JvmTarget.JVM_11)
             jvmDefault.set(JvmDefaultMode.NO_COMPATIBILITY)
         }
-        packaging {
-            resources.excludes.add("META-INF/*")
-        }
+        // why needs this?
         androidResources.enable = true
     }
 
     jvm()
 
     js {
+        useEsModules()
         browser()
         binaries.executable()
     }
 
     @OptIn(org.jetbrains.kotlin.gradle.ExperimentalWasmDsl::class)
     wasmJs {
+        useEsModules()
         browser()
         binaries.executable()
     }
@@ -105,20 +105,10 @@ kotlin {
         api(libs.aboutlibraries.compose.m3)
 
         // deezer
-        // AWAIT release next version with more platform targets
-        // api(libs.deezer.client.kt)
+        api(libs.deezer.client.kt)
 
+        // sentry KMP
         api(libs.sentry.kotlin.multiplatform)
-    }
-
-    @OptIn(org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi::class)
-    applyDefaultHierarchyTemplate {
-        common {
-            group("androidAndJvm") {
-                withAndroidTarget()
-                withJvm()
-            }
-        }
     }
 
     // Source set declarations.
