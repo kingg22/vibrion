@@ -88,6 +88,8 @@ slf4jAndroid = "1.7.36"
 #valkyrie-gradle = "0.2.0"
 
 [libraries]
+kotlinx-coroutines-swing = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-swing" }
+
 # Ktor
 ktor-client-engine-cio = { group = "io.ktor", name = "ktor-client-cio", version.ref = "ktor" }
 ktor-client-encoding = { group = "io.ktor", name = "ktor-client-encoding", version.ref = "ktor" }
