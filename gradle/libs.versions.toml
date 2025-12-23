@@ -231,7 +231,7 @@ sentry-ktor-client = { module = "io.sentry:sentry-ktor-client" }
 [bundles]
 
 [plugins]
-#aboutLibraries = { id = "com.mikepenz.aboutlibraries.plugin", version.ref = "about-libraries" }
+aboutLibraries = { id = "com.mikepenz.aboutlibraries.plugin", version.ref = "about-libraries" }
 androidApplication = { id = "com.android.application", version.ref = "agp" }
 androidMultiplatformLibrary = { id = "com.android.kotlin.multiplatform.library", version.ref = "agp" }
 composeCompiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
