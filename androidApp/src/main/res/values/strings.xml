@@ -1,6 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string name="app_name">Vibrion</string>
     <string name="cover_of">Portada de %1$s</string>
+    <string name="next">Siguiente</string>
+    <string name="pause">Pausar</string>
+    <string name="play">Reproducir</string>
+    <string name="previous">Anterior</string>
+    <string name="queue">Cola de reproducción</string>
+    <string name="shuffle">Aleatorio</string>
     <!-- Only android -->
     <string name="required_permissions">Permisos necesarios</string>
     <string name="allow_permissions">Conceder permisos</string>
