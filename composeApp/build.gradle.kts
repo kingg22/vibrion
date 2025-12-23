@@ -4,6 +4,7 @@ import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 import org.jetbrains.kotlin.gradle.dsl.KotlinVersion
 
 plugins {
+    alias(libs.plugins.aboutLibraries)
     alias(libs.plugins.androidMultiplatformLibrary)
     alias(libs.plugins.composeCompiler)
     alias(libs.plugins.composeMultiplatform)
@@ -204,6 +205,21 @@ composeCompiler {
 
 ktlint {
     version.set(libs.versions.ktlint.pinterest)
+}
+
+aboutLibraries {
+    export {
+        // Define the output path (including fileName). Modifying this will disable the automatic meta data discovery for supported platforms.
+        outputFile.set(file("src/commonMain/composeResources/files/aboutlibraries.json"))
+        // Enable pretty printing for the generated JSON file
+        prettyPrint.set(true)
+    }
+    library {
+        // Enable the duplication mode, allows to merge, or link dependencies which relate
+        duplicationMode.set(com.mikepenz.aboutlibraries.plugin.DuplicateMode.MERGE)
+        // Configure the duplication rule, to match "duplicates" with
+        duplicationRule.set(com.mikepenz.aboutlibraries.plugin.DuplicateRule.GROUP)
+    }
 }
 
 configurations.configureEach {
