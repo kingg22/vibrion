@@ -15,6 +15,7 @@ import io.github.kingg22.vibrion.domain.repository.SettingsRepository
 import io.github.kingg22.vibrion.domain.repository.TrendsRepository
 import io.github.kingg22.vibrion.domain.service.DownloadService
 import io.ktor.client.HttpClient
+import io.ktor.client.HttpClientConfig
 import io.ktor.client.engine.cio.CIO
 import io.ktor.client.plugins.BodyProgress
 import io.ktor.client.plugins.Charsets
@@ -103,6 +104,7 @@ val dataModule = module {
                 userAgent("Mozilla/5.0 (X11; Linux i686; rv:135.0) Gecko/20100101 Firefox/135.0")
             }
             expectSuccess = true
+            platformConfig()
         }
     } onClose { httpClient -> httpClient?.close() }
     single { _ -> DeezerApiClient(get<HttpClient>()) }
@@ -120,5 +122,7 @@ val dataModule = module {
     factory<SearchRepository> { _ -> SearchRepositoryImpl(get()) }
     factory<TrendsRepository> { _ -> TrendsRepositoryImpl(get()) }
 }
+
+expect fun HttpClientConfig<*>.platformConfig()
 
 expect fun Scope.cacheDirFor(dir: String): CacheStorage
