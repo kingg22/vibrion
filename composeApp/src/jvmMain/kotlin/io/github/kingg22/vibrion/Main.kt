@@ -4,6 +4,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.window.WindowPosition
 import androidx.compose.ui.window.WindowState
 import androidx.compose.ui.window.singleWindowApplication
+import coil3.SingletonImageLoader
 import io.github.kingg22.vibrion.di.vibrionAppModule
 import io.github.kingg22.vibrion.navigation.Vibrion
 import io.github.kingg22.vibrion.ui.theme.VibrionAppTheme
@@ -13,7 +14,11 @@ import org.koin.core.context.startKoin
 fun main() {
     System.setProperty("compose.interop.blending", "true")
     // TODO move to common module startKoin, Coil and Sentry
-    startKoin { modules(vibrionAppModule) }
+    startKoin {
+        logger(KoinKermitLogger())
+        modules(vibrionAppModule)
+    }
+    SingletonImageLoader.setSafe { context -> buildCoilImageLoader(context) }
     singleWindowApplication(
         state = WindowState(position = WindowPosition.Aligned(Alignment.Center)),
     ) {
