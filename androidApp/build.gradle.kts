@@ -5,6 +5,7 @@ import org.jetbrains.kotlin.gradle.dsl.KotlinVersion
 plugins {
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.composeCompiler)
+    alias(libs.plugins.ktlint)
     alias(libs.plugins.kotlinAndroid)
     alias(libs.plugins.kotlinSerialization)
     alias(libs.plugins.sentry)
@@ -157,6 +158,10 @@ sentry {
         autoUploadProguardMapping.set(false)
         autoUploadSourceContext.set(false)
     }
+}
+
+ktlint {
+    version.set(libs.versions.ktlint.pinterest)
 }
 
 configurations.configureEach {
