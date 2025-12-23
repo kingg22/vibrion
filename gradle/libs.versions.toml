@@ -13,7 +13,7 @@ android-minSdk = "30"
 androidx-activity-compose = "1.12.2"
 
 # https://developer.android.com/jetpack/androidx/releases/datastore
-androidx-data-store = "1.3.0-alpha03"
+androidx-data-store = "1.2.0"
 
 # See CMP https://github.com/JetBrains/compose-multiplatform/releases based on
 # https://developer.android.com/jetpack/androidx/releases/lifecycle
