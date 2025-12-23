@@ -10,10 +10,10 @@ android-compileSdk = "36"
 android-minSdk = "30"
 
 # https://developer.android.com/jetpack/androidx/releases/activity
-androidx-activity-compose = "1.12.1"
+androidx-activity-compose = "1.12.2"
 
 # https://developer.android.com/jetpack/androidx/releases/datastore
-androidx-data-store = "1.3.0-alpha02"
+androidx-data-store = "1.3.0-alpha03"
 
 # See CMP https://github.com/JetBrains/compose-multiplatform/releases based on
 # https://developer.android.com/jetpack/androidx/releases/lifecycle
@@ -21,7 +21,7 @@ jetbrains-lifecycle = "2.10.0-alpha06"
 androidx-lifecycle = "2.10.0"
 
 # https://developer.android.com/jetpack/androidx/releases/paging
-androidx-paging = "3.4.0-alpha04"
+androidx-paging = "3.4.0-beta01"
 
 # https://github.com/coil-kt/coil/releases
 coil = "3.3.0"
@@ -36,7 +36,7 @@ compose-multiplatform = "1.10.0-rc02"
 compose-bom = "2025.11.00"
 
 # https://github.com/kingg22/deezer-client-kt/releases
-deezer-client-kt = "3.0.0"
+deezer-client-kt = "3.1.0"
 
 # https://developer.android.com/jetpack/androidx/releases/glance
 glance = "1.1.1"
@@ -48,7 +48,7 @@ kermit = "2.0.8"
 koin = "4.1.1"
 
 # https://github.com/JetBrains/kotlin/releases
-kotlin = "2.2.21"
+kotlin = "2.3.0"
 
 # https://github.com/ktorio/ktor/releases
 ktor = "3.3.3"
@@ -60,7 +60,7 @@ ktlint-pinterest = "1.8.0"
 ktlint-plugin = "14.0.1"
 
 # https://github.com/mrmans0n/compose-rules/releases
-ktlint-compose = "0.5.1"
+ktlint-compose = "0.5.3"
 
 # https://developer.android.com/jetpack/androidx/releases/media3?hl=es-419
 media3 = "1.8.0"
@@ -73,13 +73,13 @@ navigation3 = "1.0.0"
 jetbrains-nav3 = "1.0.0-alpha06"
 
 # https://github.com/getsentry/sentry-java/releases
-sentry-bom = "8.28.0"
+sentry-bom = "8.29.0"
 
 # https://github.com/getsentry/sentry-android-gradle-plugin/releases
 sentry-plugin = "5.12.2"
 
 # https://github.com/getsentry/sentry-kotlin-multiplatform/releases
-sentry-kotlin-multiplatform = "0.22.0"
+sentry-kotlin-multiplatform = "0.23.0"
 
 # https://mvnrepository.com/artifact/org.slf4j/slf4j-android
 slf4jAndroid = "1.7.36"
