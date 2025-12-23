@@ -54,9 +54,9 @@ inline fun <T : Any> LazyListScope.items(
  */
 inline fun <T : Any> LazyListScope.itemsIndexed(
     pagingItems: LazyPagingItems<out T>,
-    noinline key: ((index: Int, item: T) -> Any)? = null,
-    crossinline contentType: (index: Int, item: T) -> Any? = { _, _ -> null },
-    crossinline itemContent: @Composable LazyItemScope.(index: Int, item: T) -> Unit,
+    noinline key: ((index: Int, item: @JvmSuppressWildcards T) -> Any)? = null,
+    crossinline contentType: (index: Int, item: @JvmSuppressWildcards T) -> Any? = { _, _ -> null },
+    crossinline itemContent: @Composable LazyItemScope.(index: Int, item: @JvmSuppressWildcards T) -> Unit,
 ) = items(
     count = pagingItems.itemCount,
     key = { index: Int ->

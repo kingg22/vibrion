@@ -21,7 +21,9 @@ fun VibrionAppTheme(
     val colorScheme = when {
         // Dynamic color is available on Android 12+
         dynamicColor && dynamicColorScheme != null -> dynamicColorScheme
+
         darkTheme -> highContrastDarkColorScheme
+
         else -> highContrastLightColorScheme
     }
 

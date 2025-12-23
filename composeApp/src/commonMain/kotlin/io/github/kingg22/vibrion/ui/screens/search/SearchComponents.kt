@@ -38,8 +38,8 @@ import io.github.kingg22.vibrion.domain.model.DownloadableSingle
 import io.github.kingg22.vibrion.download
 import io.github.kingg22.vibrion.play_track
 import io.github.kingg22.vibrion.ui.components.ShimmerBox
-import org.jetbrains.compose.resources.stringResource
 import io.github.kingg22.vibrion.ui.components.SurpriseFeatureButton
+import org.jetbrains.compose.resources.stringResource
 
 @Composable
 fun FeaturedItem(
