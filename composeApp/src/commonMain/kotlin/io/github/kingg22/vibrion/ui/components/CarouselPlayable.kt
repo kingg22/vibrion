@@ -123,7 +123,7 @@ fun SongCard(carouselItem: CarouselItem, onClick: () -> Unit, onPlayClick: () ->
                         imageVector = Icons.Default.PlayArrow,
                         contentDescription = stringResource(
                             Res.string.play_track,
-                            carouselItem.titleSong
+                            carouselItem.titleSong,
                         ),
                         tint = Color.Black,
                     )

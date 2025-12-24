@@ -36,8 +36,10 @@ fun SectionHeader(
         verticalAlignment = Alignment.CenterVertically,
     ) {
         Text(text, style = MaterialTheme.typography.titleLarge, fontWeight = FontWeight.Bold)
-        Icon(Icons.AutoMirrored.Filled.ArrowForward,
-            contentDescription ?: stringResource(Res.string.see_more, text))
+        Icon(
+            Icons.AutoMirrored.Filled.ArrowForward,
+            contentDescription ?: stringResource(Res.string.see_more, text),
+        )
     }
 }
 

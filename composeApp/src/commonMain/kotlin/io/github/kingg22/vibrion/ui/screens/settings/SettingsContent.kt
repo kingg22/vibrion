@@ -156,7 +156,7 @@ fun SettingsContent(
                                 Row {
                                     Text(
                                         stringResource(Res.string.quality) + " " +
-                                                stringResource(Res.string.preferred),
+                                            stringResource(Res.string.preferred),
                                     )
                                 }
                             },
