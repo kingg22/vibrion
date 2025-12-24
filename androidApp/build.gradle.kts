@@ -13,7 +13,7 @@ plugins {
 }
 
 group = "io.github.kingg22"
-version = "0.0.9"
+version = "0.0.10"
 
 kotlin {
     compilerOptions {
@@ -44,12 +44,9 @@ android {
         applicationId = "$group.vibrion"
         minSdk = libs.versions.android.minSdk.get().toInt()
         targetSdk = libs.versions.android.compileSdk.get().toInt()
-        versionCode = 9
+        versionCode = 10
         versionName = project.version.toString()
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
-    }
-    packaging {
-        resources.excludes.add("META-INF/*")
     }
     signingConfigs {
         if (System.getenv("KEYSTORE_FILE") != null) {
