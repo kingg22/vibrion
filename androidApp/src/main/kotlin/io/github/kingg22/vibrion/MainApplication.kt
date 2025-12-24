@@ -11,7 +11,7 @@ import coil3.ImageLoader
 import coil3.SingletonImageLoader
 import com.google.common.util.concurrent.ListenableFuture
 import io.github.kingg22.vibrion.data.service.ExoPlayerAudioPlayerServiceImpl
-import io.github.kingg22.vibrion.data.service.VibrionMediaService
+import io.github.kingg22.vibrion.data.service.VibrionMediaServiceImpl
 import io.github.kingg22.vibrion.di.vibrionAppModule
 import io.github.kingg22.vibrion.domain.service.AudioPlayerService
 import org.koin.android.ext.koin.androidContext
@@ -40,12 +40,14 @@ class MainApplication :
         logger(KoinKermitLogger())
         // Reference Android context
         androidContext(this@MainApplication)
-        // Load modules of common
-        modules(vibrionAppModule)
-        // specific module for android
-        module {
-            single<AudioPlayerService> { _ -> ExoPlayerAudioPlayerServiceImpl(androidContext()) }
-        }
+        modules(
+            // Load modules of common
+            vibrionAppModule,
+            // specific module for android
+            module {
+                single<AudioPlayerService> { _ -> ExoPlayerAudioPlayerServiceImpl(androidContext()) }
+            },
+        )
     }
 
     /**
@@ -57,7 +59,7 @@ class MainApplication :
         val existing = controllerFuture
         if (existing != null) return existing
 
-        val sessionToken = SessionToken(appContext, ComponentName(appContext, VibrionMediaService::class.java))
+        val sessionToken = SessionToken(appContext, ComponentName(appContext, VibrionMediaServiceImpl::class.java))
 
         val future = MediaController.Builder(appContext, sessionToken)
             .buildAsync()
