@@ -20,7 +20,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
-import io.github.kingg22.vibrion.R
+import io.github.kingg22.vibrion.Res
 import io.github.kingg22.vibrion.clear_search
 import io.github.kingg22.vibrion.close
 import io.github.kingg22.vibrion.domain.model.SearchHistoryItem
@@ -70,7 +70,7 @@ fun TopSearchBar(
                     @Suppress("ASSIGNED_VALUE_IS_NEVER_READ")
                     expanded = it
                 },
-                placeholder = { Text(stringResource(R.string.search_placeholder)) },
+                placeholder = { Text(stringResource(Res.string.search_placeholder)) },
                 leadingIcon = {
                     IconButton(
                         onClick = {
@@ -82,7 +82,7 @@ fun TopSearchBar(
                         Icon(
                             Icons.Default.Search,
                             tint = MaterialTheme.colorScheme.onSurface,
-                            contentDescription = stringResource(R.string.search),
+                            contentDescription = stringResource(Res.string.search),
                         )
                     }
                 },
@@ -95,7 +95,7 @@ fun TopSearchBar(
                             Icon(
                                 imageVector = Icons.Default.Close,
                                 tint = MaterialTheme.colorScheme.onSurface,
-                                contentDescription = stringResource(R.string.clear_search),
+                                contentDescription = stringResource(Res.string.clear_search),
                             )
                         }
                     } else if (expanded) {
@@ -106,7 +106,7 @@ fun TopSearchBar(
                             Icon(
                                 imageVector = Icons.Default.Close,
                                 tint = MaterialTheme.colorScheme.onSurface,
-                                contentDescription = stringResource(R.string.close),
+                                contentDescription = stringResource(Res.string.close),
                             )
                         }
                     }

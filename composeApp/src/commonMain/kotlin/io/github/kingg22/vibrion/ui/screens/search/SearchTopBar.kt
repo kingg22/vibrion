@@ -17,7 +17,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
-import io.github.kingg22.vibrion.R
+import io.github.kingg22.vibrion.Res
 import io.github.kingg22.vibrion.back
 import io.github.kingg22.vibrion.clear_search
 import io.github.kingg22.vibrion.close
@@ -64,12 +64,12 @@ fun SearchTopBar(
                     @Suppress("ASSIGNED_VALUE_IS_NEVER_READ")
                     expanded = it
                 },
-                placeholder = { Text(stringResource(R.string.search_placeholder)) },
+                placeholder = { Text(stringResource(Res.string.search_placeholder)) },
                 leadingIcon = {
                     IconButton(onBack) {
                         Icon(
                             Icons.AutoMirrored.Filled.ArrowBack,
-                            stringResource(R.string.back),
+                            stringResource(Res.string.back),
                         )
                     }
                 },
@@ -82,7 +82,7 @@ fun SearchTopBar(
                             Icon(
                                 imageVector = Icons.Default.Close,
                                 tint = MaterialTheme.colorScheme.onSurface,
-                                contentDescription = stringResource(R.string.clear_search),
+                                contentDescription = stringResource(Res.string.clear_search),
                             )
                         }
                     } else if (expanded) {
@@ -93,7 +93,7 @@ fun SearchTopBar(
                             Icon(
                                 imageVector = Icons.Default.Close,
                                 tint = MaterialTheme.colorScheme.onSurface,
-                                contentDescription = stringResource(R.string.close),
+                                contentDescription = stringResource(Res.string.close),
                             )
                         }
                     }

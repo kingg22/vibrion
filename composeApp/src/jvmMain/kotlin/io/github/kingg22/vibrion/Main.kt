@@ -22,7 +22,7 @@ fun main() {
     singleWindowApplication(
         state = WindowState(position = WindowPosition.Aligned(Alignment.Center)),
     ) {
-        window.title = stringResource(R.string.app_name)
+        window.title = stringResource(Res.string.app_name)
         // window.setWindowsAdaptiveTitleBar(ThemeManager.isDarkTheme())
         VibrionAppTheme {
             Vibrion()

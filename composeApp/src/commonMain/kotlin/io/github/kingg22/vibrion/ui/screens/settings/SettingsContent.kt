@@ -48,10 +48,10 @@ fun SettingsContent(
         bottomBar = bottomBar,
         topBar = {
             TopAppBar(
-                title = { Text(stringResource(R.string.settings)) },
+                title = { Text(stringResource(Res.string.settings)) },
                 navigationIcon = {
                     IconButton(onClick = callbacks.onBackClick) {
-                        Icon(Icons.AutoMirrored.Default.ArrowBack, stringResource(R.string.back))
+                        Icon(Icons.AutoMirrored.Default.ArrowBack, stringResource(Res.string.back))
                     }
                 },
             )
@@ -60,7 +60,7 @@ fun SettingsContent(
         LazyColumn(Modifier.padding(padding).fillMaxSize()) {
             // Theme Settings
             item {
-                SettingsSection(stringResource(R.string.theme)) {
+                SettingsSection(stringResource(Res.string.theme)) {
                     ExposedDropdownMenuBox(
                         expanded = expanded,
                         onExpandedChange = {
@@ -104,7 +104,7 @@ fun SettingsContent(
 
             // Storage Settings
             item {
-                SettingsSection(title = stringResource(R.string.storage)) {
+                SettingsSection(title = stringResource(Res.string.storage)) {
                     Column(modifier = Modifier.padding(horizontal = 16.dp)) {
                         OutlinedTextField(
                             value = downloadPath,
@@ -112,13 +112,13 @@ fun SettingsContent(
                                 downloadPath = it
                                 callbacks.updateDownloadPath(it)
                             },
-                            label = { Text(stringResource(R.string.download_folder)) },
+                            label = { Text(stringResource(Res.string.download_folder)) },
                             modifier = Modifier.fillMaxWidth(),
                             trailingIcon = {
                                 IconButton(onClick = { /* TODO Open folder picker */ }) {
                                     Icon(
                                         Icons.Default.Folder,
-                                        stringResource(R.string.select) + " " + stringResource(R.string.folder),
+                                        stringResource(Res.string.select) + " " + stringResource(Res.string.folder),
                                     )
                                 }
                             },
@@ -128,11 +128,11 @@ fun SettingsContent(
             }
             // Services Settings
             item {
-                SettingsSection(stringResource(R.string.services)) {
+                SettingsSection(stringResource(Res.string.services)) {
                     Column {
                         // Concurrent Downloads
                         ListItem(
-                            headlineContent = { Text(stringResource(R.string.concurrent_downloads)) },
+                            headlineContent = { Text(stringResource(Res.string.concurrent_downloads)) },
                             supportingContent = {
                                 Column {
                                     Slider(
@@ -143,7 +143,7 @@ fun SettingsContent(
                                         modifier = Modifier.fillMaxWidth().padding(horizontal = 16.dp),
                                     )
                                     Text(
-                                        "${state.maxConcurrentDownloads} ${stringResource(R.string.download)}",
+                                        "${state.maxConcurrentDownloads} ${stringResource(Res.string.download)}",
                                         modifier = Modifier.padding(start = 16.dp),
                                     )
                                 }
@@ -155,8 +155,8 @@ fun SettingsContent(
                             headlineContent = {
                                 Row {
                                     Text(
-                                        stringResource(R.string.quality) + " " +
-                                            stringResource(R.string.preferred),
+                                        stringResource(Res.string.quality) + " " +
+                                                stringResource(Res.string.preferred),
                                     )
                                 }
                             },
@@ -180,8 +180,8 @@ fun SettingsContent(
 
                         // Stream Settings
                         ListItem(
-                            headlineContent = { Text(stringResource(R.string.streaming)) },
-                            supportingContent = { Text(stringResource(R.string.streaming_indication)) },
+                            headlineContent = { Text(stringResource(Res.string.streaming)) },
+                            supportingContent = { Text(stringResource(Res.string.streaming_indication)) },
                             trailingContent = {
                                 Switch(
                                     checked = state.useCompleteStream,
@@ -196,7 +196,7 @@ fun SettingsContent(
             // Third Party licenses
             item {
                 CategoryItem(
-                    stringResource(R.string.licenses),
+                    stringResource(Res.string.licenses),
                     Icons.Outlined.Handshake,
                     onClick = callbacks.onLibrariesClick,
                     Modifier.padding(16.dp),
@@ -207,7 +207,7 @@ fun SettingsContent(
             item {
                 AppVersion(
                     """Version 0.0.9""",
-                    "${stringResource(R.string.author)} Rey Acosta (Kingg22)",
+                    "${stringResource(Res.string.author)} Rey Acosta (Kingg22)",
                     onClick = { uriHandler.openUri("https://github.com/Kingg22/") },
                     Modifier.padding(16.dp),
                 )

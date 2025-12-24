@@ -26,7 +26,7 @@ import androidx.paging.LoadStates
 import androidx.paging.PagingData
 import androidx.paging.compose.LazyPagingItems
 import androidx.paging.compose.collectAsLazyPagingItems
-import io.github.kingg22.vibrion.R
+import io.github.kingg22.vibrion.Res
 import io.github.kingg22.vibrion.artists
 import io.github.kingg22.vibrion.domain.model.ArtistInfo
 import io.github.kingg22.vibrion.domain.model.DownloadableItem
@@ -106,7 +106,7 @@ fun HomeContent(
 
             // Genres icons
             item {
-                SectionHeader(stringResource(R.string.genres))
+                SectionHeader(stringResource(Res.string.genres))
                 LazyRow(
                     modifier = Modifier
                         .fillMaxWidth()
@@ -121,7 +121,7 @@ fun HomeContent(
 
                     items(genresList, key = { it.id }) { genre ->
                         ImageLabel(
-                            image = genre.picture ?: painterResource(R.drawable.placeholder),
+                            image = genre.picture ?: painterResource(Res.drawable.placeholder),
                             label = genre.name,
                             modifier = Modifier.clickable(onClick = {
                                 onDetailClick(ModelType.GENRE, genre.id.toString())
@@ -145,7 +145,7 @@ fun HomeContent(
             // Top of country
             // TODO add country name based on location or something
             item {
-                SectionHeader(stringResource(R.string.top_music_country, "Panamá"))
+                SectionHeader(stringResource(Res.string.top_music_country, "Panamá"))
                 LazyRow(
                     modifier = Modifier.padding(16.dp),
                     horizontalArrangement = Arrangement.spacedBy(12.dp),
@@ -161,7 +161,8 @@ fun HomeContent(
                             carouselItem = CarouselItem(
                                 id = item.id,
                                 position = index + 1,
-                                painter = item.thumbnailUrl ?: painterResource(R.drawable.placeholder),
+                                painter = item.thumbnailUrl
+                                    ?: painterResource(Res.drawable.placeholder),
                                 contentDescription = item.title,
                                 artistName = item.artists.joinToString { it.name },
                                 titleSong = item.title,
@@ -182,7 +183,7 @@ fun HomeContent(
 
             // Favorites Artist
             item {
-                SectionHeader(stringResource(R.string.artists))
+                SectionHeader(stringResource(Res.string.artists))
                 LazyRow(
                     modifier = Modifier
                         .fillMaxWidth()
@@ -199,7 +200,7 @@ fun HomeContent(
 
                     items(artistList, key = { it.id }) { artist ->
                         ImageLabel(
-                            image = artist.pictureUrl ?: painterResource(R.drawable.placeholder),
+                            image = artist.pictureUrl ?: painterResource(Res.drawable.placeholder),
                             label = artist.name,
                             modifier = Modifier.clickable(onClick = { onDetailClick(ModelType.ARTIST, artist.id) }),
                             imageModifier = Modifier.clip(RoundedCornerShape(percent = 15)),
@@ -215,7 +216,7 @@ fun HomeContent(
             }
 
             // Playlist
-            item { SectionHeader(stringResource(R.string.playlists)) }
+            item { SectionHeader(stringResource(Res.string.playlists)) }
             if (playlistsList.loadState.refresh == LoadState.Loading) {
                 items(10) { _ ->
                     PlaylistCardPlaceholder(modifier = Modifier.padding(start = 10.dp, end = 10.dp))
@@ -225,7 +226,7 @@ fun HomeContent(
             items(playlistsList, key = { it.id }) { item ->
                 PlaylistCard(
                     playlist = PlaylistItem(
-                        image = item.thumbnailUrl ?: painterResource(R.drawable.placeholder),
+                        image = item.thumbnailUrl ?: painterResource(Res.drawable.placeholder),
                         headline = item.title,
                         description = item.description ?: item.artists.joinToString { it.name },
                         contentDescription = item.title,

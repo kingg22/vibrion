@@ -21,7 +21,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import coil3.compose.AsyncImage
-import io.github.kingg22.vibrion.R
+import io.github.kingg22.vibrion.Res
 import io.github.kingg22.vibrion.albums
 import io.github.kingg22.vibrion.back
 import io.github.kingg22.vibrion.cover_of
@@ -52,9 +52,9 @@ fun MusicDetailContent(
     val scrollBehavior = TopAppBarDefaults.exitUntilCollapsedScrollBehavior()
     val type = remember(detail) {
         when (detail) {
-            is DownloadableAlbum -> R.string.albums
-            is DownloadablePlaylist -> R.string.playlists
-            is DownloadableSingle -> R.string.songs
+            is DownloadableAlbum -> Res.string.albums
+            is DownloadablePlaylist -> Res.string.playlists
+            is DownloadableSingle -> Res.string.songs
         }
     }
 
@@ -65,7 +65,7 @@ fun MusicDetailContent(
                 title = { Text(stringResource(type), color = MaterialTheme.colorScheme.onSurface) },
                 navigationIcon = {
                     IconButton(onClick = onBackClick) {
-                        Icon(Icons.AutoMirrored.Filled.ArrowBack, stringResource(R.string.back))
+                        Icon(Icons.AutoMirrored.Filled.ArrowBack, stringResource(Res.string.back))
                     }
                 },
                 scrollBehavior = scrollBehavior,
@@ -88,7 +88,7 @@ fun MusicDetailContent(
                 ) {
                     AsyncImage(
                         model = detail.thumbnailUrl,
-                        contentDescription = stringResource(R.string.cover_of, detail.title),
+                        contentDescription = stringResource(Res.string.cover_of, detail.title),
                         modifier = Modifier
                             .fillMaxWidth()
                             .aspectRatio(1f)
@@ -142,16 +142,16 @@ fun MusicDetailContent(
                         IconButton(onClick = { onPlayClick(detail) }) {
                             Icon(
                                 Icons.Default.PlayCircle,
-                                contentDescription = stringResource(R.string.play_track, detail.title),
+                                contentDescription = stringResource(Res.string.play_track, detail.title),
                                 modifier = Modifier.size(48.dp),
                             )
                         }
                         Spacer(Modifier.width(8.dp))
                         SurpriseFeatureButton(canDownload) {
                             Button(onClick = { onDownloadClick(detail) }, enabled = canDownload) {
-                                Icon(Icons.Default.Download, contentDescription = stringResource(R.string.download))
+                                Icon(Icons.Default.Download, contentDescription = stringResource(Res.string.download))
                                 Spacer(Modifier.width(8.dp))
-                                Text(stringResource(R.string.download))
+                                Text(stringResource(Res.string.download))
                             }
                         }
                     }
@@ -194,7 +194,7 @@ fun TrackListItem(
         leadingContent = {
             AsyncImage(
                 track.thumbnailUrl,
-                contentDescription = stringResource(R.string.cover_of, track.title),
+                contentDescription = stringResource(Res.string.cover_of, track.title),
                 modifier = Modifier
                     .size(48.dp)
                     .clip(RoundedCornerShape(8.dp)),
@@ -204,11 +204,11 @@ fun TrackListItem(
             Row {
                 SurpriseFeatureButton(canDownload) {
                     IconButton(onClick = onDownload, enabled = canDownload) {
-                        Icon(Icons.Default.Download, stringResource(R.string.download))
+                        Icon(Icons.Default.Download, stringResource(Res.string.download))
                     }
                 }
                 IconButton(onClick = onPlayClick) {
-                    Icon(Icons.Default.PlayCircle, stringResource(R.string.play_track, track.title))
+                    Icon(Icons.Default.PlayCircle, stringResource(Res.string.play_track, track.title))
                 }
             }
         },

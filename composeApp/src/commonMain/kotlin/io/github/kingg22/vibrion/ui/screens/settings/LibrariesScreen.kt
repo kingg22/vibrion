@@ -19,7 +19,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import co.touchlab.kermit.Logger
 import com.mikepenz.aboutlibraries.Libs
 import com.mikepenz.aboutlibraries.ui.compose.m3.LibrariesContainer
-import io.github.kingg22.vibrion.R
+import io.github.kingg22.vibrion.Res
 import io.github.kingg22.vibrion.back
 import io.github.kingg22.vibrion.licenses
 import io.github.kingg22.vibrion.ui.theme.VibrionAppTheme
@@ -33,10 +33,10 @@ fun LibrariesScreen(onBackClick: () -> Unit, modifier: Modifier = Modifier) {
 
     Scaffold(modifier, {
         TopAppBar(
-            title = { Text(stringResource(R.string.licenses)) },
+            title = { Text(stringResource(Res.string.licenses)) },
             navigationIcon = {
                 IconButton(onClick = onBackClick) {
-                    Icon(Icons.AutoMirrored.Default.ArrowBack, stringResource(R.string.back))
+                    Icon(Icons.AutoMirrored.Default.ArrowBack, stringResource(Res.string.back))
                 }
             },
         )
@@ -57,7 +57,7 @@ private fun produceLibraries(): State<Libs?> = produceState(initialValue = null)
     // TODO Use IO dispatch
     value = withContext(Dispatchers.Default) {
         val json = try {
-            R.readBytes("files/aboutlibraries.json").decodeToString()
+            Res.readBytes("files/aboutlibraries.json").decodeToString()
         } catch (e: Exception) {
             librariesLogger.e(e) { "Failed to load libraries with resId" }
             null

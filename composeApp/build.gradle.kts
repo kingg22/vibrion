@@ -80,7 +80,6 @@ kotlin {
             jvmTarget.set(JvmTarget.JVM_11)
             jvmDefault.set(JvmDefaultMode.NO_COMPATIBILITY)
         }
-        // why needs this?
         androidResources.enable = true
     }
 
@@ -183,7 +182,6 @@ dependencies {
 compose {
     resources {
         packageOfResClass = "$group.vibrion"
-        nameOfResClass = "R"
     }
     desktop {
         application {

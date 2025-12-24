@@ -19,7 +19,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
-import io.github.kingg22.vibrion.R
+import io.github.kingg22.vibrion.Res
 import io.github.kingg22.vibrion.clear_history
 import io.github.kingg22.vibrion.domain.model.SearchHistoryItem
 import io.github.kingg22.vibrion.ui.theme.VibrionAppTheme
@@ -66,7 +66,7 @@ fun SearchSuggestions(
         if (history.isNotEmpty()) {
             item {
                 TextButton(onClick = onClearHistory, modifier = Modifier.fillMaxWidth()) {
-                    Text(stringResource(R.string.clear_history))
+                    Text(stringResource(Res.string.clear_history))
                 }
             }
         }

@@ -18,7 +18,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import io.github.kingg22.vibrion.R
+import io.github.kingg22.vibrion.Res
 import io.github.kingg22.vibrion.see_more
 import io.github.kingg22.vibrion.ui.theme.VibrionAppTheme
 import org.jetbrains.compose.resources.stringResource
@@ -36,7 +36,8 @@ fun SectionHeader(
         verticalAlignment = Alignment.CenterVertically,
     ) {
         Text(text, style = MaterialTheme.typography.titleLarge, fontWeight = FontWeight.Bold)
-        Icon(Icons.AutoMirrored.Filled.ArrowForward, contentDescription ?: stringResource(R.string.see_more, text))
+        Icon(Icons.AutoMirrored.Filled.ArrowForward,
+            contentDescription ?: stringResource(Res.string.see_more, text))
     }
 }
 

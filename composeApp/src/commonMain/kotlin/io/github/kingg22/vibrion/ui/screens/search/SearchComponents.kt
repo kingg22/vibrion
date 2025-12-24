@@ -31,7 +31,7 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import coil3.compose.AsyncImage
-import io.github.kingg22.vibrion.R
+import io.github.kingg22.vibrion.Res
 import io.github.kingg22.vibrion.cover_of
 import io.github.kingg22.vibrion.domain.model.DownloadableItem
 import io.github.kingg22.vibrion.domain.model.DownloadableSingle
@@ -70,7 +70,7 @@ fun FeaturedItem(
             ) {
                 AsyncImage(
                     item.thumbnailUrl,
-                    stringResource(R.string.cover_of, item.title),
+                    stringResource(Res.string.cover_of, item.title),
                     Modifier.size(60.dp),
                 )
 
@@ -103,13 +103,13 @@ fun FeaturedItem(
 
             SurpriseFeatureButton(canDownload) {
                 IconButton(onDownloadClick, enabled = canDownload) {
-                    Icon(Icons.Default.Download, stringResource(R.string.download))
+                    Icon(Icons.Default.Download, stringResource(Res.string.download))
                 }
             }
 
             if (item is DownloadableItem.StreamableItem) {
                 IconButton(onPlayClick) {
-                    Icon(Icons.Default.PlayCircle, stringResource(R.string.play_track, item.title))
+                    Icon(Icons.Default.PlayCircle, stringResource(Res.string.play_track, item.title))
                 }
             }
         }
@@ -143,13 +143,13 @@ fun ListItem(
             )
         },
         leadingContent = {
-            AsyncImage(image, stringResource(R.string.cover_of, title), Modifier.size(60.dp))
+            AsyncImage(image, stringResource(Res.string.cover_of, title), Modifier.size(60.dp))
         },
         trailingContent = {
             Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.End) {
                 SurpriseFeatureButton(canDownload) {
                     IconButton(onClick = onDownloadClick, enabled = canDownload) {
-                        Icon(Icons.Default.Download, stringResource(R.string.download))
+                        Icon(Icons.Default.Download, stringResource(Res.string.download))
                     }
                 }
             }
@@ -189,7 +189,7 @@ fun ListItemCard(
         ) {
             AsyncImage(
                 image,
-                stringResource(R.string.cover_of, title),
+                stringResource(Res.string.cover_of, title),
                 Modifier.size(80.dp),
             )
 
@@ -219,12 +219,12 @@ fun ListItemCard(
 
             SurpriseFeatureButton(canDownload) {
                 IconButton(onClick = onDownloadClick, enabled = canDownload) {
-                    Icon(Icons.Default.Download, stringResource(R.string.download))
+                    Icon(Icons.Default.Download, stringResource(Res.string.download))
                 }
             }
 
             IconButton(onPlayClick) {
-                Icon(Icons.Default.PlayCircle, stringResource(R.string.play_track, title))
+                Icon(Icons.Default.PlayCircle, stringResource(Res.string.play_track, title))
             }
         }
     }

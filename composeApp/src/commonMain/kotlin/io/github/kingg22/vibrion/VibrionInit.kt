@@ -76,9 +76,9 @@ fun buildCoilImageLoader(context: PlatformContext) = ImageLoader.Builder(context
     }
     .build()
 
-const val COIL_CACHE_DIR = "image_cache"
+internal const val COIL_CACHE_DIR = "image_cache"
 
-expect fun coilCacheDir(context: PlatformContext): Path
+internal expect fun coilCacheDir(context: PlatformContext): Path
 
 class KoinKermitLogger : KoinLogger() {
     private val logger = KermitLogger.withTag("koin")

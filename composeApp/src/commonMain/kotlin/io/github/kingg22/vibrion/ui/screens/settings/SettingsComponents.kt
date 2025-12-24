@@ -31,7 +31,7 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.unit.dp
-import io.github.kingg22.vibrion.R
+import io.github.kingg22.vibrion.Res
 import io.github.kingg22.vibrion.accounts
 import io.github.kingg22.vibrion.deezer_name
 import io.github.kingg22.vibrion.hide
@@ -58,10 +58,10 @@ fun SettingsAccountSection(token: String?, updateToken: (String) -> Unit, modifi
     var text by rememberSaveable { mutableStateOf(token) }
     var passwordVisible by rememberSaveable { mutableStateOf(false) }
 
-    SettingsSection(stringResource(R.string.accounts)) {
+    SettingsSection(stringResource(Res.string.accounts)) {
         Column(modifier = modifier.padding(horizontal = 16.dp)) {
             Text(
-                text = stringResource(R.string.deezer_name),
+                text = stringResource(Res.string.deezer_name),
                 style = MaterialTheme.typography.bodyLarge,
                 color = MaterialTheme.colorScheme.secondary,
                 modifier = Modifier.padding(top = 4.dp, bottom = 8.dp),
@@ -72,7 +72,7 @@ fun SettingsAccountSection(token: String?, updateToken: (String) -> Unit, modifi
                     text = it
                     updateToken(it)
                 },
-                label = { Text(stringResource(R.string.token)) },
+                label = { Text(stringResource(Res.string.token)) },
                 modifier = Modifier.fillMaxWidth().padding(bottom = 6.dp),
                 singleLine = true,
                 visualTransformation =
@@ -82,9 +82,9 @@ fun SettingsAccountSection(token: String?, updateToken: (String) -> Unit, modifi
                 trailingIcon = {
                     val image = if (passwordVisible) Icons.Filled.Visibility else Icons.Filled.VisibilityOff
                     val description = if (passwordVisible) {
-                        stringResource(R.string.hide) + " " + stringResource(R.string.token)
+                        stringResource(Res.string.hide) + " " + stringResource(Res.string.token)
                     } else {
-                        stringResource(R.string.show) + " " + stringResource(R.string.token)
+                        stringResource(Res.string.show) + " " + stringResource(Res.string.token)
                     }
 
                     IconButton(onClick = { passwordVisible = !passwordVisible }) {

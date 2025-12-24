@@ -19,7 +19,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import coil3.compose.AsyncImage
-import io.github.kingg22.vibrion.R
+import io.github.kingg22.vibrion.Res
 import io.github.kingg22.vibrion.cover_of
 import io.github.kingg22.vibrion.placeholder
 import io.github.kingg22.vibrion.ui.theme.VibrionAppTheme
@@ -36,14 +36,14 @@ fun ImageLabel(image: Any, label: String, modifier: Modifier = Modifier, imageMo
         if (image is Painter) {
             Image(
                 image,
-                contentDescription = stringResource(R.string.cover_of, label),
+                contentDescription = stringResource(Res.string.cover_of, label),
                 modifier = imageModifier.width(96.dp).height(96.dp),
                 contentScale = ContentScale.Crop,
             )
         } else {
             AsyncImage(
                 model = image,
-                contentDescription = stringResource(R.string.cover_of, label),
+                contentDescription = stringResource(Res.string.cover_of, label),
                 modifier = imageModifier.width(96.dp).height(96.dp),
                 contentScale = ContentScale.Crop,
             )
@@ -92,7 +92,7 @@ fun ImageLabelPlaceholder(modifier: Modifier = Modifier, imageModifier: Modifier
 @Composable
 private fun ImageLabelDefaultPreview() {
     VibrionAppTheme {
-        ImageLabel(painterResource(R.drawable.placeholder), "Test")
+        ImageLabel(painterResource(Res.drawable.placeholder), "Test")
     }
 }
 
@@ -104,7 +104,7 @@ private fun ImageLabelDefaultPreview() {
 private fun ImageLabelCirclePreview() {
     VibrionAppTheme {
         ImageLabel(
-            image = painterResource(R.drawable.placeholder),
+            image = painterResource(Res.drawable.placeholder),
             label = "Test",
             modifier = Modifier.clip(CircleShape),
         )
@@ -119,7 +119,7 @@ private fun ImageLabelCirclePreview() {
 private fun ImageLabelRoundedPreview() {
     VibrionAppTheme {
         ImageLabel(
-            image = painterResource(R.drawable.placeholder),
+            image = painterResource(Res.drawable.placeholder),
             label = "Test",
             modifier = Modifier.clip(RoundedCornerShape(percent = 15)),
         )

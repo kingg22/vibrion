@@ -32,26 +32,26 @@ fun DownloadableItem.getModelType() = when (this) {
 fun ArtistInfo.getModelType() = ModelType.ARTIST
 
 fun ModelType.getDisplayName() = when (this) {
-    ModelType.ARTIST -> R.string.artists
-    ModelType.ALBUM -> R.string.albums
-    ModelType.PLAYLIST -> R.string.playlists
-    ModelType.SINGLE -> R.string.songs
-    ModelType.USER -> R.string.users
-    ModelType.GENRE -> R.string.genres
+    ModelType.ARTIST -> Res.string.artists
+    ModelType.ALBUM -> Res.string.albums
+    ModelType.PLAYLIST -> Res.string.playlists
+    ModelType.SINGLE -> Res.string.songs
+    ModelType.USER -> Res.string.users
+    ModelType.GENRE -> Res.string.genres
 }
 
 fun Quality.getDisplayName() = when (this) {
-    AUTO -> R.string.auto
-    LOW -> R.string.low
-    MEDIUM -> R.string.medium
-    HIGH -> R.string.high
-    BEST -> R.string.best
+    AUTO -> Res.string.auto
+    LOW -> Res.string.low
+    MEDIUM -> Res.string.medium
+    HIGH -> Res.string.high
+    BEST -> Res.string.best
 }
 
 fun ThemeMode.getDisplayName() = when (this) {
-    SYSTEM -> R.string.system
-    LIGHT -> R.string.light
-    DARK -> R.string.dark
+    SYSTEM -> Res.string.system
+    LIGHT -> Res.string.light
+    DARK -> Res.string.dark
 }
 
 /**

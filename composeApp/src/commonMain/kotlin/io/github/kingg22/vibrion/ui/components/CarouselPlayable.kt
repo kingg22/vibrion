@@ -28,7 +28,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import coil3.compose.AsyncImage
-import io.github.kingg22.vibrion.R
+import io.github.kingg22.vibrion.Res
 import io.github.kingg22.vibrion.cover_of
 import io.github.kingg22.vibrion.placeholder
 import io.github.kingg22.vibrion.play_track
@@ -48,7 +48,7 @@ fun SongCard(carouselItem: CarouselItem, onClick: () -> Unit, onPlayClick: () ->
                 Image(
                     painter = carouselItem.painter,
                     contentDescription = stringResource(
-                        R.string.cover_of,
+                        Res.string.cover_of,
                         carouselItem.contentDescription ?: carouselItem.titleSong,
                     ),
                     modifier = Modifier.fillMaxSize(),
@@ -58,12 +58,12 @@ fun SongCard(carouselItem: CarouselItem, onClick: () -> Unit, onPlayClick: () ->
                 AsyncImage(
                     model = carouselItem.painter,
                     contentDescription = stringResource(
-                        R.string.cover_of,
+                        Res.string.cover_of,
                         carouselItem.contentDescription ?: carouselItem.titleSong,
                     ),
                     modifier = Modifier.fillMaxSize(),
                     contentScale = ContentScale.Crop,
-                    placeholder = painterResource(R.drawable.placeholder),
+                    placeholder = painterResource(Res.drawable.placeholder),
                 )
             }
 
@@ -121,7 +121,10 @@ fun SongCard(carouselItem: CarouselItem, onClick: () -> Unit, onPlayClick: () ->
                 ) {
                     Icon(
                         imageVector = Icons.Default.PlayArrow,
-                        contentDescription = stringResource(R.string.play_track, carouselItem.titleSong),
+                        contentDescription = stringResource(
+                            Res.string.play_track,
+                            carouselItem.titleSong
+                        ),
                         tint = Color.Black,
                     )
                 }
@@ -214,7 +217,7 @@ private fun CarouselPreview() {
         CarouselItem(
             id = it.toString(),
             position = it,
-            painter = painterResource(R.drawable.placeholder),
+            painter = painterResource(Res.drawable.placeholder),
             contentDescription = null,
             artistName = "Artist $it",
             titleSong = "Title $it",

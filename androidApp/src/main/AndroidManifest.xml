@@ -46,13 +46,6 @@
                 android:resource="@xml/my_app_widget_info" />
         </receiver>
 
-        <!-- Foreground service of Downloads
-        <service
-            android:name=".core.application.DownloadForegroundService"
-            android:exported="false"
-            android:foregroundServiceType="dataSync" />
-             -->
-
         <!-- Foreground service of Music streaming/preview -->
         <service
             android:name=".data.service.VibrionMediaServiceImpl"

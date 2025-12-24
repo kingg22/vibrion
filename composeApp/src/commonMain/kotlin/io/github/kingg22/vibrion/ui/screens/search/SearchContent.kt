@@ -30,7 +30,7 @@ import androidx.paging.LoadStates
 import androidx.paging.PagingData
 import androidx.paging.compose.LazyPagingItems
 import androidx.paging.compose.collectAsLazyPagingItems
-import io.github.kingg22.vibrion.R
+import io.github.kingg22.vibrion.Res
 import io.github.kingg22.vibrion.albums
 import io.github.kingg22.vibrion.artists
 import io.github.kingg22.vibrion.domain.model.ArtistInfo
@@ -60,10 +60,10 @@ fun SearchContent(
     onSectionClick: (type: ModelType) -> Unit,
     modifier: Modifier = Modifier,
 ) {
-    val playlistsTitle = stringResource(R.string.playlists)
-    val songsTitle = stringResource(R.string.songs)
-    val albumsTitle = stringResource(R.string.albums)
-    val artistsTitle = stringResource(R.string.artists)
+    val playlistsTitle = stringResource(Res.string.playlists)
+    val songsTitle = stringResource(Res.string.songs)
+    val albumsTitle = stringResource(Res.string.albums)
+    val artistsTitle = stringResource(Res.string.artists)
 
     LazyColumn(modifier.fillMaxSize()) {
         item(songsTitle) {

@@ -32,7 +32,7 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import coil3.compose.AsyncImage
-import io.github.kingg22.vibrion.R
+import io.github.kingg22.vibrion.Res
 import io.github.kingg22.vibrion.placeholder
 import io.github.kingg22.vibrion.ui.theme.VibrionAppTheme
 import org.jetbrains.compose.resources.painterResource
@@ -70,7 +70,7 @@ fun PlaylistCard(playlist: PlaylistItem, onClick: () -> Unit, onPlayClick: () ->
                         contentDescription = playlist.contentDescription,
                         modifier = Modifier.fillMaxSize(),
                         contentScale = ContentScale.Crop,
-                        placeholder = painterResource(R.drawable.placeholder),
+                        placeholder = painterResource(Res.drawable.placeholder),
                     )
                 }
             }
@@ -182,19 +182,19 @@ fun PlaylistCardPlaceholder(modifier: Modifier = Modifier) {
 private fun PlaylistScreen() {
     val playlists = listOf(
         PlaylistItem(
-            image = painterResource(R.drawable.placeholder),
+            image = painterResource(Res.drawable.placeholder),
             headline = "Headline 1",
             description = "Description duis aute irure dolor in reprehenderit in voluptate velit.",
             contentDescription = "Playlist 1 cover",
         ),
         PlaylistItem(
-            image = painterResource(R.drawable.placeholder),
+            image = painterResource(Res.drawable.placeholder),
             headline = "Headline 2",
             description = "Description duis aute irure dolor in reprehenderit in voluptate velit.",
             contentDescription = "Playlist 2 cover",
         ),
         PlaylistItem(
-            image = painterResource(R.drawable.placeholder),
+            image = painterResource(Res.drawable.placeholder),
             headline = "Headline 3",
             description = "Description duis aute irure dolor in reprehenderit in voluptate velit.",
             contentDescription = "Playlist 2 cover",

@@ -12,7 +12,7 @@ import androidx.compose.runtime.Immutable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.tooling.preview.Preview
-import io.github.kingg22.vibrion.R
+import io.github.kingg22.vibrion.Res
 import io.github.kingg22.vibrion.home
 import io.github.kingg22.vibrion.music_note
 import io.github.kingg22.vibrion.settings
@@ -53,6 +53,6 @@ private enum class NavigationItem(
     val iconDescriptionRes: StringResource,
     val destinationRoute: VibrionRoutes,
 ) {
-    HOME(R.string.home, Icons.Filled.MusicNote, R.string.music_note, VibrionRoutes.Home),
-    SETTINGS(R.string.settings, Icons.Filled.Settings, R.string.settings, VibrionRoutes.Settings),
+    HOME(Res.string.home, Icons.Filled.MusicNote, Res.string.music_note, VibrionRoutes.Home),
+    SETTINGS(Res.string.settings, Icons.Filled.Settings, Res.string.settings, VibrionRoutes.Settings),
 }

@@ -29,7 +29,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
-import io.github.kingg22.vibrion.R
+import io.github.kingg22.vibrion.Res
 import io.github.kingg22.vibrion.download
 import io.github.kingg22.vibrion.ui.theme.VibrionAppTheme
 import kotlinx.coroutines.delay
@@ -138,7 +138,7 @@ private fun SurpriseFeatureButtonPreview() {
             }
             SurpriseFeatureButton(featureAvailable = showConfetti) {
                 IconButton(onClick = {}) {
-                    Icon(Icons.Default.Download, stringResource(R.string.download))
+                    Icon(Icons.Default.Download, stringResource(Res.string.download))
                 }
             }
         }
