@@ -19,7 +19,7 @@ import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.currentCoroutineContext
 import kotlinx.coroutines.ensureActive
 import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.distinctUntilChanged
 import kotlinx.coroutines.flow.filterNotNull
 import kotlinx.coroutines.flow.flatMapLatest
@@ -35,9 +35,8 @@ class SearchViewModel(
     companion object {
         private val logger = Logger.withTag("SearchViewModel")
     }
-
-    private val _searchUiState = MutableStateFlow<SearchUiState>(SearchUiState.Idle)
-    val searchUiState = _searchUiState.asStateFlow()
+    val searchUiState: StateFlow<SearchUiState>
+        field = MutableStateFlow<SearchUiState>(SearchUiState.Idle)
 
     private val searchDetailParams = MutableStateFlow<SearchDetailParams?>(null)
 
@@ -80,13 +79,13 @@ class SearchViewModel(
         .cachedIn(viewModelScope)
 
     fun search(query: String, limit: Int = 5) {
-        val snapshot = _searchUiState.value
+        val snapshot = searchUiState.value
         if (snapshot is SearchUiState.Loaded && snapshot.query == query && snapshot.singles.size >= limit) {
             logger.d { "Search for '$query' is already loaded" }
             return
         }
 
-        _searchUiState.update { SearchUiState.Loading }
+        searchUiState.update { SearchUiState.Loading }
 
         viewModelScope.launch {
             try {
@@ -96,16 +95,16 @@ class SearchViewModel(
                 val albums = searchAlbumUseCase(query, limit)
 
                 if (singles.isNotEmpty() || playlists.isNotEmpty() || albums.isNotEmpty()) {
-                    _searchUiState.update {
+                    searchUiState.update {
                         SearchUiState.Loaded(query, singles, playlists, albums)
                     }
                 } else {
-                    _searchUiState.update { SearchUiState.Error("No results found") }
+                    searchUiState.update { SearchUiState.Error("No results found") }
                 }
             } catch (e: Exception) {
                 currentCoroutineContext().ensureActive()
                 logger.e(e) { "Error while searching for '$query'" }
-                _searchUiState.update { SearchUiState.Error(e.message ?: "Unknown error") }
+                searchUiState.update { SearchUiState.Error(e.message ?: "Unknown error") }
             }
         }
     }
