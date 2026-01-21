@@ -13,6 +13,7 @@ import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Visibility
 import androidx.compose.material.icons.filled.VisibilityOff
+import androidx.compose.material.icons.outlined.Handshake
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
@@ -30,6 +31,7 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import io.github.kingg22.vibrion.Res
 import io.github.kingg22.vibrion.accounts
@@ -37,6 +39,7 @@ import io.github.kingg22.vibrion.deezer_name
 import io.github.kingg22.vibrion.hide
 import io.github.kingg22.vibrion.show
 import io.github.kingg22.vibrion.token
+import io.github.kingg22.vibrion.ui.theme.VibrionAppTheme
 import org.jetbrains.compose.resources.stringResource
 
 @Composable
@@ -142,5 +145,39 @@ fun CategoryItem(title: String, icon: ImageVector, onClick: () -> Unit, modifier
             )
             Text(title, style = MaterialTheme.typography.bodyLarge)
         }
+    }
+}
+
+@Preview
+@Composable
+private fun SettingsSectionPreview() {
+    VibrionAppTheme {
+        SettingsSection(title = "Sample Section") {
+            Text("Sample content")
+        }
+    }
+}
+
+@Preview
+@Composable
+private fun SettingsAccountSectionPreview() {
+    VibrionAppTheme {
+        SettingsAccountSection("Sample Section", {})
+    }
+}
+
+@Preview
+@Composable
+private fun AppVersionPreview() {
+    VibrionAppTheme {
+        AppVersion("Sample Version", "Sample Copyright", {})
+    }
+}
+
+@Preview
+@Composable
+private fun CategoryItemPreview() {
+    VibrionAppTheme {
+        CategoryItem("Sample Category", Icons.Outlined.Handshake, {})
     }
 }
