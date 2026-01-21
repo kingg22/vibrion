@@ -88,7 +88,10 @@ kotlin {
     @OptIn(org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi::class)
     dependencies {
         api(libs.jetbrains.multiplatform.resources)
+        // preview
         api(libs.jetbrains.compose.ui.tooling.preview)
+        api(libs.jetbrains.compose.ui.tooling)
+        api(libs.compose.hot.reload.annotations)
 
         api(libs.jetbrains.compose.runtime)
         api(libs.jetbrains.compose.ui)

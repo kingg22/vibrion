@@ -2,14 +2,21 @@ import org.jetbrains.kotlin.gradle.dsl.JvmDefaultMode
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 import org.jetbrains.kotlin.gradle.dsl.KotlinVersion
 
+buildscript {
+    dependencies {
+        // For KGP
+        //noinspection UseTomlInstead
+        classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:2.3.0")
+    }
+}
+
 plugins {
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.composeCompiler)
     alias(libs.plugins.ktlint)
-    alias(libs.plugins.kotlinAndroid)
     alias(libs.plugins.kotlinSerialization)
     alias(libs.plugins.sentry)
-    // alias(libs.plugins.sentry.compiler) // Incompatible with kotlin 2.3.0
+    alias(libs.plugins.sentry.compiler)
 }
 
 group = "io.github.kingg22"
@@ -26,7 +33,8 @@ kotlin {
             "androidx.compose.material3.ExperimentalMaterial3Api",
             "androidx.compose.animation.ExperimentalSharedTransitionApi",
         )
-        apiVersion.set(KotlinVersion.KOTLIN_2_2)
+        freeCompilerArgs.addAll("-Xskip-prerelease-check")
+        apiVersion.set(KotlinVersion.KOTLIN_2_3)
         languageVersion.set(apiVersion)
         jvmTarget.set(JvmTarget.JVM_11)
         jvmDefault.set(JvmDefaultMode.NO_COMPATIBILITY)
@@ -76,6 +84,7 @@ android {
     buildFeatures {
         compose = true
         buildConfig = true
+        resValues = true
         shaders = false
     }
     compileOptions {
