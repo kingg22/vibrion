@@ -1,6 +1,7 @@
 package io.github.kingg22.vibrion.ui.components
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.basicMarquee
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.height
@@ -52,7 +53,7 @@ fun ImageLabel(image: Any, label: String, modifier: Modifier = Modifier, imageMo
         Text(
             label,
             style = MaterialTheme.typography.labelLarge,
-            modifier = Modifier.width(96.dp).height(20.dp),
+            modifier = Modifier.width(96.dp).height(20.dp).basicMarquee(),
             textAlign = TextAlign.Center,
         )
     }

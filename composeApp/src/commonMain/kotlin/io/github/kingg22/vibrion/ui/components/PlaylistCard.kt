@@ -1,6 +1,7 @@
 package io.github.kingg22.vibrion.ui.components
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.basicMarquee
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -87,6 +88,7 @@ fun PlaylistCard(playlist: PlaylistItem, onClick: () -> Unit, onPlayClick: () ->
                     style = MaterialTheme.typography.titleMedium,
                     maxLines = 1,
                     overflow = TextOverflow.Ellipsis,
+                    modifier = Modifier.basicMarquee(),
                 )
                 Text(
                     text = playlist.description,
@@ -94,6 +96,7 @@ fun PlaylistCard(playlist: PlaylistItem, onClick: () -> Unit, onPlayClick: () ->
                     color = MaterialTheme.colorScheme.onSurfaceVariant,
                     maxLines = 2,
                     overflow = TextOverflow.Ellipsis,
+                    modifier = Modifier.basicMarquee(),
                 )
             }
 

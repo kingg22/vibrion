@@ -2,6 +2,7 @@ package io.github.kingg22.vibrion.ui.components
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.basicMarquee
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyRow
@@ -99,6 +100,7 @@ fun SongCard(carouselItem: CarouselItem, onClick: () -> Unit, onPlayClick: () ->
                     style = MaterialTheme.typography.titleMedium,
                     fontWeight = FontWeight.Bold,
                     color = Color.White,
+                    modifier = Modifier.basicMarquee(),
                 )
 
                 // title
@@ -106,6 +108,7 @@ fun SongCard(carouselItem: CarouselItem, onClick: () -> Unit, onPlayClick: () ->
                     text = carouselItem.titleSong,
                     style = MaterialTheme.typography.bodyMedium,
                     color = Color.White.copy(alpha = 0.8f),
+                    modifier = Modifier.basicMarquee(),
                 )
 
                 Spacer(Modifier.height(8.dp))
