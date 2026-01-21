@@ -1,5 +1,6 @@
 package io.github.kingg22.vibrion.ui.screens.search
 
+import androidx.compose.foundation.basicMarquee
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -82,6 +83,7 @@ fun FeaturedItem(
                         style = MaterialTheme.typography.titleMedium,
                         maxLines = 1,
                         overflow = TextOverflow.Ellipsis,
+                        modifier = Modifier.basicMarquee(),
                     )
                     Text(
                         text = item.artists.joinToString { it.name },
@@ -89,6 +91,7 @@ fun FeaturedItem(
                         color = MaterialTheme.colorScheme.onSurfaceVariant,
                         maxLines = 2,
                         overflow = TextOverflow.Ellipsis,
+                        modifier = Modifier.basicMarquee(),
                     )
                     Spacer(Modifier.height(4.dp))
                     Text(
@@ -97,6 +100,7 @@ fun FeaturedItem(
                         color = MaterialTheme.colorScheme.onSurfaceVariant,
                         maxLines = 2,
                         overflow = TextOverflow.Ellipsis,
+                        modifier = Modifier.basicMarquee(),
                     )
                 }
             }
@@ -132,6 +136,7 @@ fun ListItem(
                 title,
                 maxLines = 1,
                 overflow = TextOverflow.Ellipsis,
+                modifier = Modifier.basicMarquee(),
             )
         },
         supportingContent = {
@@ -140,6 +145,7 @@ fun ListItem(
                 color = MaterialTheme.colorScheme.onSurfaceVariant,
                 maxLines = 3,
                 overflow = TextOverflow.Ellipsis,
+                modifier = Modifier.basicMarquee(),
             )
         },
         leadingContent = {
@@ -205,6 +211,7 @@ fun ListItemCard(
                     style = MaterialTheme.typography.titleMedium,
                     maxLines = 1,
                     overflow = TextOverflow.Ellipsis,
+                    modifier = Modifier.basicMarquee(),
                 )
                 subtitles.forEach { subtitle ->
                     Text(
@@ -213,6 +220,7 @@ fun ListItemCard(
                         color = MaterialTheme.colorScheme.onSurfaceVariant,
                         maxLines = 1,
                         overflow = TextOverflow.Ellipsis,
+                        modifier = Modifier.basicMarquee(),
                     )
                 }
             }
