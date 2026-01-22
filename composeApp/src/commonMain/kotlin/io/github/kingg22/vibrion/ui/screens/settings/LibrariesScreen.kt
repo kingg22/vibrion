@@ -3,8 +3,6 @@ package io.github.kingg22.vibrion.ui.screens.settings
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.Scaffold
@@ -19,8 +17,10 @@ import androidx.compose.ui.tooling.preview.Preview
 import co.touchlab.kermit.Logger
 import com.mikepenz.aboutlibraries.Libs
 import com.mikepenz.aboutlibraries.ui.compose.m3.LibrariesContainer
+import io.github.kingg22.vibrion.Icons
 import io.github.kingg22.vibrion.Res
 import io.github.kingg22.vibrion.back
+import io.github.kingg22.vibrion.filled.ArrowBack
 import io.github.kingg22.vibrion.licenses
 import io.github.kingg22.vibrion.ui.theme.VibrionAppTheme
 import kotlinx.coroutines.Dispatchers
@@ -36,15 +36,15 @@ fun LibrariesScreen(onBackClick: () -> Unit, modifier: Modifier = Modifier) {
             title = { Text(stringResource(Res.string.licenses)) },
             navigationIcon = {
                 IconButton(onClick = onBackClick) {
-                    Icon(Icons.AutoMirrored.Default.ArrowBack, stringResource(Res.string.back))
+                    Icon(Icons.Filled.ArrowBack, stringResource(Res.string.back))
                 }
             },
         )
-    }) {
-        Box(Modifier.padding(it).fillMaxSize())
+    }) { paddingValues ->
+        Box(Modifier.padding(paddingValues).fillMaxSize())
         LibrariesContainer(
             libraries,
-            Modifier.padding(it).fillMaxSize(),
+            Modifier.padding(paddingValues).fillMaxSize(),
             showLicenseBadges = false,
         )
     }

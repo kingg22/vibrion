@@ -1,9 +1,6 @@
 package io.github.kingg22.vibrion.ui.components
 
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Close
-import androidx.compose.material.icons.filled.Search
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
@@ -20,10 +17,13 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
+import io.github.kingg22.vibrion.Icons
 import io.github.kingg22.vibrion.Res
 import io.github.kingg22.vibrion.clear_search
 import io.github.kingg22.vibrion.close
 import io.github.kingg22.vibrion.domain.model.SearchHistoryItem
+import io.github.kingg22.vibrion.filled.Close
+import io.github.kingg22.vibrion.filled.Search
 import io.github.kingg22.vibrion.search
 import io.github.kingg22.vibrion.search_placeholder
 import io.github.kingg22.vibrion.ui.theme.VibrionAppTheme
@@ -56,7 +56,6 @@ fun TopSearchBar(
             SearchBarDefaults.InputField(
                 query = text,
                 onQueryChange = {
-                    @Suppress("ASSIGNED_VALUE_IS_NEVER_READ")
                     text = it
                 },
                 onSearch = {
@@ -67,7 +66,6 @@ fun TopSearchBar(
                 },
                 expanded = expanded,
                 onExpandedChange = {
-                    @Suppress("ASSIGNED_VALUE_IS_NEVER_READ")
                     expanded = it
                 },
                 placeholder = { Text(stringResource(Res.string.search_placeholder)) },
@@ -80,7 +78,7 @@ fun TopSearchBar(
                         enabled = text.isNotBlank(),
                     ) {
                         Icon(
-                            Icons.Default.Search,
+                            Icons.Filled.Search,
                             tint = MaterialTheme.colorScheme.onSurface,
                             contentDescription = stringResource(Res.string.search),
                         )
@@ -89,22 +87,20 @@ fun TopSearchBar(
                 trailingIcon = {
                     if (text.isNotEmpty()) {
                         IconButton(onClick = {
-                            @Suppress("ASSIGNED_VALUE_IS_NEVER_READ")
                             text = ""
                         }) {
                             Icon(
-                                imageVector = Icons.Default.Close,
+                                imageVector = Icons.Filled.Close,
                                 tint = MaterialTheme.colorScheme.onSurface,
                                 contentDescription = stringResource(Res.string.clear_search),
                             )
                         }
                     } else if (expanded) {
                         IconButton(onClick = {
-                            @Suppress("ASSIGNED_VALUE_IS_NEVER_READ")
                             expanded = false
                         }) {
                             Icon(
-                                imageVector = Icons.Default.Close,
+                                imageVector = Icons.Filled.Close,
                                 tint = MaterialTheme.colorScheme.onSurface,
                                 contentDescription = stringResource(Res.string.close),
                             )

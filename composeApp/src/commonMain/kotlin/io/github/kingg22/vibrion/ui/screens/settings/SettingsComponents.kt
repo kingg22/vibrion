@@ -10,10 +10,6 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.text.KeyboardOptions
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Visibility
-import androidx.compose.material.icons.filled.VisibilityOff
-import androidx.compose.material.icons.outlined.Handshake
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
@@ -33,10 +29,14 @@ import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import io.github.kingg22.vibrion.Icons
 import io.github.kingg22.vibrion.Res
 import io.github.kingg22.vibrion.accounts
 import io.github.kingg22.vibrion.deezer_name
+import io.github.kingg22.vibrion.filled.Visibility
+import io.github.kingg22.vibrion.filled.VisibilityOff
 import io.github.kingg22.vibrion.hide
+import io.github.kingg22.vibrion.outlined.Handshake
 import io.github.kingg22.vibrion.show
 import io.github.kingg22.vibrion.token
 import io.github.kingg22.vibrion.ui.theme.VibrionAppTheme

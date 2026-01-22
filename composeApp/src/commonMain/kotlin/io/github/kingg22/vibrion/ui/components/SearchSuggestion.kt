@@ -5,8 +5,6 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.History
 import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
@@ -19,9 +17,11 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
+import io.github.kingg22.vibrion.Icons
 import io.github.kingg22.vibrion.Res
 import io.github.kingg22.vibrion.clear_history
 import io.github.kingg22.vibrion.domain.model.SearchHistoryItem
+import io.github.kingg22.vibrion.filled.History
 import io.github.kingg22.vibrion.ui.theme.VibrionAppTheme
 import org.jetbrains.compose.resources.stringResource
 
@@ -55,7 +55,7 @@ fun SearchSuggestions(
             DropdownMenuItem(
                 text = { Text(suggestion) },
                 leadingIcon = {
-                    Icon(Icons.Default.History, null)
+                    Icon(Icons.Filled.History, null)
                 },
                 onClick = {
                     onSuggestionClick(suggestion)

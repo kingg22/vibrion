@@ -5,8 +5,6 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.Scaffold
@@ -21,11 +19,13 @@ import androidx.paging.LoadStates
 import androidx.paging.PagingData
 import androidx.paging.compose.LazyPagingItems
 import androidx.paging.compose.collectAsLazyPagingItems
+import io.github.kingg22.vibrion.Icons
 import io.github.kingg22.vibrion.Res
 import io.github.kingg22.vibrion.back
 import io.github.kingg22.vibrion.domain.model.DownloadableItem
 import io.github.kingg22.vibrion.domain.model.DownloadableSingle
 import io.github.kingg22.vibrion.domain.model.ModelType
+import io.github.kingg22.vibrion.filled.ArrowBack
 import io.github.kingg22.vibrion.ui.getDisplayName
 import io.github.kingg22.vibrion.ui.items
 import io.github.kingg22.vibrion.ui.screens.search.ListItemCard
@@ -53,7 +53,7 @@ fun SearchDetailContent(
                 modifier = Modifier.fillMaxWidth(),
                 navigationIcon = {
                     IconButton(onBackClick) {
-                        Icon(Icons.AutoMirrored.Filled.ArrowBack, stringResource(Res.string.back))
+                        Icon(Icons.Filled.ArrowBack, stringResource(Res.string.back))
                     }
                 },
             )

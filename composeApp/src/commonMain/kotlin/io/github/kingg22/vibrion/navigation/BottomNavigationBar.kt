@@ -1,8 +1,5 @@
 package io.github.kingg22.vibrion.navigation
 
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.MusicNote
-import androidx.compose.material.icons.filled.Settings
 import androidx.compose.material3.Icon
 import androidx.compose.material3.NavigationBar
 import androidx.compose.material3.NavigationBarItem
@@ -12,7 +9,10 @@ import androidx.compose.runtime.Immutable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.tooling.preview.Preview
+import io.github.kingg22.vibrion.Icons
 import io.github.kingg22.vibrion.Res
+import io.github.kingg22.vibrion.filled.MusicNote
+import io.github.kingg22.vibrion.filled.Settings
 import io.github.kingg22.vibrion.home
 import io.github.kingg22.vibrion.music_note
 import io.github.kingg22.vibrion.settings

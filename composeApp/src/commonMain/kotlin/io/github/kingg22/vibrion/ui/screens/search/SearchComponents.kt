@@ -13,9 +13,6 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.CircleShape
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Download
-import androidx.compose.material.icons.filled.PlayCircle
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.ElevatedCard
@@ -32,11 +29,14 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import coil3.compose.AsyncImage
+import io.github.kingg22.vibrion.Icons
 import io.github.kingg22.vibrion.Res
 import io.github.kingg22.vibrion.cover_of
 import io.github.kingg22.vibrion.domain.model.DownloadableItem
 import io.github.kingg22.vibrion.domain.model.DownloadableSingle
 import io.github.kingg22.vibrion.download
+import io.github.kingg22.vibrion.filled.Download
+import io.github.kingg22.vibrion.filled.PlayCircle
 import io.github.kingg22.vibrion.play_track
 import io.github.kingg22.vibrion.ui.components.ShimmerBox
 import io.github.kingg22.vibrion.ui.components.SurpriseFeatureButton
@@ -107,13 +107,13 @@ fun FeaturedItem(
 
             SurpriseFeatureButton(canDownload) {
                 IconButton(onDownloadClick, enabled = canDownload) {
-                    Icon(Icons.Default.Download, stringResource(Res.string.download))
+                    Icon(Icons.Filled.Download, stringResource(Res.string.download))
                 }
             }
 
             if (item is DownloadableItem.StreamableItem) {
                 IconButton(onPlayClick) {
-                    Icon(Icons.Default.PlayCircle, stringResource(Res.string.play_track, item.title))
+                    Icon(Icons.Filled.PlayCircle, stringResource(Res.string.play_track, item.title))
                 }
             }
         }
@@ -155,7 +155,7 @@ fun ListItem(
             Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.End) {
                 SurpriseFeatureButton(canDownload) {
                     IconButton(onClick = onDownloadClick, enabled = canDownload) {
-                        Icon(Icons.Default.Download, stringResource(Res.string.download))
+                        Icon(Icons.Filled.Download, stringResource(Res.string.download))
                     }
                 }
             }
@@ -227,12 +227,12 @@ fun ListItemCard(
 
             SurpriseFeatureButton(canDownload) {
                 IconButton(onClick = onDownloadClick, enabled = canDownload) {
-                    Icon(Icons.Default.Download, stringResource(Res.string.download))
+                    Icon(Icons.Filled.Download, stringResource(Res.string.download))
                 }
             }
 
             IconButton(onPlayClick) {
-                Icon(Icons.Default.PlayCircle, stringResource(Res.string.play_track, title))
+                Icon(Icons.Filled.PlayCircle, stringResource(Res.string.play_track, title))
             }
         }
     }

@@ -5,10 +5,6 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.automirrored.filled.ArrowBack
-import androidx.compose.material.icons.filled.Download
-import androidx.compose.material.icons.filled.PlayCircle
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
@@ -21,6 +17,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import coil3.compose.AsyncImage
+import io.github.kingg22.vibrion.Icons
 import io.github.kingg22.vibrion.Res
 import io.github.kingg22.vibrion.albums
 import io.github.kingg22.vibrion.back
@@ -30,6 +27,9 @@ import io.github.kingg22.vibrion.domain.model.DownloadableItem
 import io.github.kingg22.vibrion.domain.model.DownloadablePlaylist
 import io.github.kingg22.vibrion.domain.model.DownloadableSingle
 import io.github.kingg22.vibrion.download
+import io.github.kingg22.vibrion.filled.ArrowBack
+import io.github.kingg22.vibrion.filled.Download
+import io.github.kingg22.vibrion.filled.PlayCircle
 import io.github.kingg22.vibrion.play_track
 import io.github.kingg22.vibrion.playlists
 import io.github.kingg22.vibrion.songs
@@ -65,7 +65,7 @@ fun MusicDetailContent(
                 title = { Text(stringResource(type), color = MaterialTheme.colorScheme.onSurface) },
                 navigationIcon = {
                     IconButton(onClick = onBackClick) {
-                        Icon(Icons.AutoMirrored.Filled.ArrowBack, stringResource(Res.string.back))
+                        Icon(Icons.Filled.ArrowBack, stringResource(Res.string.back))
                     }
                 },
                 scrollBehavior = scrollBehavior,
@@ -141,7 +141,7 @@ fun MusicDetailContent(
                     ) {
                         IconButton(onClick = { onPlayClick(detail) }) {
                             Icon(
-                                Icons.Default.PlayCircle,
+                                Icons.Filled.PlayCircle,
                                 contentDescription = stringResource(Res.string.play_track, detail.title),
                                 modifier = Modifier.size(48.dp),
                             )
@@ -149,7 +149,7 @@ fun MusicDetailContent(
                         Spacer(Modifier.width(8.dp))
                         SurpriseFeatureButton(canDownload) {
                             Button(onClick = { onDownloadClick(detail) }, enabled = canDownload) {
-                                Icon(Icons.Default.Download, contentDescription = stringResource(Res.string.download))
+                                Icon(Icons.Filled.Download, contentDescription = stringResource(Res.string.download))
                                 Spacer(Modifier.width(8.dp))
                                 Text(stringResource(Res.string.download))
                             }
@@ -204,11 +204,11 @@ fun TrackListItem(
             Row {
                 SurpriseFeatureButton(canDownload) {
                     IconButton(onClick = onDownload, enabled = canDownload) {
-                        Icon(Icons.Default.Download, stringResource(Res.string.download))
+                        Icon(Icons.Filled.Download, stringResource(Res.string.download))
                     }
                 }
                 IconButton(onClick = onPlayClick) {
-                    Icon(Icons.Default.PlayCircle, stringResource(Res.string.play_track, track.title))
+                    Icon(Icons.Filled.PlayCircle, stringResource(Res.string.play_track, track.title))
                 }
             }
         },

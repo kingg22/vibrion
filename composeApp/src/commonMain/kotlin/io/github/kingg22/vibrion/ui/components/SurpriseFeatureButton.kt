@@ -12,8 +12,6 @@ import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.BoxScope
 import androidx.compose.foundation.layout.Column
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Download
 import androidx.compose.material3.Button
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -29,8 +27,10 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
+import io.github.kingg22.vibrion.Icons
 import io.github.kingg22.vibrion.Res
 import io.github.kingg22.vibrion.download
+import io.github.kingg22.vibrion.filled.Download
 import io.github.kingg22.vibrion.ui.theme.VibrionAppTheme
 import kotlinx.coroutines.delay
 import org.jetbrains.compose.resources.stringResource
@@ -138,7 +138,7 @@ private fun SurpriseFeatureButtonPreview() {
             }
             SurpriseFeatureButton(featureAvailable = showConfetti) {
                 IconButton(onClick = {}) {
-                    Icon(Icons.Default.Download, stringResource(Res.string.download))
+                    Icon(Icons.Filled.Download, stringResource(Res.string.download))
                 }
             }
         }

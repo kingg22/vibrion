@@ -9,9 +9,6 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.automirrored.filled.KeyboardArrowRight
-import androidx.compose.material.icons.filled.KeyboardArrowDown
 import androidx.compose.material3.Icon
 import androidx.compose.material3.LocalTextStyle
 import androidx.compose.material3.Text
@@ -25,6 +22,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import io.github.kingg22.vibrion.Icons
+import io.github.kingg22.vibrion.filled.KeyboardArrowDown
+import io.github.kingg22.vibrion.filled.KeyboardArrowRight
 import io.github.kingg22.vibrion.ui.theme.VibrionAppTheme
 
 @Composable
@@ -42,7 +42,7 @@ fun ExpandableItem(
             verticalAlignment = Alignment.CenterVertically,
         ) {
             Icon(
-                if (expanded) Icons.Default.KeyboardArrowDown else Icons.AutoMirrored.Filled.KeyboardArrowRight,
+                if (expanded) Icons.Filled.KeyboardArrowDown else Icons.Filled.KeyboardArrowRight,
                 contentDescription = if (expanded) "collapse" else "expand",
             )
             Spacer(Modifier.width(8.dp))

@@ -9,8 +9,6 @@ import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.PlayArrow
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Icon
@@ -29,8 +27,10 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import coil3.compose.AsyncImage
+import io.github.kingg22.vibrion.Icons
 import io.github.kingg22.vibrion.Res
 import io.github.kingg22.vibrion.cover_of
+import io.github.kingg22.vibrion.filled.PlayArrow
 import io.github.kingg22.vibrion.placeholder
 import io.github.kingg22.vibrion.play_track
 import io.github.kingg22.vibrion.ui.theme.VibrionAppTheme
@@ -123,7 +123,7 @@ fun SongCard(carouselItem: CarouselItem, onClick: () -> Unit, onPlayClick: () ->
                         ),
                 ) {
                     Icon(
-                        imageVector = Icons.Default.PlayArrow,
+                        imageVector = Icons.Filled.PlayArrow,
                         contentDescription = stringResource(
                             Res.string.play_track,
                             carouselItem.titleSong,

@@ -6,10 +6,6 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.automirrored.filled.ArrowBack
-import androidx.compose.material.icons.filled.Folder
-import androidx.compose.material.icons.outlined.Handshake
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -26,6 +22,9 @@ import io.github.kingg22.vibrion.*
 import io.github.kingg22.vibrion.domain.model.AppSettings
 import io.github.kingg22.vibrion.domain.model.Quality
 import io.github.kingg22.vibrion.domain.model.ThemeMode
+import io.github.kingg22.vibrion.filled.ArrowBack
+import io.github.kingg22.vibrion.filled.Folder
+import io.github.kingg22.vibrion.outlined.Handshake
 import io.github.kingg22.vibrion.ui.getDisplayName
 import io.github.kingg22.vibrion.ui.theme.VibrionAppTheme
 import org.jetbrains.compose.resources.stringResource
@@ -51,7 +50,7 @@ fun SettingsContent(
                 title = { Text(stringResource(Res.string.settings)) },
                 navigationIcon = {
                     IconButton(onClick = callbacks.onBackClick) {
-                        Icon(Icons.AutoMirrored.Default.ArrowBack, stringResource(Res.string.back))
+                        Icon(Icons.Filled.ArrowBack, stringResource(Res.string.back))
                     }
                 },
             )
@@ -64,8 +63,6 @@ fun SettingsContent(
                     ExposedDropdownMenuBox(
                         expanded = expanded,
                         onExpandedChange = {
-                            // Remove in kotlin 2.3.0, false positive
-                            @Suppress("ASSIGNED_VALUE_IS_NEVER_READ")
                             expanded = it
                         },
                         modifier = Modifier.fillMaxWidth().padding(horizontal = 16.dp),
@@ -117,7 +114,7 @@ fun SettingsContent(
                             trailingIcon = {
                                 IconButton(onClick = { /* TODO Open folder picker */ }) {
                                     Icon(
-                                        Icons.Default.Folder,
+                                        Icons.Filled.Folder,
                                         stringResource(Res.string.select) + " " + stringResource(Res.string.folder),
                                     )
                                 }
