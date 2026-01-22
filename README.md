@@ -1,5 +1,12 @@
 # 🎵 Vibrion App - Music Showcase — Android Demo App
 
+![Kotlin](https://img.shields.io/badge/kotlin-%237F52FF.svg?style=flat-square&logo=kotlin&logoColor=white)
+![Kotlin Multiplatform](https://img.shields.io/badge/Kotlin_Multiplatform-D3D5EC?logo=kotlin&logoColor=#9C40F6)
+![Compose Multiplatform](https://img.shields.io/badge/Compose_Multiplatform-white.svg?logo=jetpackcompose&logoColor=%234E8BFF)
+![Android](https://img.shields.io/badge/Android-3DDC84?style=flat-square&logo=android&logoColor=white)
+
+![GitHub License](https://img.shields.io/github/license/bambanah/deemix)
+
 > **Vibrion music app demo built as a technical showcase.**
 > This project demonstrates my skills as an Android developer using modern Android architecture and tools.
 
