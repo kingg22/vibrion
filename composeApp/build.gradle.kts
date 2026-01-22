@@ -236,3 +236,21 @@ valkyrie {
 configurations.configureEach {
     exclude(group = "io.sentry", module = "sentry-android-ndk")
 }
+
+/*
+FAILURE: Build failed with an exception.
+
+* What went wrong:
+A problem was found with the configuration of task ':composeApp:runKtlintCheckOverCommonMainSourceSet' (type 'KtLintCheckTask').
+  - Gradle detected a problem with the following location: '/home/kingg22/IdeaProjects/vibrion/composeApp/build/generated/sources/valkyrie/commonMain/kotlin'.
+
+    Reason: Task ':composeApp:runKtlintCheckOverCommonMainSourceSet' uses this output of task ':composeApp:generateValkyrieImageVectorCommonMain' without declaring an explicit or implicit dependency. This can lead to incorrect results being produced, depending on what order the tasks are executed.
+
+    Possible solutions:
+      1. Declare task ':composeApp:generateValkyrieImageVectorCommonMain' as an input of ':composeApp:runKtlintCheckOverCommonMainSourceSet'.
+      2. Declare an explicit dependency on ':composeApp:generateValkyrieImageVectorCommonMain' from ':composeApp:runKtlintCheckOverCommonMainSourceSet' using Task#dependsOn.
+      3. Declare an explicit dependency on ':composeApp:generateValkyrieImageVectorCommonMain' from ':composeApp:runKtlintCheckOverCommonMainSourceSet' using Task#mustRunAfter.
+ */
+tasks.runKtlintCheckOverCommonMainSourceSet {
+    dependsOn(tasks.generateValkyrieImageVectorCommonMain)
+}
