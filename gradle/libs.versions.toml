@@ -89,7 +89,7 @@ sentry-kotlin-multiplatform = "0.23.0"
 slf4jAndroid = "1.7.36"
 
 # https://github.com/ComposeGears/Valkyrie/releases
-#valkyrie-gradle = "0.2.0"
+valkyrie-gradle = "0.3.0"
 
 [libraries]
 kotlinx-coroutines-swing = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-swing" }
@@ -247,4 +247,4 @@ kotlinSerialization = { id = "org.jetbrains.kotlin.plugin.serialization", versio
 ktlint = { id = "org.jlleitschuh.gradle.ktlint", version.ref = "ktlint-plugin" }
 sentry = { id = "io.sentry.android.gradle", version.ref = "sentry-plugin" }
 sentry-compiler = { id = "io.sentry.kotlin.compiler.gradle", version.ref = "sentry-plugin" }
-#valkyrie = { id = "io.github.composegears.valkyrie", version.ref = "valkyrie-gradle" }
+valkyrie = { id = "io.github.composegears.valkyrie", version.ref = "valkyrie-gradle" }

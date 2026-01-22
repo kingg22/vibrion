@@ -11,4 +11,5 @@ plugins {
     alias(libs.plugins.ktlint) apply false
     alias(libs.plugins.sentry) apply false
     alias(libs.plugins.sentry.compiler) apply false
+    // alias(libs.plugins.valkyrie) apply false // Can't apply in root
 }

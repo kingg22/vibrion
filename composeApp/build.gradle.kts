@@ -11,29 +11,15 @@ plugins {
     alias(libs.plugins.ktlint)
     alias(libs.plugins.kotlinMultiplatform)
     alias(libs.plugins.kotlinSerialization)
+    alias(libs.plugins.valkyrie)
 }
 
 group = "io.github.kingg22"
 version = "0.0.1"
 
-enum class OS(val id: String) {
-    Linux("linux"),
-    Windows("windows"),
-    MacOS("macos"),
-}
+enum class OS(val id: String) { Linux("linux"), Windows("windows"), MacOS("macos"), }
 
-enum class Arch(val id: String) {
-    X64("x64"),
-    Arm64("arm64"),
-}
-
-data class Target(val os: OS, val arch: Arch) {
-    val id: String get() = "${os.id}-${arch.id}"
-}
-
-val currentTarget by lazy {
-    Target(currentOS, currentArch)
-}
+enum class Arch(val id: String) { X64("x64"), Arm64("arm64"), }
 
 val currentArch: Arch by lazy {
     when (val osArch = System.getProperty("os.arch")) {
@@ -52,6 +38,8 @@ val currentOS: OS by lazy {
         else -> error("Unknown OS name: $os")
     }
 }
+
+val currentTarget by lazy { "${currentOS.id}-${currentArch.id}" }
 
 kotlin {
     compilerOptions {
@@ -97,7 +85,6 @@ kotlin {
         api(libs.jetbrains.compose.ui)
         api(libs.jetbrains.compose.foundation)
         api(libs.jetbrains.compose.material3)
-        api(libs.jetbrains.compose.material.icons.extended)
 
         // androidx lifecycle
         api(libs.jetbrains.lifecycle.runtime.compose)
@@ -166,7 +153,7 @@ kotlin {
             dependencies {
                 // Add JVM-specific dependencies here.
                 api(
-                    "org.jetbrains.compose.desktop:desktop-jvm-${currentTarget.id}:${libs.versions.compose.multiplatform.get()}",
+                    "org.jetbrains.compose.desktop:desktop-jvm-$currentTarget:${libs.versions.compose.multiplatform.get()}",
                 )
                 api(libs.kotlinx.coroutines.swing)
 
@@ -220,6 +207,29 @@ aboutLibraries {
         duplicationMode.set(com.mikepenz.aboutlibraries.plugin.DuplicateMode.MERGE)
         // Configure the duplication rule, to match "duplicates" with
         duplicationRule.set(com.mikepenz.aboutlibraries.plugin.DuplicateRule.GROUP)
+    }
+}
+
+valkyrie {
+    packageName.set("$group.vibrion")
+    generateAtSync.set(true)
+    imageVector {
+        outputFormat.set(io.github.composegears.valkyrie.generator.jvm.imagevector.OutputFormat.LazyProperty)
+        generatePreview.set(true)
+        addTrailingComma.set(true)
+    }
+    iconPack {
+        // Required: Name of the root icon pack object
+        name.set("Icons")
+        targetSourceSet.set("commonMain")
+        nested {
+            name.set("Filled")
+            sourceFolder.set("filled")
+        }
+        nested {
+            name.set("Outlined")
+            sourceFolder.set("outlined")
+        }
     }
 }
 
