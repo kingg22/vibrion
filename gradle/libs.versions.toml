@@ -55,7 +55,7 @@ koin = "4.1.1"
 kotlin = "2.3.0"
 
 # https://github.com/ktorio/ktor/releases
-ktor = "3.3.3"
+ktor = "3.4.0"
 
 # https://github.com/pinterest/ktlint/releases
 ktlint-pinterest = "1.8.0"
