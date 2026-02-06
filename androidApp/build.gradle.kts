@@ -6,7 +6,7 @@ buildscript {
     dependencies {
         // For KGP
         //noinspection UseTomlInstead
-        classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:2.3.0")
+        classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:2.3.10")
     }
 }
 
