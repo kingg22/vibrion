@@ -52,7 +52,7 @@ kermit = "2.0.8"
 koin = "4.1.1"
 
 # https://github.com/JetBrains/kotlin/releases
-kotlin = "2.3.0"
+kotlin = "2.3.10"
 
 # https://github.com/ktorio/ktor/releases
 ktor = "3.4.0"
