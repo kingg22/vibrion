@@ -17,7 +17,7 @@ androidx-data-store = "1.2.0"
 
 # See CMP https://github.com/JetBrains/compose-multiplatform/releases based on
 # https://developer.android.com/jetpack/androidx/releases/lifecycle
-jetbrains-lifecycle = "2.10.0-alpha06"
+jetbrains-lifecycle = "2.10.0-alpha08"
 androidx-lifecycle = "2.10.0"
 
 # https://developer.android.com/jetpack/androidx/releases/paging
