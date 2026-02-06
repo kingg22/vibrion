@@ -67,7 +67,7 @@ ktlint-plugin = "14.0.1"
 ktlint-compose = "0.5.5"
 
 # https://developer.android.com/jetpack/androidx/releases/media3?hl=es-419
-media3 = "1.9.0"
+media3 = "1.9.2"
 
 # https://developer.android.com/jetpack/androidx/releases/navigation3
 navigation3 = "1.0.0"
