@@ -83,7 +83,7 @@ sentry-bom = "8.31.0"
 sentry-plugin = "6.0.0-rc.1"
 
 # https://github.com/getsentry/sentry-kotlin-multiplatform/releases
-sentry-kotlin-multiplatform = "0.23.0"
+sentry-kotlin-multiplatform = "0.24.0"
 
 # https://mvnrepository.com/artifact/org.slf4j/slf4j-android
 slf4jAndroid = "1.7.36"
