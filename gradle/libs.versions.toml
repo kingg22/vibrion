@@ -10,7 +10,7 @@ android-compileSdk = "36"
 android-minSdk = "30"
 
 # https://developer.android.com/jetpack/androidx/releases/activity
-androidx-activity-compose = "1.12.2"
+androidx-activity-compose = "1.12.4"
 
 # https://developer.android.com/jetpack/androidx/releases/datastore
 androidx-data-store = "1.2.0"
