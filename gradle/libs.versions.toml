@@ -80,7 +80,7 @@ jetbrains-nav3 = "1.0.0-alpha06"
 sentry-bom = "8.31.0"
 
 # https://github.com/getsentry/sentry-android-gradle-plugin/releases
-sentry-plugin = "6.0.0-rc.1"
+sentry-plugin = "6.1.0"
 
 # https://github.com/getsentry/sentry-kotlin-multiplatform/releases
 sentry-kotlin-multiplatform = "0.23.0"
