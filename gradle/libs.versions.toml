@@ -89,7 +89,7 @@ sentry-kotlin-multiplatform = "0.24.0"
 slf4jAndroid = "1.7.36"
 
 # https://github.com/ComposeGears/Valkyrie/releases
-valkyrie-gradle = "0.3.0"
+valkyrie-gradle = "0.4.0"
 
 [libraries]
 kotlinx-coroutines-swing = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-swing" }
