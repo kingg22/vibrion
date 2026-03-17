@@ -24,7 +24,7 @@ androidx-lifecycle = "2.10.0"
 androidx-paging = "3.4.2"
 
 # https://github.com/coil-kt/coil/releases
-coil = "3.3.0"
+coil = "3.4.0"
 
 # Based on the version provided by compose-multiplatform
 # https://github.com/JetBrains/compose-hot-reload/releases
