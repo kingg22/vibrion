@@ -9,23 +9,23 @@ import io.github.kingg22.vibrion.domain.model.ModelType.GENRE
 import io.github.kingg22.vibrion.domain.model.ModelType.USER
 import io.github.kingg22.vibrion.domain.usecase.search.LoadDetailUseCase
 import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 
 class DetailViewModel(private val loadDetailUseCase: LoadDetailUseCase) : ViewModel() {
-    val uiState: StateFlow<UiState>
-        field = MutableStateFlow<UiState>(UiState.Loading)
+    private val _uiState = MutableStateFlow<UiState>(UiState.Loading)
+    val uiState = _uiState.asStateFlow()
 
     fun loadDetail(type: ModelType, id: String) {
         if (type == ARTIST || type == USER || type == GENRE) return
         viewModelScope.launch {
-            uiState.update { UiState.Loading }
+            _uiState.update { UiState.Loading }
             val detail = loadDetailUseCase(type, id)
             if (detail != null) {
-                uiState.update { UiState.Success(detail) }
+                _uiState.update { UiState.Success(detail) }
             } else {
-                uiState.value = UiState.Error
+                _uiState.value = UiState.Error
             }
         }
     }
