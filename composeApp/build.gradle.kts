@@ -52,7 +52,7 @@ kotlin {
             "androidx.compose.material3.ExperimentalMaterial3Api",
             "androidx.compose.animation.ExperimentalSharedTransitionApi",
         )
-        freeCompilerArgs.addAll("-Xexpect-actual-classes", "-Xexplicit-backing-fields", "-Xreturn-value-checker=check")
+        freeCompilerArgs.add("-Xexpect-actual-classes")
         apiVersion.set(KotlinVersion.KOTLIN_2_3)
         languageVersion.set(apiVersion)
     }
