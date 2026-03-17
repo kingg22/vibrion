@@ -49,7 +49,7 @@ glance = "1.1.1"
 kermit = "2.0.8"
 
 # https://github.com/InsertKoinIO/koin/releases
-koin = "4.1.1"
+koin = "4.2.0"
 
 # https://github.com/JetBrains/kotlin/releases
 kotlin = "2.3.20"
