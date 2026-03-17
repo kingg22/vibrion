@@ -77,7 +77,7 @@ val dataModule = module {
                 logger = object : KtorLogger {
                     override fun log(message: String) {
                         // verbose level
-                        KermitLogger.v("HttpClient") { message }
+                        KermitLogger.v(tag = "HttpClient") { message }
                     }
                 }
                 format = LoggingFormat.OkHttp
