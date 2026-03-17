@@ -33,7 +33,6 @@ kotlin {
             "androidx.compose.material3.ExperimentalMaterial3Api",
             "androidx.compose.animation.ExperimentalSharedTransitionApi",
         )
-        freeCompilerArgs.addAll("-Xskip-prerelease-check")
         apiVersion.set(KotlinVersion.KOTLIN_2_3)
         languageVersion.set(apiVersion)
         jvmTarget.set(JvmTarget.JVM_11)
