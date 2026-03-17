@@ -2,7 +2,7 @@
 # https://github.com/mikepenz/AboutLibraries/releases
 about-libraries = "13.2.1"
 
-# https://developer.android.com/build/releases/gradle-plugin
+# https://developer.android.com/build/releases/about-agp
 agp = "9.1.0"
 
 # https://developer.android.com/tools/releases/platforms
